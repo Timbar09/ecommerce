@@ -1,0 +1,23 @@
+.pd-1 {
+  padding: 1rem;
+}
+.pd-t-1 {
+  padding-top: 1rem;
+}
+.pd-r-1 {
+  padding-right: 1rem;
+}
+.pd-b-1 {
+  padding-bottom: 1rem;
+}
+.pd-l-1 {
+  padding-left: 1rem;
+}
+.pd-y-1 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.pd-x-1 {
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
