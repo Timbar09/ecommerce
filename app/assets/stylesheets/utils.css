@@ -1,0 +1,27 @@
+.radius-sm {
+  border-radius: 0.125rem;
+}
+
+.radius-md {
+  border-radius: 0.25rem;
+}
+
+.radius-lg {
+  border-radius: 0.5rem;
+}
+
+.radius-xl {
+  border-radius: 1rem;
+}
+
+.radius-xxl {
+  border-radius: 2rem;
+}
+
+.radius-pill {
+  border-radius: 9999px;
+}
+
+.radius-circle {
+  border-radius: 50%;
+}
