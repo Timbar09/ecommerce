@@ -1,0 +1,3 @@
+.category__list--item:not(:first-child) {
+  border-top: 2px solid var(--light-3);
+}

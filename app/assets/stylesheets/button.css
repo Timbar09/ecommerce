@@ -1,0 +1,35 @@
+.btn {
+  border: none;
+  padding: 0.5rem 1.5rem;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 150ms ease-in-out, color 150ms ease-in-out;
+}
+
+.btn__primary {
+  background-color: var(--dark-1);
+  color: var(--light-3);
+}
+.btn__primary:hover {
+  background-color: var(--dark-3);
+}
+
+.btn__secondary {
+  background-color: transparent;
+  color: var(--dark-3);
+  border: 2px solid var(--dark-3);
+}
+.btn__secondary:hover {
+  background-color: var(--dark-3);
+  color: var(--light-3);
+}
+
+.btn__tertiary {
+  background-color: var(--light-3);
+  color: var(--grey-1);
+}
+.btn__tertiary:hover {
+  background-color: var(--grey-3);
+  color: var(--dark-3);
+}

@@ -13,17 +13,20 @@
 .flex-wrap {
   flex-wrap: wrap;
 }
+.flex-1 {
+  flex: 1;
+}
 
 .jc-center {
   justify-content: center;
 }
-.jc-space-between {
+.jc-between {
   justify-content: space-between;
 }
-.jc-space-around {
+.jc-around {
   justify-content: space-around;
 }
-.jc-space-evenly {
+.jc-sevenly {
   justify-content: space-evenly;
 }
 .jc-start {
@@ -48,10 +51,10 @@
 .ai-stretch {
   align-items: stretch;
 }
-.ai-space-between {
+.ai-between {
   align-items: space-between;
 }
-.ai-space-around {
+.ai-around {
   align-items: space-around;
 }
 
