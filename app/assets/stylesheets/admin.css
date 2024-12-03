@@ -51,8 +51,10 @@
   }
 }
 
-.admin__dashboard {
+.admin__content {
   background-color: var(--white);
+  height: 100%;
+  overflow: hidden;
   border-radius: 0 1rem 1rem 0;
   border-top: 1px solid var(--light-2);
   border-right: 1px solid var(--light-2);

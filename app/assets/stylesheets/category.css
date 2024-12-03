@@ -1,3 +1,18 @@
+.category {
+  --bg-color: var(--white);
+
+  height: 100%;
+  background-color: var(--bg-color);
+  overflow-y: auto;
+}
+
+.category__header {
+  position: sticky;
+  top: 0;
+  background-color: var(--bg-color);
+  z-index: 1;
+}
+
 .category__list--item:not(:first-child) {
   border-top: 2px solid var(--light-3);
 }
