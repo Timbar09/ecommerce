@@ -9,14 +9,32 @@
     <%= render 'shared/button', tag: "a", path: new_admin_category_path, text: "New category", type: "primary" %>
   </header>
 
-  <ul id="admin_categories" class="category__list pd-x-2">
-    <% @admin_categories.each do |admin_category| %>
-      <li class="category__list--item pd-y-2">
-        <%= render admin_category %>
-
-        <%= render 'shared/button', tag: "a", path: admin_category_path(admin_category), text: "Show this category", type: "tertiary" %>
-        <%= render 'shared/button', tag: "a", path: edit_admin_category_path(admin_category), text: "Edit", type: "tertiary" %>
-      </li>
-    <% end %>
-  </ul>
+  <div class="category__list pd-x-2">
+    <table class="category__table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @admin_categories.each do |admin_category| %>
+          <tr>
+            <td>
+              <%= admin_category.image.present? ? image_tag(admin_category.image, class: "radius-md")
+              : image_tag("https://via.placeholder.com/50", class: "radius-md") %>
+            </td>
+            <td><%= admin_category.name %></td>
+            <td><%= admin_category.description %></td>
+            <td>
+              <%= render 'shared/button', tag: "a", path: admin_category_path(admin_category), text: "View", type: "tertiary" %>
+              <%= render 'shared/button', tag: "a", path: edit_admin_category_path(admin_category), text: "Edit", type: "tertiary" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </section>
