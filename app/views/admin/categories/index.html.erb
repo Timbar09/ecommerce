@@ -3,11 +3,7 @@
 <% content_for :title, "Categories" %>
 
 <section class="category pd-b-2">
-  <header class="category__header pd-2 flex jc-between ai-center">
-    <h1>Categories</h1>
-
-    <%= render 'shared/button', tag: "a", path: new_admin_category_path, text: "New category", type: "primary" %>
-  </header>
+  <%= render 'admin/page_header', path: new_admin_category_path, title: "New category" %>
 
   <div class="category__list pd-x-2">
     <table class="category__table">
