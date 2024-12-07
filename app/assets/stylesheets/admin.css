@@ -47,9 +47,3 @@
     display: block;
   }
 }
-
-.admin__content {
-  background-color: var(--light-3);
-  height: 100%;
-  overflow: hidden;
-}

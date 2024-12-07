@@ -1,0 +1,32 @@
+
+.admin__content--container {
+  background-color: var(--light-3);
+  height: 100%;
+  overflow: hidden;
+}
+
+.admin__content {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.admin__content--header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.admin__content--card__container {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.admin__content--card {
+  background-color: var(--light-2);
+}
+
+.admin__content--card__image {
+  width: 250px;
+  height: 200px;
+  object-fit: cover;
+}
