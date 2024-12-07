@@ -1,0 +1,5 @@
+.form__container {
+  border: 1px solid #ccc;
+  max-width: 35em;
+  margin: 0 auto;
+}
