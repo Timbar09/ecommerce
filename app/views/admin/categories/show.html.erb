@@ -1,5 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
+<%= render "admin/categories/header" %>
+
 <div class="category__show flex jc-center ai-center pd-y-2">
   <div class="category__show--card pd-2 radius-lg">
     <%= @admin_category.image.present? ? image_tag(@admin_category.image, class: "radius-md") : image_tag("https://via.placeholder.com/250", class: "radius-md") %>

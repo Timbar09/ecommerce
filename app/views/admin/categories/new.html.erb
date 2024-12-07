@@ -1,11 +1,7 @@
 <% content_for :title, "New category" %>
 
-<h1>New category</h1>
+<%= render "admin/categories/header" %>
 
-<%= render "form", admin_category: @admin_category %>
-
-<br>
-
-<div>
-  <%= link_to "Back to categories", admin_categories_path %>
+<div class="form__container">
+  <%= render "form", admin_category: @admin_category %>
 </div>
