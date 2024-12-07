@@ -28,6 +28,7 @@ html {
   --light-2: rgb(245, 245, 245);
   --light-3: rgb(240, 240, 240);
 
+  --primary: var(--dark-1);
 }
 
 body {

@@ -2,21 +2,18 @@
   height: 100vh;
 }
 
-.admin__nav h1,
-.admin__nav h2,
-.admin__nav h3 {
-  color: var(--light-3);
+.admin__container {
+  height: 100%;
+  border-radius: 1rem;
+  border: 2px solid var(--light-3);
+  overflow: hidden;
 }
 
 .admin__nav {
-  --icon-dimension: 2rem;
-
-  background-color: var(--dark-1);
+  --icon-dimension: 2.5rem;
+  
+  background-color: var(--white);
   height: 100%;
-  border-radius: 1rem 0 0 1rem;
-  border-top: 1px solid var(--dark-2);
-  border-left: 1px solid var(--dark-2);
-  border-bottom: 1px solid var(--dark-2);
 }
 
 .admin__nav--logo img {
@@ -34,13 +31,13 @@
 }
 
 .admin__nav--link:hover {
-  background-color: var(--dark-2);
-  color: var(--grey-3);
+  background-color: var(--light-2);
+  color: var(--dark-3);
 }
 
 .admin__nav--link span:first-child {
   width: var(--icon-dimension);
-  padding: .25rem;
+  padding: .5rem;
 }
 
 .admin__nav--link__text {
@@ -52,11 +49,7 @@
 }
 
 .admin__content {
-  background-color: var(--white);
+  background-color: var(--light-3);
   height: 100%;
   overflow: hidden;
-  border-radius: 0 1rem 1rem 0;
-  border-top: 1px solid var(--light-2);
-  border-right: 1px solid var(--light-2);
-  border-bottom: 1px solid var(--light-2);
 }

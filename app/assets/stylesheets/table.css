@@ -1,0 +1,38 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  padding: 1rem;
+  background-color: var(--white);
+  text-align: left;
+}
+
+.table th:first-child {
+  border-radius: 1rem 0 0 0;
+}
+
+.table th:last-child {
+  border-radius: 0 1rem 0 0;
+}
+
+.table td {
+  padding: 0.5rem 1rem;
+  text-align: left;
+  background-color: var(--light-1);
+}
+
+.table tbody tr {
+  border-top: 2px solid var(--light-3);
+}
+
+.table tbody tr:nth-of-type(odd) td {
+  background-color: var(--light-2);
+}
+
+.table img {
+  width: 50px;
+  height: 50px;
+  border: 2px solid var(--light-3);
+}
