@@ -18,14 +18,14 @@
 
       <tbody>
         <% @admin_categories.each do |admin_category| %>
-          <tr>
+          <tr class="table__row table__row--categories">
             <td class="table__image--container">
               <%= admin_category.image.present? ? image_tag(admin_category.image, class: "table__image radius-md")
               : image_tag("https://via.placeholder.com/50", class: "table__image radius-md") %>
             </td>
-            <td><%= admin_category.name %></td>
-            <td><%= admin_category.description %></td>
-            <td>
+            <td class="table__name"><%= admin_category.name %></td>
+            <td class="table__description"><%= admin_category.description %></td>
+            <td class="table__actions">
               <%= render 'shared/button', tag: "a", path: admin_category_path(admin_category), text: "View", type: "tertiary" %>
               <%= render 'shared/button', tag: "a", path: edit_admin_category_path(admin_category), text: "Edit", type: "tertiary" %>
             </td>

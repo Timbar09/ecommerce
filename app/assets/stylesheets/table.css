@@ -3,6 +3,12 @@
   border-collapse: collapse;
 }
 
+@media (max-width: 48em) { 
+  .table thead {
+    display: none;
+  }
+}
+
 .table th {
   padding: 1rem;
   background-color: var(--white);
@@ -17,15 +23,63 @@
   border-radius: 0 1rem 0 0;
 }
 
-.table td {
+.table__row {
+  border-top: 2px solid var(--light-3);
+  vertical-align: top;
+}
+
+.table__row td {
   padding: 0.5rem 1rem;
   text-align: left;
   background-color: var(--light-1);
 }
-
-.table tbody tr {
-  border-top: 2px solid var(--light-3);
-  vertical-align: top;
+@media (max-width: 48em) { 
+  .table__row {
+    display: grid;
+    grid-template-columns: calc(50px + 1rem) auto auto auto auto;
+  }
+  .table__row--products {
+    grid-template-areas: 
+      "image name name name actions"
+      "image price price price actions"
+      "description description description description description";
+  }
+  .table__row--categories {
+    grid-template-areas: 
+      "image name name actions actions"
+      "image name name actions actions"
+      "description description description description description";
+  }
+  .table__row td {
+    display: block;
+  }
+  .table__row td:first-child {
+    grid-area: image;
+    padding: 1rem 0 0 1rem;
+  }
+  .table__row td:nth-child(2) {
+    grid-area: name;
+    padding-top: 1rem;
+    padding-bottom: 0;
+  }
+  .table__row td:nth-child(3) {
+    grid-area: description;
+    padding-bottom: 1rem;
+  }
+  .table__row td:nth-child(4) {
+    grid-area: price;
+    padding-bottom: 0;
+  }
+  .table__row td:last-child {
+    grid-area: actions;
+    padding-top: 1rem;
+    padding-bottom: 0;
+    padding-left: 0;
+    text-align: right;
+  }
+  .table__row:first-child td:first-child {
+    border-radius: 1rem 1rem 0 0;
+  }
 }
 
 .table__image--container {
@@ -39,9 +93,26 @@
 .table__description {
   width: 20rem;
 }
+@media (min-width: 64em) {
+  .table__description {
+    width: auto;
+    max-width: 30rem;
+  }
+}
+@media (max-width: 48em) { 
+  .table__description {
+    width: 100%;
+  }
+}
+
 
 .table__image {
   width: 50px;
   height: 50px;
   border: 2px solid var(--light-3);
+}
+@media (max-width: 48em) { 
+  .table__image--container {
+    width: 100%;
+  }
 }

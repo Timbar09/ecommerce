@@ -28,7 +28,7 @@
 
   <div class="form__field">
     <%= form.label :category_id, style: "display: block" %>
-    <%= form.text_field :category_id %>
+    <%= form.collection_select :category_id, Category.all, :id, :name, prompt: "Select a Category" %>
   </div>
 
   <div class="form__field">
