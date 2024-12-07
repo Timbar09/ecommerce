@@ -25,7 +25,7 @@
   <body>
     <main class="admin container flex pd-2">
       <nav class="admin__nav pd-2 flex flex-col gap-1">
-       <div class="admin__nav--logo flex gap-1">
+        <div class="admin__nav--logo flex gap-1">
           <a href="<%= root_path %>">
             <img src="https://images.unsplash.com/photo-1615915468538-0fbd857888ca?q=80&w=1968&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Ecom logo" class="radius-circle">
           </a>
@@ -35,7 +35,7 @@
 
         <% nav_items = [
           { path: admin_path, icon: 'dashboard', text: 'Dashboard' },
-          { path: admin_path, icon: 'cart', text: 'Products' },
+          { path: admin_products_path, icon: 'cart', text: 'Products' },
           { path: admin_categories_path, icon: 'categories', text: 'Categories' },
           { path: admin_path, icon: 'orders', text: 'Orders' }
         ] %>

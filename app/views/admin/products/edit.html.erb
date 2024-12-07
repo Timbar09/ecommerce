@@ -1,0 +1,9 @@
+<% content_for :title, "Editing product" %>
+
+<%= render "admin/form_header", page: "Products" %>
+
+<div class="form__container">
+  <%= render "form", admin_product: @admin_product %>
+
+  <%= link_to "Show this product", admin_product_path(@admin_product) %> |
+</div>

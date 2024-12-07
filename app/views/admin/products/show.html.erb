@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render "admin/form_header", page: "Products" %>
+
+<div class="category__show flex jc-center ai-center pd-y-2">
+  <div class="category__show--card pd-2 radius-lg">
+    <%= render @admin_product %>
+
+    <div>
+      <%= link_to "Edit this product", edit_admin_product_path(@admin_product) %> |
+      <%= button_to "Destroy this product", admin_product_path(@admin_product), method: :delete %>
+    </div>
+  </div>
+</div>
