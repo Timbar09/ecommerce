@@ -2,10 +2,10 @@
 
 <% content_for :title, "Categories" %>
 
-<section class="admin__content pd-b-2">
+<section class="admin__content flex flex-col pd-b-2">
   <%= render 'admin/page_header', path: new_admin_category_path, title: "+ Add New Category" %>
 
-  <div class="pd-x-2">
+  <div class="table__container radius-xl">
     <table class="table">
       <thead>
         <tr>
