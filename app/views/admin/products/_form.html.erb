@@ -22,6 +22,18 @@
   </div>
 
   <div class="form__field">
+    <%= form.label :images, style: "display: block" %>
+    <%= form.file_field :images, multiple: true %>
+    <% if @admin_product.images.attached? %>
+      <div class="form__field">
+        <% @admin_product.images.each do |image| %>
+          <%= image_tag image.variant(:thumb) %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="form__field">
     <%= form.label :price, style: "display: block" %>
     <%= form.number_field :price %>
   </div>

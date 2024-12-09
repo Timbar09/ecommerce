@@ -65,6 +65,6 @@ class Admin::ProductsController < AdminController
 
     # Only allow a list of trusted parameters through.
     def admin_product_params
-      params.expect(product: [ :name, :description, :price, :categeger, :category_id, :active ])
+      params.expect(product: [ :name, :description, :price, :categeger, :category_id, :active, images: [] ])
     end
 end
