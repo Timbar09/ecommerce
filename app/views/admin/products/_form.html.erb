@@ -25,9 +25,14 @@
     <%= form.label :images, style: "display: block" %>
     <%= form.file_field :images, multiple: true %>
     <% if @admin_product.images.attached? %>
-      <div class="form__field">
-        <% @admin_product.images.each do |image| %>
-          <%= image_tag image.variant(:thumb) %>
+      <div class="form__field image__list flex">
+        <% @admin_product.images.each_with_index do |image, index| %>
+          <div class="image__container">
+            <%= label_tag "image_#{index}" do %>
+              <%= check_box_tag "product[remove_images][]", image.id, false, id: "image_#{index}" %>
+              <%= image_tag image.variant(:thumb), class: "radius-md" %>
+            <% end %>
+          </div>
         <% end %>
       </div>
     <% end %>
@@ -40,7 +45,7 @@
 
   <div class="form__field">
     <%= form.label :category_id, style: "display: block" %>
-    <%= form.collection_select :category_id, Category.all, :id, :name, prompt: "Select a Category" %>
+    <%= form.collection_select :category_id, Category.order(:name), :id, :name, prompt: "Select a category" %>
   </div>
 
   <div class="form__field">

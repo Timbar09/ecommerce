@@ -36,8 +36,21 @@ class Admin::ProductsController < AdminController
 
   # PATCH/PUT /admin/products/1 or /admin/products/1.json
   def update
+    @admin_product = Product.find(params[:id])
     respond_to do |format|
-      if @admin_product.update(admin_product_params)
+      if @admin_product.update(admin_product_params.reject { |k| k["images"] })
+        if admin_product_params["images"]
+          admin_product_params["images"].each do |image|
+            @admin_product.images.attach(image)
+          end
+        end
+
+        if admin_product_params["remove_images"]
+          admin_product_params["remove_images"].each do |image_id|
+            @admin_product.images.find(image_id).purge
+          end
+        end
+
         format.html { redirect_to admin_product_path(@admin_product), notice: "Product was successfully updated." }
         format.json { render :show, status: :ok, location: @admin_product }
       else
@@ -65,6 +78,6 @@ class Admin::ProductsController < AdminController
 
     # Only allow a list of trusted parameters through.
     def admin_product_params
-      params.expect(product: [ :name, :description, :price, :categeger, :category_id, :active, images: [] ])
+      params.expect(product: [ :name, :description, :price, :categeger, :category_id, :active, images: [], remove_images: [] ])
     end
 end

@@ -3,3 +3,57 @@
   max-width: 35em;
   margin: 0 auto;
 }
+
+.form__field .image__list {
+  gap: 0.25rem;
+  padding: 0.25rem;
+}
+
+.form__field .image__container label {
+  position: relative;
+  display: grid;
+  cursor: pointer;
+}
+
+.form__field .image__container label::before {
+  content: "Delete";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(232, 23, 23, 0.25);
+  color: white;
+  font-size: 0.75rem;
+  display: grid;
+  place-content: center;
+  opacity: 0;
+  transition: opacity 100ms ease-in-out;
+}
+
+.form__field .image__container label:hover::before {
+  opacity: 1;
+}
+
+.form__field .image__container img {
+  border: 2px solid #ccc;
+}
+
+.form__field .image__container input[type="checkbox"] {
+  display: none;
+}
+
+/* .form__field .image__container input[type="checkbox"]:checked + img {
+  border-color: red;
+} */
+
+.form__field .image__container input[type="checkbox"]:checked,
+.form__field .image__container input[type="checkbox"]:checked + img {
+  display: none;
+}
+
+/* .form__field .image__actions button {
+  position: absolute;
+  inset: 0.15rem;
+  background-color: #ccc;
+  color: white;
+  border: none;
+  padding: 0.25rem;
+} */
