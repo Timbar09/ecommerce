@@ -1,7 +1,9 @@
-<% content_for :title, "New product" %>
+<% content_for :title, "Add New Product" %>
 
 <%= render "admin/form_header", page: "products" %>
 
-<div class="form__container">
+<div class="form__container flex flex-col jc-center pd-2">
+  <h2 class="form__title">Add a New Product</h2>
+
   <%= render "form", admin_product: @admin_product %>
 </div>

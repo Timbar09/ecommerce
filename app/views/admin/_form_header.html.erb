@@ -4,11 +4,9 @@
 } %>
 
 <header class="form__header flex ai-center jc-between pd-2">
-  <%= link_to paths[page.downcase], class: "btn btn__tertiary radius-md flex ai-center gap-1" do %>
-    <%= render "shared/icon", name: "chevron-left" %>
+  <%= link_to paths[page.downcase], class: "radius-md flex ai-center gap-1 pd-1" do %>
+    <%= render "shared/icon", name: "arrow-left" %>
 
     <span>Back to <%= page %></span>
   <% end %>
-
-  <h1><%= yield(:title) %></h1>
 </header>

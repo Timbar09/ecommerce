@@ -1,9 +1,9 @@
-<% content_for :title, "Editing product" %>
+<% content_for :title, "Edit Product" %>
 
 <%= render "admin/form_header", page: "Products" %>
 
-<div class="form__container">
-  <%= render "form", admin_product: @admin_product %>
+<div class="form__container flex flex-col jc-center pd-2">
+  <h2 class="form__title">Edit Product</h2>
 
-  <%= link_to "Show this product", admin_product_path(@admin_product) %> |
+  <%= render "form", admin_product: @admin_product %>
 </div>

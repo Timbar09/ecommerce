@@ -1,7 +1,75 @@
 .form__container {
-  border: 1px solid #ccc;
-  max-width: 35em;
-  margin: 0 auto;
+  min-height: calc(100vh - 7.25rem);
+}
+
+.form__header a {
+  transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
+}
+
+.form__header a:hover {
+  color: var(--color-heading);
+  background-color: var(--light-2);
+}
+
+.form {
+  max-width: 30em;
+}
+
+.form__title {
+  margin-bottom: 1rem;
+}
+
+.form__field {
+  background-color: var(--light-1);
+  border: 2px solid var(--light-2);
+  transition: border-color 100ms ease-in-out;
+}
+
+.form__field:focus-within {
+  border: 2px solid var(--primary);
+}
+
+.form__field .file__container label {
+  min-width: 19ch;
+}
+
+.form__field .file__container input[type="file"] {
+  display: none;
+}
+
+.form__field label {
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.form__field input,
+.form__field textarea,
+.form__field select {
+  padding: 0.25rem 0;
+  border: none;
+  outline: 0;
+  font-family: inherit;
+  font-size: inherit;
+  background-color: transparent;
+  width: 100%;
+}
+
+.form__field input::placeholder
+.form__field textarea::placeholder {
+  color:red;
+}
+
+.form__field[type="file"] {
+  border: 3px solid var(--primary);
+}
+
+.form__field select:invalid {
+  color: var(--grey-2);
+}
+
+.form__field select option {
+  color: initial;
 }
 
 .form__field .image__list {
