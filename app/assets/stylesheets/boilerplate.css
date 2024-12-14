@@ -29,6 +29,7 @@ html {
   --light-3: rgb(240, 240, 240);
 
   --primary: var(--dark-1);
+  --primary-light: var(--grey-3);
 }
 
 body {
