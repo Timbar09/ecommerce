@@ -1,10 +1,12 @@
 .btn {
   border: none;
+  border-radius: 0.25rem;
   font-family: inherit;
   font-size: 0.85rem;
   font-weight: 600;
   padding: 0.65rem 0.75rem;
   text-decoration: none;
+  text-align: center;
   display: inline-block;
   cursor: pointer;
   transition: background-color 150ms ease-in-out, color 150ms ease-in-out;
