@@ -30,7 +30,9 @@
 
   <div class="form__field pd-x-1 pd-y-1 radius-md">
     <div class="file__container flex ai-center gap-1">
-      <label for="product_images" class="btn btn__secondary">Upload Image(s)</label>
+      <label for="product_images" class="btn btn__secondary">
+        <%= @admin_product.images.attached? ? "Change Image(s)" : "Upload Image(s)" %>
+      </label>
       <%= form.file_field :images, multiple: true, id: "product_images", data: { image_preview_target: "input" } %>
 
       <div id="uploaded-images" class="image__list flex ai-center" data-image-preview-target="preview">

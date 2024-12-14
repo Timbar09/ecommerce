@@ -1,4 +1,4 @@
-<%= form_with(model: [:admin, @admin_category], class: "form") do |form| %>
+<%= form_with(model: [:admin, @admin_category], class: "form flex flex-col gap-1", data: { controller: "image-preview" }) do |form| %>
   <% if admin_category.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(admin_category.errors.count, "error") %> prohibited this admin_category from being saved:</h2>
@@ -11,22 +11,30 @@
     </div>
   <% end %>
 
-  <div class="form__field">
+  <div class="form__field pd-x-1 pd-t-1 radius-md">
     <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, autofocus: true, required: true, placeholder: "Category name" %>
   </div>
 
-  <div class="form__field">
+  <div class="form__field pd-x-1 pd-t-1 radius-md">
     <%= form.label :description, style: "display: block" %>
-    <%= form.textarea :description %>
+    <%= form.textarea :description, required: true, placeholder: "Category description" %>
   </div>
 
-  <div class="form__field">
-    <%= form.label :image, style: "display: block" %>
-    <%= form.file_field :image %>
+  <div class="form__field pd-1 radius-md">
+    <div class="file__container flex ai-center gap-1">
+      <label for="category_image" class="btn btn__secondary">
+        <%= @admin_category.image.attached? ? "Change Image" : "Upload Image" %>
+      </label>
+      <%= form.file_field :image, id: "category_image", data: { image_preview_target: "input" } %>
+
+      <div id="uploaded-images" class="image__list flex ai-center" data-image-preview-target="preview">
+        No image uploaded
+      </div>
+    </div>
   </div>
 
-  <div class="form__actions">
-    <%= form.submit %>
+  <div class="form__actions flex jc-end">
+    <%= form.submit(admin_category.new_record? ? "Create Category" : "Update Category", class: "btn btn__primary") %>
   </div>
 <% end %>

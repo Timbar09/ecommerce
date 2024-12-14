@@ -19,6 +19,10 @@
   margin-bottom: 1rem;
 }
 
+.form__title span {
+  color: var(--primary);
+}
+
 .form__field {
   background-color: var(--light-1);
   border: 2px solid var(--light-2);

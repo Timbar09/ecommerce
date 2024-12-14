@@ -1,9 +1,9 @@
-<% content_for :title, "Editing category" %>
+<% content_for :title, "Edit category" %>
 
 <%= render "admin/form_header", page: "Categories" %>
 
-<div class="form__container">
-  <%= render "form", admin_category: @admin_category %>
+<div class="form__container flex flex-col jc-center pd-2">
+  <h2 class="form__title">Edit Category<span>.</span></h2>
 
-  <%= link_to "Show this category", admin_category_path(@admin_category) %>
+  <%= render "form", admin_category: @admin_category %>
 </div>
