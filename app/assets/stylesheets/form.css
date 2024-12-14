@@ -37,6 +37,20 @@
   display: none;
 }
 
+.form__field .file__container .image__list {
+  margin: 0;
+  padding: 0;
+  color: var(--grey-3);
+  background-color: transparent;
+}
+
+.form__field .file__container img {
+  width: 2.25rem;
+  height: 2.25rem;
+  object-fit: cover;
+  border: 2px solid var(--light-2);
+}
+
 .form__field label {
   font-size: 0.75rem;
   font-weight: bold;
@@ -55,17 +69,18 @@
   width: 100%;
 }
 
-.form__field input::placeholder
+.form__field input::placeholder,
 .form__field textarea::placeholder {
-  color:red;
+  color:var(--grey-3);
 }
 
-.form__field[type="file"] {
-  border: 3px solid var(--primary);
+.form__field textarea {
+  resize: none;
+  height: 4em;
 }
 
 .form__field select:invalid {
-  color: var(--grey-2);
+  color: var(--grey-3);
 }
 
 .form__field select option {
@@ -73,8 +88,10 @@
 }
 
 .form__field .image__list {
-  gap: 0.25rem;
+  margin-top: 0.5rem;
   padding: 0.25rem;
+  gap: 0.25rem;
+  background-color: var(--light-2);
 }
 
 .form__field .image__container label {
@@ -87,6 +104,7 @@
   content: "Delete";
   position: absolute;
   inset: 0;
+  border-radius: .25rem;
   background-color: rgba(232, 23, 23, 0.25);
   color: white;
   font-size: 0.75rem;
@@ -101,27 +119,14 @@
 }
 
 .form__field .image__container img {
-  border: 2px solid #ccc;
+  border: 2px solid var(--light-3);
 }
 
 .form__field .image__container input[type="checkbox"] {
   display: none;
 }
 
-/* .form__field .image__container input[type="checkbox"]:checked + img {
-  border-color: red;
-} */
-
 .form__field .image__container input[type="checkbox"]:checked,
 .form__field .image__container input[type="checkbox"]:checked + img {
   display: none;
 }
-
-/* .form__field .image__actions button {
-  position: absolute;
-  inset: 0.15rem;
-  background-color: #ccc;
-  color: white;
-  border: none;
-  padding: 0.25rem;
-} */
