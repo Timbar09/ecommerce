@@ -5,33 +5,11 @@
 <section class="admin__content flex flex-col pb-2">
   <%= render 'admin/page_header', path: new_admin_category_path, title: "+ Add New Category" %>
 
-  <div class="table__container radius-xl">
-    <table class="table">
-      <thead>
-        <tr>
-          <th></th>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
+  <% headers = [:image, :name, :description, :actions] %>
+  <% actions = [
+    { path: ->(category) { edit_admin_category_path(category) }, name: "Edit Category" },
+    { path: ->(category) { admin_category_path(category) }, name: "View Category" }
+  ] %>
 
-      <tbody>
-        <% @admin_categories.each do |admin_category| %>
-          <tr class="table__row table__row--categories">
-            <td class="table__image--container">
-              <%= admin_category.image.present? ? image_tag(admin_category.image.variant(:thumb), class: "table__image radius-md")
-              : image_tag("https://via.placeholder.com/50", class: "table__image radius-md") %>
-            </td>
-            <td class="table__name"><%= admin_category.name %></td>
-            <td class="table__description"><%= admin_category.description %></td>
-            <td class="table__actions">
-              <%= render 'shared/button', tag: "a", path: admin_category_path(admin_category), text: "View", type: "tertiary" %>
-              <%= render 'shared/button', tag: "a", path: edit_admin_category_path(admin_category), text: "Edit", type: "tertiary" %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+  <%= render partial: 'shared/table', locals: { headers: headers, list: @admin_categories, actions: actions } %>
 </section>

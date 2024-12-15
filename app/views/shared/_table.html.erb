@@ -1,0 +1,77 @@
+<!-- app/views/shared/_table.html.erb -->
+<div class="table__container radius-xl">
+  <table class="table">
+    <thead>
+      <tr>
+        <% headers.each do |header| %>
+          <th><%= header.to_s.titleize %></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tfoot class="table__footer">
+      <tr>
+        <td colspan="<%= headers.size %>">
+          <div class="table__footer--container flex ai-center jc-between px-2 py-3">
+            <button class="table__footer--prev table__footer--nav__button flex ai-center gap-1 radius-md py-1 pr-2">
+              <%= render 'shared/icon', name: "chevron-left" %>
+              Prev
+            </button>
+
+            <ul class="table__footer--pages flex">
+              <li class="table__footer--page">
+                <button class="table__footer--page__button px-1 radius-md">1</button>
+              </li>
+
+              <li class="table__footer--page">
+                <button class="table__footer--page__button px-1 radius-md">2</button>
+              </li>
+
+              <li class="table__footer--page">
+                <button class="table__footer--page__button px-1 radius-md">3</button>
+              </li>
+            </ul>
+
+            <button class="table__footer--next table__footer--nav__button flex ai-center gap-1 radius-md py-1 pl-2">
+              Next
+              <%= render 'shared/icon', name: "chevron-right" %>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tfoot>
+
+    <tbody>
+      <% list.each do |item| %>
+        <tr class="table__row table__row--<%= item.class.name.downcase %>">
+          <% headers.each do |attribute| %>
+            <td class="table__<%= attribute == :image || attribute == :image ? "image--container" : attribute %>">
+              <% if attribute == :image || attribute == :images %>
+                <% if item.respond_to?(:images) && item.images.any? %>
+                  <%= image_tag(item.images.first.variant(:thumb), class: "table__image radius-md") %>
+                <% elsif item.respond_to?(:image) && item.image.attached? %>
+                  <%= image_tag(item.image.variant(:thumb), class: "table__image radius-md") %>
+                <% else %>
+                  <%= image_tag("https://via.placeholder.com/50", class: "table__image radius-md") %>
+                <% end %>
+              <% elsif attribute == :actions %>
+                <%= render 'shared/options_modal' do %>
+                  <ul class="modal__list p-1">
+                    <% actions.each do |action| %>
+                      <li class="modal__list--item">
+                        <%= link_to action[:path].call(item), method: action[:method], class: "modal__list--link" do %>
+                          <%= action[:name] %>
+                        <% end %>
+                      </li>
+                    <% end %>
+                  </ul>
+                <% end %>
+              <% else %>
+                <%= item.send(attribute) %>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  </div>

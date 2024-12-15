@@ -43,18 +43,21 @@
 .table__row td:first-child {
   padding: 0.5rem 0 0.5rem 1rem;
 }
+.table__row td:last-child {
+  text-align: right;
+}
 @media (max-width: 48em) { 
   .table__row {
     display: grid;
     grid-template-columns: calc(50px + 1rem) auto auto auto auto;
   }
-  .table__row--products {
+  .table__row--product {
     grid-template-areas: 
       "image name name name actions"
       "image price price price actions"
       "description description description description description";
   }
-  .table__row--categories {
+  .table__row--category {
     grid-template-areas: 
       "image name name actions actions"
       "image name name actions actions"
@@ -85,7 +88,6 @@
     padding-top: 1rem;
     padding-bottom: 0;
     padding-left: 0;
-    text-align: right;
   }
 }
 
@@ -108,7 +110,44 @@
   }
 }
 
+.table__image--container {
+  width: calc(50px + 1rem);
+}
 
 .table__image {
   border: 2px solid var(--light-3);
+}
+
+.table__footer--container {
+  background-color: var(--white);
+  border-radius: 0 0 1rem 1rem;
+}
+
+.table__footer--nav__button,
+.table__footer--page__button {
+  color: inherit;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
+}
+
+.table__footer--nav__button:hover {
+  color: var(--color-heading);
+  background-color: var(--light-3);
+}
+
+.table__footer--nav__button svg {
+  width: 1.25rem;
+  stroke-width: 2;
+}
+
+.table__footer--page__button {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.table__footer--page__button:hover {
+  color: var(--color-heading);
+  background-color: var(--light-3);
 }

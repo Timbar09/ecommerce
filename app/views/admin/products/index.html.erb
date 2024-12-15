@@ -5,43 +5,11 @@
 <section class="admin__content flex flex-col pb-2">
   <%= render 'admin/page_header', path: new_admin_product_path, title: "+ Add New Product" %>
 
-  <div class="table__container radius-xl">
-    <table class="table">
-      <thead>
-        <tr>
-          <th></th>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Price</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
+  <% headers = [:image, :name, :description, :price, :actions] %>
+  <% actions = [
+    { path: ->(product) { edit_admin_product_path(product) }, name: "Edit Product" },
+    { path: ->(product) { admin_product_path(product) }, name: "View Product" }
+  ] %>
 
-      <tbody>
-        <% @admin_products.each do |product| %>
-          <tr class="table__row table__row--products">
-            <td class="table__image--container">
-              <%= product.images.any? ? image_tag(product.images.first.variant(:thumb), class: "table__image radius-md")
-              : image_tag("https://via.placeholder.com/50", class: "table__image radius-md") %>
-            </td>
-            <td class="table__name"><%= product.name %></td>
-            <td class="table__description"><%= product.description %></td>
-            <td class="table__price"><%= number_to_currency(product.price) %></td>
-            <td class="table__actions">
-              <%= render 'shared/options_modal' do %>
-                <ul class="modal__list p-1">
-                  <li class="modal__list--item">
-                    <%= link_to "Edit Item", edit_admin_product_path(product), class: "modal__list--link", data: { action: "click->options-modal#toggle" } %>
-                  </li>
-
-                  <li class="modal__list--item">
-                    <%= link_to "View Item", admin_product_path(product), class: "modal__list--link", data: { action: "click->options-modal#toggle" } %>
-                  </li>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  </section>
+  <%= render partial: 'shared/table', locals: { headers: headers, list: @admin_products, actions: actions } %>
+</section>
