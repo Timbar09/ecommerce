@@ -28,12 +28,20 @@
             <td class="table__description"><%= product.description %></td>
             <td class="table__price"><%= number_to_currency(product.price) %></td>
             <td class="table__actions">
-              <%= render 'shared/button', tag: "a", path: admin_product_path(product), text: "View", type: "tertiary" %>
-              <%= render 'shared/button', tag: "a", path: edit_admin_product_path(product), text: "Edit", type: "tertiary" %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-</section>
+              <%= render 'shared/options_modal' do %>
+                <ul class="modal__list pd-1">
+                  <li class="modal__list--item">
+                    <%= link_to "Edit Item", edit_admin_product_path(product), class: "modal__list--link", data: { action: "click->options-modal#toggle" } %>
+                  </li>
+
+                  <li class="modal__list--item">
+                    <%= link_to "View Item", admin_product_path(product), class: "modal__list--link", data: { action: "click->options-modal#toggle" } %>
+                  </li>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </section>
