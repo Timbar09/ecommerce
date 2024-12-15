@@ -2,8 +2,8 @@
 
 <%= render "admin/form_header", page: "Categories" %>
 
-<div class="admin__content--card__container flex jc-center ai-center pd-y-2">
-  <div class="admin__content--card pd-2 radius-lg">
+<div class="admin__content--card__container flex jc-center ai-center py-2">
+  <div class="admin__content--card p-2 radius-lg">
     <%= @admin_category.image.present? ? image_tag(@admin_category.image, class: "admin__content--card__image radius-md") : image_tag("https://via.placeholder.com/250", class: "admin__content--card__image radius-md") %>
 
     <%= render @admin_category %>
