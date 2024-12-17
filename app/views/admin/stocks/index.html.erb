@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Stock" %>
+
+<section class="admin__content flex flex-col pb-2">
+  <%= render 'admin/page_header', specific_title: @product.name, path: new_admin_product_stock_path, title: "+ Add New Stock" %>
+
+  <div id="admin_stocks">
+    <% @admin_stocks.each do |admin_stock| %>
+      <%= render admin_stock %>
+      <p>
+        <%= link_to "Show this stock", admin_product_stock_path(@product, admin_stock) %>
+      </p>
+    <% end %>
+  </div>
+</section>

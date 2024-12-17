@@ -66,6 +66,10 @@
     </div>
   </div>
 
+  <div class="p-1">
+    <%= link_to "Product Stock", admin_product_stocks_path(@admin_product), style: "text-decoration: underline" %>
+  </div>
+
   <div class="form__actions flex jc-end">
     <%= form.submit(@admin_product.new_record? ? "Create Product" : "Update Product", class: "btn btn__primary") %>
   </div>

@@ -1,5 +1,11 @@
 <header class="admin__content--header p-2 flex jc-between ai-center">
-  <h2><%= yield :title %></h2>
+  <h2>
+    <% if local_assigns[:specific_title] %>
+      <%= specific_title %>
+    <% end %>
+
+    <%= yield :title %>
+  </h2>
 
   <%= render 'shared/button', tag: "a", path: path, text: title, type: "primary" %>
 </header>
