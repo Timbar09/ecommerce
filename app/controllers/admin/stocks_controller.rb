@@ -4,7 +4,7 @@ class Admin::StocksController < AdminController
 
   # GET /admin/stocks or /admin/stocks.json
   def index
-    @admin_stocks = Stock.all
+    @admin_stocks = Stock.where(product_id: @product)
   end
 
   # GET /admin/stocks/1 or /admin/stocks/1.json

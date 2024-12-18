@@ -5,12 +5,12 @@
 <section class="admin__content flex flex-col pb-2">
   <%= render 'admin/page_header', specific_title: @product.name, path: new_admin_product_stock_path, title: "+ Add New Stock" %>
 
-  <div id="admin_stocks">
-    <% @admin_stocks.each do |admin_stock| %>
-      <%= render admin_stock %>
-      <p>
-        <%= link_to "Show this stock", admin_product_stock_path(@product, admin_stock) %>
-      </p>
-    <% end %>
-  </div>
+  <% headers = [:id, :size, :quantity, :product_name, :actions] %>
+  <% actions = [
+    { path: ->(stock) { edit_admin_product_stock_path(@product, stock) }, name: "Edit Stock" },
+    { path: ->(stock) { admin_product_stock_path(@product, stock) }, name: "View Stock" },
+    { path: ->(stock) { admin_product_stock_path(@product, stock) }, name: "Delete Stock", method: :delete }
+  ] %>
+
+  <%= render partial: 'shared/table', locals: { headers: headers, list: @admin_stocks, actions: actions } %>
 </section>

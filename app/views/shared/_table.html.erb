@@ -4,7 +4,15 @@
     <thead>
       <tr>
         <% headers.each do |header| %>
-          <th><%= header.to_s.titleize %></th>
+          <th>
+            <% if header == :id %>
+              SKU
+            <% elsif header == :product_name %>
+              Product
+            <% else %>
+              <%= header.to_s.titleize %>
+            <% end %>
+          </th>
         <% end %>
       </tr>
     </thead>
@@ -66,6 +74,8 @@
                     <% end %>
                   </ul>
                 <% end %>
+              <% elsif attribute == :product_name %>
+                <%= item.product.name %> (<%= item.product.category.name %>)
               <% else %>
                 <%= item.send(attribute) %>
               <% end %>
@@ -73,5 +83,6 @@
           <% end %>
         </tr>
       <% end %>
-    </table>
-  </div>
+    </tbody>
+  </table>
+</div>
