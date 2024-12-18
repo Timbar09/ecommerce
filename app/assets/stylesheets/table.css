@@ -36,6 +36,7 @@
 }
 
 .table__row td {
+  position: relative;
   padding: 0.5rem 1rem;
   text-align: left;
   background-color: var(--light-1);
@@ -51,6 +52,14 @@
     display: grid;
     grid-template-columns: calc(50px + 1rem) auto auto auto auto;
   }
+  .table__row--stock {
+    grid-template-areas: 
+      "sku sku sku sku actions"
+      "size size size size actions"
+      "quantity quantity quantity quantity actions"
+      "product_name product_name product_name product_name product_name";
+  }
+
   .table__row--product {
     grid-template-areas: 
       "image name name name actions"
@@ -66,28 +75,66 @@
   .table__row td {
     display: block;
   }
-  .table__row td:first-child {
+  .table__image--container {
     grid-area: image;
     padding: 1rem 0 0 1rem;
   }
-  .table__row td:nth-child(2) {
+  .table__name {
     grid-area: name;
     padding-top: 1rem;
     padding-bottom: 0;
   }
-  .table__row td:nth-child(3) {
+  .table__description {
     grid-area: description;
     padding-bottom: 1rem;
   }
-  .table__row td:nth-child(4) {
+  .table__price {
     grid-area: price;
     padding-bottom: 0;
   }
-  .table__row td:last-child {
+  .table__actions {
     grid-area: actions;
     padding-top: 1rem;
     padding-bottom: 0;
     padding-left: 0;
+  }
+}
+
+/* Stock */
+@media (max-width: 48em) {
+  .table__id::before,
+  .table__size::before,
+  .table__quantity::before,
+  .table__product_name::before {
+    font-weight: 600;
+  }
+
+  .table__id {
+    grid-area: sku;
+  }
+  .table__id::before {
+    content: "SKU: ";
+  }
+
+  .table__size {
+    grid-area: size;
+  }
+  .table__size::before {
+    content: "Size: ";
+  }
+
+  .table__quantity {
+    grid-area: quantity;
+  }
+  .table__quantity::before {
+    content: "Quantity: ";
+  }
+
+  .table__product_name {
+    grid-area: product_name;
+  }
+  .table__product_name::before {
+    content: "Product Name: ";
   }
 }
 
