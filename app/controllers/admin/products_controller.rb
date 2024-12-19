@@ -4,6 +4,14 @@ class Admin::ProductsController < AdminController
   # GET /admin/products or /admin/products.json
   def index
     @admin_products = Product.all
+
+    @table_headers = [ :image, :name, :description, :price, :actions ]
+    @table_actions = [
+      { path: ->(product) { edit_admin_product_path(product) }, name: "Edit Product" },
+      { path: ->(product) { admin_product_path(product) }, name: "View Product" },
+      { path: ->(product) { admin_product_stocks_path(product) }, name: "View Stock" },
+      { path: ->(product) { admin_product_path(product) }, name: "Delete Product", method: :delete }
+    ]
   end
 
   # GET /admin/products/1 or /admin/products/1.json

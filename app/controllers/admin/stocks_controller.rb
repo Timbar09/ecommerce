@@ -5,6 +5,13 @@ class Admin::StocksController < AdminController
   # GET /admin/stocks or /admin/stocks.json
   def index
     @admin_stocks = Stock.where(product_id: @product)
+
+    @table_headers = [ :id, :size, :quantity, :product_name, :actions ]
+    @table_actions = [
+      { path: ->(stock) { edit_admin_product_stock_path(@product, stock) }, name: "Edit Stock" },
+      { path: ->(stock) { admin_product_stock_path(@product, stock) }, name: "View Stock" },
+      { path: ->(stock) { admin_product_stock_path(@product, stock) }, name: "Delete Stock", method: :delete }
+    ]
   end
 
   # GET /admin/stocks/1 or /admin/stocks/1.json

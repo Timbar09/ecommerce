@@ -4,6 +4,13 @@ class Admin::CategoriesController < AdminController
   # GET /admin/categories or /admin/categories.json
   def index
     @admin_categories = Category.all
+
+    @table_headers = [ :image, :name, :description, :actions ]
+    @table_actions = [
+      { path: ->(category) { edit_admin_category_path(category) }, name: "Edit Category" },
+      { path: ->(category) { admin_category_path(category) }, name: "View Category" },
+      { path: ->(category) { admin_category_path(category) }, name: "Delete Category", method: :delete, data: { confirm: "Are you sure?" } }
+    ]
   end
 
   # GET /admin/categories/1 or /admin/categories/1.json
