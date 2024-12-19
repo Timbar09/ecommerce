@@ -56,3 +56,26 @@
   color: var(--color-heading);
   background-color: var(--light-2);
 }
+
+/* FLASH MESSAGES */
+
+.flash {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  translate: -50%;
+  color: var(--light-3);
+  transition: opacity 1000ms ease-in-out;
+}
+
+.flash.fade-out {
+  opacity: 0;
+}
+
+.flash__notice {
+  background-color: var(--light-green);
+}
+
+.flash__alert {
+  background-color: var(--light-red);
+}

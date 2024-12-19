@@ -1,0 +1,7 @@
+<div class="flash" data-controller="flash">
+  <% if notice %>
+    <p class="flash__notice p-1 radius-lg"><%= notice %></p>
+  <% elsif alert %>
+    <p class="flash__alert p-1 radius-lg"><%= alert %></p>
+  <% end %>
+</div>
