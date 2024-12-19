@@ -1,4 +1,4 @@
-<%= form_with(model: [:admin, @product, admin_stock]) do |form| %>
+<%= form_with(model: [:admin, @product, admin_stock], class: "form flex flex-col gap-1") do |form| %>
   <% if admin_stock.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(admin_stock.errors.count, "error") %> prohibited this admin_stock from being saved:</h2>
@@ -11,17 +11,17 @@
     </div>
   <% end %>
 
-  <div>
+  <div class="form__field px-1 pt-1 radius-md flex-1">
     <%= form.label :size, style: "display: block" %>
-    <%= form.text_field :size %>
+    <%= form.text_field :size, required: true, placeholder: "Stock size" %>
   </div>
 
-  <div>
+  <div class="form__field px-1 pt-1 radius-md flex-1">
     <%= form.label :quantity, style: "display: block" %>
-    <%= form.number_field :quantity %>
+    <%= form.number_field :quantity, required: true, placeholder: "Stock quantity" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="form__actions flex jc-end">
+    <%= form.submit(@admin_stock.new_record? ? "Create Stock" : "Update Stock", class: "btn btn__primary") %>
   </div>
 <% end %>

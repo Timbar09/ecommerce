@@ -23,6 +23,12 @@
   color: var(--primary);
 }
 
+@media (max-width: 40em) {
+.form__flex {
+    flex-direction: column;
+  }
+}
+
 .form__field {
   background-color: var(--light-1);
   border: 2px solid var(--light-2);
@@ -35,6 +41,16 @@
 
 .form__field .file__container label {
   min-width: 19ch;
+  color: var(--color-heading);
+}
+
+.form__field .file__container .btn {
+  outline: 0;
+}
+
+.form__field .file__container .btn:hover,
+.form__field .file__container .btn:focus {
+  color: var(--light-3);
 }
 
 .form__field .file__container input[type="file"] {
@@ -146,15 +162,25 @@
   position: relative;
   display: grid;
   cursor: pointer;
+  border-radius: .25rem;
+  border: 2px solid transparent;
+  transition: border-color 100ms ease-in-out;
+}
+
+.form__field .image__container label:focus-visible {
+  opacity: 1;
+  outline: 0;
+  border-color: var(--color-heading);
 }
 
 .form__field .image__container label::before {
   content: "Delete";
   position: absolute;
   inset: 0;
-  border-radius: .25rem;
+  border-radius: inherit;
   background-color: rgba(232, 23, 23, 0.25);
-  color: white;
+  color: var(--light-3);
+  text-shadow: 0 0 0.25rem var(--dark-3);
   font-size: 0.75rem;
   display: grid;
   place-content: center;
@@ -162,7 +188,8 @@
   transition: opacity 100ms ease-in-out;
 }
 
-.form__field .image__container label:hover::before {
+.form__field .image__container label:hover::before,
+.form__field .image__container label:focus-visible::before {
   opacity: 1;
 }
 

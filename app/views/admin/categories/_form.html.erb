@@ -23,7 +23,7 @@
 
   <div class="form__field p-1 radius-md">
     <div class="file__container flex ai-center gap-1">
-      <label for="category_image" class="btn btn__secondary">
+      <label for="category_image" class="btn btn__secondary" tabindex="0">
         <%= @admin_category.image.attached? ? "Change Image" : "Upload Image" %>
       </label>
       <%= form.file_field :image, id: "category_image", data: { image_preview_target: "input" } %>

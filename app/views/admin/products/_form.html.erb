@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <div class="flex gap-1">
+  <div class="form__flex flex gap-1">
     <div class="form__field px-1 pt-1 radius-md flex-1">
       <%= form.label :name, style: "display: block" %>
       <%= form.text_field :name, autofocus: true, required: true, placeholder: "Product name" %>
@@ -30,7 +30,7 @@
 
   <div class="form__field px-1 py-1 radius-md">
     <div class="file__container flex ai-center gap-1">
-      <label for="product_images" class="btn btn__secondary">
+      <label for="product_images" class="btn btn__secondary" tabindex="0">
         <%= @admin_product.images.attached? ? "Change Image(s)" : "Upload Image(s)" %>
       </label>
       <%= form.file_field :images, multiple: true, id: "product_images", data: { image_preview_target: "input" } %>
@@ -44,7 +44,7 @@
       <div class="image__list flex">
         <% @admin_product.images.each_with_index do |image, index| %>
           <div class="image__container">
-            <%= label_tag "image_#{index}" do %>
+            <%= label_tag "image_#{index}", tabindex: 0 do %>
               <%= check_box_tag "product[remove_images][]", image.id, false, id: "image_#{index}" %>
               <%= image_tag image.variant(:thumb), class: "radius-md" %>
             <% end %>
