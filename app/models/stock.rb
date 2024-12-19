@@ -7,6 +7,14 @@ class Stock < ApplicationRecord
   validate :size_must_be_string_or_number
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
+  def display_product_name
+    "#{product.name} (#{product.category.name})"
+  end
+
+  def display_sku
+    "stock0#{product.id}S0#{id}"
+  end
+
   private
 
   def size_must_be_string_or_number
