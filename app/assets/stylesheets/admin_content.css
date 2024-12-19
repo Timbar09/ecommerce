@@ -1,5 +1,6 @@
 
 .admin__content--container {
+  position: relative;
   background-color: var(--light-3);
   height: 100%;
   overflow: hidden;

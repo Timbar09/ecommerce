@@ -61,9 +61,9 @@
               actions.map do |action|
                 content_tag(:li, class: "modal__list--item") do
                   if action[:method] == :delete
-                    button_to action[:name], action[:path].call(item), method: :delete, class: "modal__list--link", data: { confirm: "Are you sure?" }
+                    button_to action[:name], action[:path].call(item), method: :delete, class: "modal__list--link", data_action: "click->options-modal#close"
                   else
-                    link_to action[:name], action[:path].call(item), method: action[:method], class: "modal__list--link"
+                    link_to action[:name], action[:path].call(item), method: action[:method], class: "modal__list--link", data_action: "click->options-modal#close"
                   end
                 end
               end.join.html_safe
