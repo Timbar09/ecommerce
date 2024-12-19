@@ -1,12 +1,9 @@
-<% content_for :title, "Editing stock" %>
+<% content_for :title, "Edit stock" %>
 
-<h1>Editing stock</h1>
+<%= render "admin/form_header", page: "stocks" %>
 
-<%= render "form", admin_stock: @admin_stock %>
+<div class="form__container flex flex-col jc-center p-2">
+  <h2 class="form__title">Edit Stock<span>.</span></h2>
 
-<br>
-
-<div>
-  <%= link_to "Show this stock", admin_product_stock_path(@product, @admin_stock) %> |
-  <%= link_to "Back to stocks", admin_product_stocks_path(@product, @admin_stock) %>
+  <%= render "form", admin_stock: @admin_stock %>
 </div>

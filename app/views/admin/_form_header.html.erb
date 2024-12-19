@@ -1,6 +1,9 @@
+<% stocks_path = params[:product_id].present? ? admin_product_stocks_path(params[:product_id]) : nil %>
+
 <% paths = {
   "products" => admin_products_path,
   "categories" => admin_categories_path,
+  "stocks" => stocks_path
 } %>
 
 <header class="form__header flex ai-center jc-between p-2">
