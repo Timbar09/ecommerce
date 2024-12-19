@@ -8,7 +8,8 @@
   <% headers = [:image, :name, :description, :actions] %>
   <% actions = [
     { path: ->(category) { edit_admin_category_path(category) }, name: "Edit Category" },
-    { path: ->(category) { admin_category_path(category) }, name: "View Category" }
+    { path: ->(category) { admin_category_path(category) }, name: "View Category" },
+    (path: ->(category) { admin_category_path(category) }, name: "Delete Category", method: :delete)
   ] %>
 
   <%= render partial: 'shared/table', locals: { headers: headers, list: @admin_categories, actions: actions } %>

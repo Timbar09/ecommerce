@@ -37,8 +37,13 @@
   border-radius: inherit;
 }
 
-.modal__list--item {
+.modal__list--link {
+  display: block;
+  border: 0;
+  color: inherit;
+  background-color: transparent;
   padding: 0.5rem 1rem;
+  font-family: inherit;
   font-size: 0.85rem;
   font-weight: 600;
   min-width: max-content;
@@ -47,7 +52,7 @@
   transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
 }
 
-.modal__list--item:hover {
+.modal__list--link:hover {
   color: var(--color-heading);
   background-color: var(--light-2);
 }
