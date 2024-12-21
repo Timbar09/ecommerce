@@ -50,7 +50,7 @@
 
     <tbody>
       <% specific_attributes = {
-        image: ->(item) { image_tag(item.display_image, class: "table__image radius-md") },
+        image: ->(item) { image_tag(item.display_thumb_image, class: "table__image radius-md") },
         product_name: ->(item) { item.display_product_name },
         size: ->(item) { item.size.upcase },
         id: ->(item) { item.display_sku },
