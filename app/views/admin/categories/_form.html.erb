@@ -32,6 +32,14 @@
         No image uploaded
       </div>
     </div>
+
+    <% if @admin_category.image.attached? %>
+      <div class="image__list">
+        <div class="image__container">
+          <%= image_tag @admin_category.display_thumb_image, class: "radius-md" %>
+        </div>
+      </div>
+    <% end %>
   </div>
 
   <div class="form__actions flex jc-end">

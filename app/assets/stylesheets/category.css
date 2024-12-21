@@ -1,0 +1,96 @@
+.category__show--header {
+  perspective: 1000px;
+  background-color: var(--primary);
+  border-radius: 0 0 1rem 1rem;
+}
+
+.category__show--header h1 {
+  margin-bottom: 1rem;
+  color: var(--light-3);
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.category__show--content {
+  color: var(--grey-2);
+  font-size: 1.05rem;
+}
+
+.category__show--content p {
+  max-width: 15rem;
+}
+
+.category__show--image {
+  margin-right: 1rem;
+  max-width: 11rem;
+  rotate: y -27deg;
+}
+.category__show--image img {
+  width: 100%;
+}
+
+.category__show--actions {
+  margin-top: 2rem;
+  padding: 0.25rem;
+  background-color: var(--light-1);
+}
+
+.category__show--actions__item {
+  position: relative;
+  background-color: var(--light-3);
+  border-radius: .75rem;
+  transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
+}
+
+.category__show--actions__item i {
+  position: relative;
+  width: 1.25rem;
+  transition: transform 100ms ease-in-out;
+}
+.category__show--actions__item span {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: top 100ms ease-in-out, opacity 50ms 50ms ease-in-out;
+}
+
+.category__show--actions__item:hover i {
+  transform: translateY(-25%);
+}
+.category__show--actions__item:hover span {
+  top: 75%;
+  opacity: 1;
+}
+
+.category__show--actions__item:first-child:hover,
+.category__show--actions__item:last-child:hover {
+  color: var(--light-3);
+  background-color: var(--primary);
+}
+
+.category__show--actions__item--middle {
+  border-radius: 0;
+  background-color: transparent;
+}
+
+.category__show--actions__item--middle a,
+.category__show--actions__item--middle button {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.category__show--actions__item a,
+.category__show--actions__item button {
+  display: inline-block;
+  border: 0;
+  color: inherit;
+  background-color: transparent;
+  border-radius: .75rem;
+  font-family: inherit;
+  font-size: .65rem;
+  font-weight: 700;
+  cursor: pointer;
+}
