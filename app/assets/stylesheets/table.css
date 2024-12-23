@@ -161,6 +161,31 @@
   width: calc(50px + 1rem);
 }
 
+.table__image--container a {
+  position: relative;
+  display: inline-flex;
+}
+.table__image--container a::before {
+  content: "View item";
+  position: absolute;
+  inset: 0;
+  text-align: center;
+  display: grid;
+  place-items: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--light-3);
+  background-color: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(0.15rem);
+  padding: 0.15rem;
+  border-radius: 0.25rem;
+  opacity: 0;
+  transition: opacity 100ms ease-in-out;
+}
+.table__image--container a:hover::before {
+  opacity: 1;
+}
+
 .table__image {
   border: 2px solid var(--light-3);
 }
