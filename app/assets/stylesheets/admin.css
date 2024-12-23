@@ -56,7 +56,7 @@
 
 .admin__content--container {
   position: relative;
-  background-color: var(--light-3);
+  background-color: var(--light-2);
   height: 100%;
   border: 2px solid var(--light-3);
   overflow: hidden;

@@ -141,3 +141,27 @@
   font-weight: 700;
   cursor: pointer;
 }
+
+.category__show--body__container {
+  background-color: var(--light-1);
+}
+
+.category__show--body__product--item {
+  width: min-content;
+}
+
+.category__show--body__product--item h3 {
+  margin: .5rem 0;
+  font-size: 0.65rem;
+  font-weight: 600;
+}
+
+.category__show--body__product--item a {
+  color: var(--color-heading);
+  transition: color 100ms ease-in-out;
+}
+
+.category__show--body__product--item a:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}

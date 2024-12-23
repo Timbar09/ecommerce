@@ -15,6 +15,12 @@ class Admin::CategoriesController < AdminController
 
   # GET /admin/categories/1 or /admin/categories/1.json
   def show
+    @products = @admin_category.products
+    @header_actions = [
+      { path: ->(category) { edit_admin_category_path(category) }, label: "Edit Category", icon: "edit" },
+      { path: ->(category) { admin_categories_path }, label: "Back to Categories", icon: "home" },
+      { path: ->(category) { admin_category_path(category) }, label: "Delete Category", method: :delete, data: { confirm: "Are you sure?" }, icon: "trash" }
+    ]
   end
 
   # GET /admin/categories/new
