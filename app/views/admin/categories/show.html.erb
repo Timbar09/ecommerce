@@ -1,37 +1,39 @@
 <div class="category__show">
-  <header class="category__show--header p-2 flex">
-    <div class="category__show--content flex-1">
-      <h1><%= @admin_category.name %></h1>
+  <header class="category__show--header">
+    <div class="category__show--header__container flex ai-center">
+      <div class="category__show--header__content flex-1 p-2">
+        <h1><%= @admin_category.name %></h1>
 
-      <p class="category__show--description"><%= @admin_category.description %></p>
+        <p class="category__show--header__content--description"><%= @admin_category.description %></p>
 
-      <ul class="category__show--actions flex-inline ai-center gap-1 radius-lg">
-        <li class="category__show--actions__item category__show--actions__item--left radius-md">
-          <%= link_to edit_admin_category_path(@admin_category), class: "p-2" do %>
-            <%= render "shared/icon", name: "edit" %>
-            <span>Edit</span>
-          <% end %>
-        </li>
-        <li class="category__show--actions__item category__show--actions__item--middle">
-          <%= link_to admin_categories_path, class: "py-2" do %>
-            <%= render "shared/icon", name: "home" %>
-            <span>Back to Categories</span>
-          <% end %>
-        </li>
-        <li class="category__show--actions__item category__show--actions__item--right radius-md">
-          <%= button_to admin_category_path(@admin_category), method: :delete, class: "p-2" do %>
-            <%= render "shared/icon", name: "trash" %>
-            <span>Delete</span>
-          <% end %>
-        </li>
-      </ul>
+        <ul class="category__show--header__actions flex-inline ai-center gap-1 radius-lg">
+          <li class="category__show--header__actions--item category__show--header__actions--item__left">
+            <%= link_to edit_admin_category_path(@admin_category), class: "p-2" do %>
+              <%= render "shared/icon", name: "edit" %>
+              <span>Edit</span>
+            <% end %>
+          </li>
+          <li class="category__show--header__actions--item category__show--header__actions--item__middle">
+            <%= link_to admin_categories_path, class: "py-2" do %>
+              <%= render "shared/icon", name: "home" %>
+              <span>Back to Categories</span>
+            <% end %>
+          </li>
+          <li class="category__show--header__actions--item category__show--header__actions--item__right">
+            <%= button_to admin_category_path(@admin_category), method: :delete, class: "p-2" do %>
+              <%= render "shared/icon", name: "trash" %>
+              <span>Delete</span>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+
+      <div class="category__show--header__image">
+        <%= image_tag @admin_category.display_medium_image, class: "radius-md" %>
+      </div>
+    </header>
+
+    <div class="category__show--body">
     </div>
-
-    <div class="category__show--image">
-      <%= image_tag @admin_category.display_medium_image, class: "radius-md" %>
-    </div>
-  </header>
-
-  <div class="category__show--body">
   </div>
 </div>
