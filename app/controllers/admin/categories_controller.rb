@@ -7,8 +7,8 @@ class Admin::CategoriesController < AdminController
 
     @table_headers = [ :image, :name, :description, :actions ]
     @table_actions = [
-      { path: ->(category) { edit_admin_category_path(category) }, name: "Edit Category" },
       { path: ->(category) { admin_category_path(category) }, name: "View Category" },
+      { path: ->(category) { edit_admin_category_path(category) }, name: "Edit Category" },
       { path: ->(category) { admin_category_path(category) }, name: "Delete Category", method: :delete, data: { confirm: "Are you sure?" } }
     ]
   end
