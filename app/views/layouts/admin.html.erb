@@ -25,36 +25,7 @@
   <body>
     <main class="admin p-2">
       <div class="admin__container container flex gap-2">
-        <nav class="admin__nav p-2 flex flex-col gap-1 radius-lg">
-          <div class="admin__nav--logo flex ai-center gap-1">
-            <a href="<%= root_path %>">
-              <img src="https://images.unsplash.com/photo-1615915468538-0fbd857888ca?q=80&w=1968&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Ecom logo" class="admin__nav--logo__image radius-circle">
-            </a>
-
-            <h1 class="admin__nav--logo__title flex-col">
-              <span>Ecom</span>
-              <span>Admin</span>
-            </h1>
-          </div>
-
-          <% nav_items = [
-          { path: admin_path, icon: 'dashboard', text: 'Dashboard' },
-          { path: admin_products_path, icon: 'cart', text: 'Products' },
-          { path: admin_categories_path, icon: 'categories', text: 'Categories' },
-          { path: admin_path, icon: 'orders', text: 'Orders' }
-          ] %>
-
-          <ul>
-            <% nav_items.each do |item| %>
-              <li class="">
-                <%= link_to item[:path], class: "admin__nav--link flex gap-1 ai-center pr-2 radius-md" do %>
-                  <%= render 'shared/icon', name: item[:icon] %>
-                  <span class="admin__nav--link__text"><%= item[:text] %></span>
-                <% end %>
-              </li>
-            <% end %>
-          </ul>
-        </nav>
+        <%= render 'shared/admin_side_nav' %>
 
         <div class="admin__content--container flex-1 radius-lg">
           <%= render 'shared/flash' %>

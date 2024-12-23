@@ -36,6 +36,11 @@
   letter-spacing: 0.35rem;
 }
 
+.admin__nav--list .active a {
+  background-color: var(--primary);
+  color: var(--light-3);
+}
+
 .admin__nav--link:hover {
   background-color: var(--light-2);
   color: var(--dark-3);
