@@ -71,3 +71,13 @@
   gap: 1.75rem;
 }
 
+/* GRID */
+
+.grid {
+  display: grid;
+}
+
+.place-center {
+  place-items: center;
+}
+
