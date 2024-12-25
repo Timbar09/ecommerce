@@ -39,7 +39,7 @@
   position: relative;
   padding: 0.5rem 1rem;
   text-align: left;
-  background-color: var(--light-1);
+  background-color: var(--white);
 }
 .table__row td:first-child {
   padding: 0.5rem 0 0.5rem 1rem;
@@ -139,7 +139,7 @@
 }
 
 .table tbody tr:nth-of-type(odd) td {
-  background-color: var(--light-2);
+  background-color: var(--light-1);
 }
 
 .table__description {

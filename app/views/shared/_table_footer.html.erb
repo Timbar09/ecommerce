@@ -2,29 +2,31 @@
   <tr>
     <td colspan="<%= col_span %>">
       <div class="table__footer--container flex ai-center jc-between px-2 py-3">
-        <button class="table__footer--prev table__footer--nav__button flex ai-center gap-1 radius-md py-1 pr-2">
-          <%= render 'shared/icon', name: "chevron-left" %>
-          Prev
-        </button>
+        <% if col_span > 9 %>
+          <button class="table__footer--prev table__footer--nav__button flex ai-center gap-1 radius-md py-1 pr-2">
+            <%= render 'shared/icon', name: "chevron-left" %>
+            Prev
+          </button>
 
-        <ul class="table__footer--pages flex">
-          <li class="table__footer--page">
-            <button class="table__footer--page__button px-1 radius-md">1</button>
-          </li>
+          <ul class="table__footer--pages flex">
+            <li class="table__footer--page">
+              <button class="table__footer--page__button px-1 radius-md">1</button>
+            </li>
 
-          <li class="table__footer--page">
-            <button class="table__footer--page__button px-1 radius-md">2</button>
-          </li>
+            <li class="table__footer--page">
+              <button class="table__footer--page__button px-1 radius-md">2</button>
+            </li>
 
-          <li class="table__footer--page">
-            <button class="table__footer--page__button px-1 radius-md">3</button>
-          </li>
-        </ul>
+            <li class="table__footer--page">
+              <button class="table__footer--page__button px-1 radius-md">3</button>
+            </li>
+          </ul>
 
-        <button class="table__footer--next table__footer--nav__button flex ai-center gap-1 radius-md py-1 pl-2">
-          Next
-          <%= render 'shared/icon', name: "chevron-right" %>
-        </button>
+          <button class="table__footer--next table__footer--nav__button flex ai-center gap-1 radius-md py-1 pl-2">
+            Next
+            <%= render 'shared/icon', name: "chevron-right" %>
+          </button>
+        <% end %>
       </div>
     </td>
   </tr>
