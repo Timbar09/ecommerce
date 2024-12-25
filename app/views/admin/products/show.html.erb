@@ -1,12 +1,49 @@
 <%= render "admin/form_header", page: "Products" %>
 
-<div class="category__show flex jc-center ai-center py-2">
-  <div class="category__show--card p-2 radius-lg">
-    <%= render @admin_product %>
+<div class="product__show grid place-center p-1">
+  <div class="product__show--container flex-inline flex-col radius-lg">
+    <div class="product__show--image grid">
+      <%= image_tag @admin_product.display_large_image, class: "product__show--image" %>
 
-    <div>
-      <%= link_to "Edit this product", edit_admin_product_path(@admin_product) %> |
-      <%= button_to "Destroy this product", admin_product_path(@admin_product), method: :delete %>
+      <ul class="product__show--actions flex gap-1 p-2">
+        <li>
+          <%= link_to edit_admin_product_path(@admin_product), class: "btn btn__tertiary", title: "Edit" do %>
+            <%= render "shared/icon", name: "edit" %>
+          <% end %>
+        </li>
+        <li>
+          <%= button_to admin_product_path(@admin_product), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn__tertiary", title: "Delete" do %>
+            <%= render "shared/icon", name: "trash" %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+
+    <div class="product__show--info p-2">
+      <h1 class="product__show--title"><%= @admin_product.name %></h1>
+      <p class="product__show--description"><%= @admin_product.description %></p>
+
+      <div class="flex jc-between ai-center gap-1 flex-wrap">
+        <p class="product__show--price"><%= number_to_currency(@admin_product.price) %></p>
+
+        <%= link_to "View Procuct Stocks", admin_product_stocks_path(@admin_product), class: "btn btn__primary" %>
+      </div>
+
+      <h3 class="product__show--details--title pt-2 pb-1">Product Details</h3>
+      <ul class="product__show--details">
+        <li class="product__show--category">
+          <strong>Category:</strong>
+          <%= link_to @admin_product.category.name, admin_category_path(@admin_product.category) %>
+        </li>
+        <li class="product__show--created-at">
+          <strong>Created At:</strong>
+          <%= @admin_product.created_at.strftime("%B %d, %Y") %>
+        </li>
+
+        <li class="product__show--updated-at">
+          <strong>Updated At:</strong>
+          <%= @admin_product.updated_at.strftime("%B %d, %Y") %>
+        </li>
+      </ul>
     </div>
   </div>
-</div>
