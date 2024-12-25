@@ -1,8 +1,9 @@
 <% stocks_path = params[:product_id].present? ? admin_product_stocks_path(params[:product_id]) : nil %>
+<% is_edit_page = params[:action] == "edit" %>
 
 <% paths = {
-  "products" => admin_products_path,
-  "categories" => admin_categories_path,
+  "products" => is_edit_page && @admin_product.present? ? admin_product_path(@admin_product) : admin_products_path,
+  "categories" => is_edit_page && @admin_category.present? ? admin_category_path(@admin_category) : admin_categories_path,
   "stocks" => stocks_path
 } %>
 
@@ -10,6 +11,6 @@
   <%= link_to paths[page.downcase], class: "radius-md flex ai-center gap-1 p-1" do %>
     <%= render "shared/icon", name: "arrow-left" %>
 
-    <span>Back to <%= page %></span>
+    <span>Back to <%= is_edit_page ? page.singularize : page %></span>
   <% end %>
 </header>
