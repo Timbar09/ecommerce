@@ -257,3 +257,25 @@
   font-weight: inherit;
   color: inherit;
 }
+
+.form__errors {
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  border: 2px solid var(--red);
+  color: var(--red);
+}
+
+.form__errors h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.form__errors ul {
+  padding: 0 1.25rem;
+  list-style: disc;
+}
+
+.form__errors li {
+  font-size: 0.75rem;
+  font-weight: bold;
+}

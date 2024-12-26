@@ -1,6 +1,6 @@
 <%= form_with(model: [:admin, @admin_category], class: "form flex flex-col gap-1", data: { controller: "image-preview" }) do |form| %>
   <% if admin_category.errors.any? %>
-    <div style="color: red">
+    <div class="form__errors">
       <h2><%= pluralize(admin_category.errors.count, "error") %> prohibited this admin_category from being saved:</h2>
 
       <ul>
