@@ -8,6 +8,7 @@ module TableHelper
       size: ->(item) { item.size.upcase },
       id: ->(item) { item.display_sku },
       price: ->(item) { number_to_currency(item.price) },
+      fulfilled: ->(item) { item.display_fulfilled },
       actions: ->(item) {
         render "shared/options_modal" do
           content_tag(:ul, class: "modal__list p-1") do
