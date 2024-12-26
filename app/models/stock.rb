@@ -18,8 +18,13 @@ class Stock < ApplicationRecord
   private
 
   def size_must_be_string_or_number
-    unless size.is_a?(Numeric) || (size.is_a?(String) && ALLOWED_SIZES.include?(size.upcase))
-      errors.add(:size, "must be a number or a string of the following values: #{ALLOWED_SIZES.join(', ')}")
+    processed_size = size
+    if size.is_a?(String) && size.match?(/\A\d+\z/)
+      processed_size = size.to_i
+    end
+
+    unless processed_size.is_a?(Numeric) || (processed_size.is_a?(String) && ALLOWED_SIZES.include?(processed_size.upcase))
+      errors.add(:size, "must be a number or a string of the following values: #{ALLOWED_SIZES.join(', ')}. Got: #{processed_size.class}")
     end
   end
 end
