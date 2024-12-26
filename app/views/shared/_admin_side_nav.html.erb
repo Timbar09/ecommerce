@@ -29,4 +29,9 @@
       </li>
     <% end %>
   </ul>
+
+  <%= button_to destroy_admin_session_path, method: :delete, class: "admin__nav--link flex gap-1 ai-center pr-2 radius-md" do %>
+    <%= render 'shared/icon', name: 'sign-out-alt' %>
+    <span class="admin__nav--link__text">Sign out</span>
+  <% end %>
 </nav>

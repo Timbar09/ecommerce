@@ -31,10 +31,16 @@
 
       <h3 class="product__show--details--title pt-2 pb-1">Product Details</h3>
       <ul class="product__show--details">
+        <li class="product__show--stock">
+          <strong>Stock:</strong>
+          <%= @admin_product.stocks.count %>
+        </li>
+
         <li class="product__show--category">
           <strong>Category:</strong>
           <%= link_to @admin_product.category.name, admin_category_path(@admin_product.category) %>
         </li>
+
         <li class="product__show--created-at">
           <strong>Created At:</strong>
           <%= @admin_product.created_at.strftime("%B %d, %Y") %>
