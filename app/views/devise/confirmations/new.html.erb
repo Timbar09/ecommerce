@@ -1,0 +1,20 @@
+<section>
+  <div class="container form__container flex flex-col jc-center p-2">
+    <h2 class="form__title">Resend confirmation instructions<span>.</span></h2>
+
+    <%= form_fwith(model: resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: "form flex flex-col gap-1" }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="form__field p-1 radius-md">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+      </div>
+
+      <div class="form__actions flex jc-end">
+        <%= f.submit "Resend confirmation instructions", class: "btn btn__primary" %>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+  </div>
+</section>

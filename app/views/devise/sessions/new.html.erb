@@ -1,0 +1,38 @@
+<section>
+  <div class="container form__container flex flex-col jc-center p-2">
+    <h2 class="form__title">Welcome back<span>.</span></h2>
+
+    <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+      <p>Don't have an account? <%= link_to "Sign up", new_registration_path(resource_name), class: "form__link--primary" %></p>
+    <% end %>
+
+    <%= form_with(model: resource, as: resource_name, url: session_path(resource_name), html: { class: "form flex flex-col gap-1" }) do |f| %>
+      <div class="form__field p-1 radius-md">
+        <%= f.label :email, style: "display: block" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email address" %>
+      </div>
+
+      <div class="form__field p-1 radius-md flex-1">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password" %>
+      </div>
+
+      <div class="flex jc-between ai-center gap-1 flex-wrap">
+        <% if devise_mapping.rememberable? %>
+          <div class="form__checkbox flex ai-center gap-1">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end %>
+
+        <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+          <%= link_to "Forgot your password?", new_password_path(resource_name), class: "form__link" %>
+        <% end %>
+      </div>
+
+      <div class="form__actions flex jc-end">
+        <%= f.submit "Log in", class: "btn btn__primary" %>
+      </div>
+    <% end %>
+  </div>
+</section>

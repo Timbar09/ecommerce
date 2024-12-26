@@ -1,0 +1,37 @@
+<section>
+  <div class="container form__container flex flex-col jc-center p-2">
+    <h2 class="form__title">Create New Admin Account<span>.</span></h2>
+
+    <%- if controller_name != 'sessions' %>
+      <p>Already have an account? <%= link_to "Log in", new_session_path(resource_name), class: "form__link--primary" %></p>
+    <% end %>
+
+    <%= form_with(model: resource, as: resource_name, url: registration_path(resource_name), html: { class: "form flex flex-col gap-1" }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="form__field p-1 radius-md">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email address" %>
+      </div>
+
+      <div class="form__field p-1 radius-md">
+        <%= f.label :password do %>
+          Password 
+          <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password" %>
+      </div>
+
+      <div class="form__field p-1 radius-md">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm password" %>
+      </div>
+
+      <div class="form__actions flex jc-end">
+        <%= f.submit "Sign up", class: "btn btn__primary" %>
+      </div>
+    <% end %>
+  </div>
+</section>
