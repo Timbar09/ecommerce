@@ -273,7 +273,9 @@
 
 .table .fulfilled,
 .table .unfulfilled {
-  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
 }
 
 .table .fulfilled {
@@ -282,6 +284,6 @@
 }
 
 .table .unfulfilled {
-  background-color: var(--light-red);
-  color: var(--red);
+  background-color: var(--light-orange);
+  color: var(--orange);
 }

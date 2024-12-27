@@ -11,9 +11,11 @@ html {
 
 :root {
   --red: rgb(194, 31, 31);
-  --light-red: rgb(243, 189, 189);
+  --light-red: rgb(246, 217, 217);
+  --orange: rgb(255, 165, 0);
+  --light-orange: rgb(255, 243, 224);
   --green: rgb(15, 176, 50);
-  --light-green: rgb(189, 243, 189);
+  --light-green: rgb(217, 246, 217);
 
   --black: rgb(0, 0, 0);
   --dark-1: rgb(10, 10, 10);
