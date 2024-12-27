@@ -30,7 +30,7 @@
 
   <div class="form__field px-1 py-1 radius-md">
     <div class="file__container flex ai-center gap-1">
-      <label for="product_images" class="btn btn__secondary" tabindex="0">
+      <label for="product_images" class="btn btn__tertiary" tabindex="0">
         <%= @admin_product.images.attached? ? "Change Image(s)" : "Upload Image(s)" %>
       </label>
       <%= form.file_field :images, multiple: true, id: "product_images", data: { image_preview_target: "input" } %>
@@ -54,25 +54,23 @@
     <% end %>
   </div>
 
-  <div class="flex gap-1">
-    <div class="form__field p-1 radius-md flex-1">
-      <%= form.label :price, style: "display: block" %>
-      <%= form.number_field :price, required: true, placeholder: "Product price" %>
-    </div>
-
-    <div class="form__field form__checkbox p-1 radius-md">
-      <%= form.label :active, style: "display: block" %>
-      <%= form.checkbox :active %>
-    </div>
+  <div class="form__field p-1 radius-md flex-1">
+    <%= form.label :price, style: "display: block" %>
+    <%= form.number_field :price, required: true, placeholder: "Product price" %>
   </div>
 
-  <% if @admin_product.persisted? %>
-    <div class="p-1">
-      <%= link_to "Product Stock", admin_product_stocks_path(@admin_product), style: "text-decoration: underline" %>
-    </div>
-  <% end %>
+  <div class="form__checkbox p-1 flex ai-center gap-1">
+    <%= form.checkbox :active %>
+    <%= form.label :active, style: "display: block" %>
+  </div>
 
-  <div class="form__actions flex jc-end">
+  <div class="form__actions flex jc-end ai-center gap-1 flex-wrap">
+    <% if @admin_product.persisted? %>
+      <div class="p-1">
+        <%= link_to "Manage Stock", admin_product_stock_path(@admin_product), class: "btn btn__secondary" %>
+      </div>
+    <% end %>
+
     <%= form.submit(@admin_product.new_record? ? "Create Product" : "Update Product", class: "btn btn__primary") %>
   </div>
 <% end %>

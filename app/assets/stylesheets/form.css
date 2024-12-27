@@ -45,16 +45,10 @@
 
 .form__field .file__container label {
   min-width: 19ch;
-  color: var(--color-heading);
 }
 
 .form__field .file__container .btn {
   outline: 0;
-}
-
-.form__field .file__container .btn:hover,
-.form__field .file__container .btn:focus {
-  color: var(--light-3);
 }
 
 .form__field .file__container input[type="file"] {
@@ -79,7 +73,6 @@
 .form__field em {
   font-size: 0.75rem;
   font-weight: bold;
-  /* color: var(--primary); */
 }
 
 .form__field input,
@@ -229,20 +222,21 @@
   display: none;
 }
 
-.form__link:hover,
-.form__link:focus {
-  outline: 0;
-  color: var(--primary);
-  text-decoration: underline;
+.form__link {
+  color: inherit;
 }
 
+.form__link--primary {
+  color: var(--primary);
+}
+
+.form__link,
 .form__link--primary {
   padding: 0;
   border: 0;
   background-color: transparent;
   font-size: 1rem;
   font-weight: 400;
-  color: var(--primary);
   cursor: pointer;
 }
 .form__link--primary:hover,
