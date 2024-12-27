@@ -4,6 +4,6 @@ class Order < ApplicationRecord
   end
 
   def display_fulfilled
-    fulfilled ? "Yes" : "No"
+    fulfilled ? "Fulfilled" : "Unfulfilled"
   end
 end
