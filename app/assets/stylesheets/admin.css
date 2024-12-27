@@ -15,6 +15,10 @@
   border: 2px solid var(--light-3);
 }
 
+.admin__nav--logo {
+  margin-bottom: 1.5rem;
+}
+
 .admin__nav--logo__image {
   width: var(--icon-dimension);
   height: var(--icon-dimension);
@@ -41,6 +45,20 @@
   color: var(--light-3);
 }
 
+.admin__nav--link {
+  margin-top: 0.5rem;
+  padding: 0;
+  border: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  background-color: transparent;
+  
+  @media (min-width: 768px) {
+   padding-right: 1.15rem;
+  }
+}
+
 .admin__nav--link:hover {
   background-color: var(--light-2);
   color: var(--dark-3);
@@ -57,6 +75,12 @@
   @media (min-width: 768px) {
     display: block;
   }
+}
+
+.admin__nav--separator {
+  display: block;
+  height: 2px;
+  background-color: var(--light-3);
 }
 
 .admin__content--container {

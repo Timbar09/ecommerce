@@ -22,7 +22,7 @@
       <% icon = current_page?(item[:path]) ? "#{item[:icon]}-solid" : item[:icon] %>
 
       <li class="<%= 'active' if current_page?(item[:path]) %>">
-        <%= link_to item[:path], class: "admin__nav--link flex gap-1 ai-center pr-2 radius-md" do %>
+        <%= link_to item[:path], class: "admin__nav--link flex gap-1 ai-center radius-md" do %>
           <%= render 'shared/icon', name: icon %>
           <span class="admin__nav--link__text"><%= item[:text] %></span>
         <% end %>
@@ -30,8 +30,12 @@
     <% end %>
   </ul>
 
-  <%= button_to destroy_admin_session_path, method: :delete, class: "admin__nav--link flex gap-1 ai-center pr-2 radius-md" do %>
-    <%= render 'shared/icon', name: 'sign-out-alt' %>
-    <span class="admin__nav--link__text">Sign out</span>
-  <% end %>
+  <span class="admin__nav--separator"></span>
+
+  <ul class="admin__nav--list">
+    <%= button_to destroy_admin_session_path, method: :delete, class: "admin__nav--link flex gap-1 ai-center radius-md" do %>
+      <%= render 'shared/icon', name: 'sign-out' %>
+      <span class="admin__nav--link__text">Sign out</span>
+    <% end %>
+  </ul>
 </nav>

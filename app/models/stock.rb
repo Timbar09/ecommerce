@@ -24,7 +24,7 @@ class Stock < ApplicationRecord
     end
 
     unless processed_size.is_a?(Numeric) || (processed_size.is_a?(String) && ALLOWED_SIZES.include?(processed_size.upcase))
-      errors.add(:size, "must be a number or a string of the following values: #{ALLOWED_SIZES.join(', ')}. Got: #{processed_size.class}")
+      errors.add(:size, "must be a number or a string of the following values: #{ALLOWED_SIZES.join(', ')}")
     end
   end
 end
