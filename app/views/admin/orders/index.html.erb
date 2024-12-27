@@ -3,5 +3,5 @@
 <section class="admin__content flex flex-col pb-2">
   <%= render 'admin/page_header', path: new_admin_order_path, title: "+ Add New Order" %>
 
-  <%= render partial: 'shared/table', locals: { headers: @table_headers, list: @not_fulfilled_orders, actions: @table_actions } %>
+  <%= render partial: 'shared/table', locals: { headers: @table_headers, list: @orders, actions: @table_actions } %>
 </section>

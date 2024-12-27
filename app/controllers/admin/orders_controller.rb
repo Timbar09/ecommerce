@@ -3,8 +3,7 @@ class Admin::OrdersController < AdminController
 
   # GET /admin/orders or /admin/orders.json
   def index
-    @not_fulfilled_orders = Order.where(fulfilled: [ nil, false ]).order(created_at: :asc)
-    @fulfilled_orders = Order.where(fulfilled: true).order(created_at: :asc)
+    @orders = Order.all.order(created_at: :asc)
 
     @table_headers = [ :id, :customer_email, :total, :address, :fulfilled, :actions ]
     @table_actions = [

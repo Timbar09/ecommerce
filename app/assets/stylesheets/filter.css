@@ -1,0 +1,33 @@
+.filter__form {
+  position: relative;
+}
+
+.filter__form--button {
+  font-family: inherit;
+  color: inherit;
+  background-color: var(--white);
+}
+
+.filter__form--button:hover {
+  color: var(--color-heading);
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+.filter__form--button i {
+  width: 1.25rem;
+}
+
+.filter__form--group {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  background-color: var(--white);
+  z-index: 5;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+.filter__form--group.hidden {
+  display: none;
+}
