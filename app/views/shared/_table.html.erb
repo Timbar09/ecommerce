@@ -8,6 +8,8 @@
               SKU
             <% elsif header == :product_name %>
               Belongs To
+            <% elsif header == :fulfilled %>
+              Status
             <% else %>
               <%= header.to_s.titleize %>
             <% end %>

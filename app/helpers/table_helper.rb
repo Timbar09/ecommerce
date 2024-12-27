@@ -8,7 +8,8 @@ module TableHelper
       size: ->(item) { item.size.upcase },
       id: ->(item) { item.display_sku },
       price: ->(item) { number_to_currency(item.price) },
-      fulfilled: ->(item) { item.display_fulfilled },
+      total: ->(item) { number_to_currency(item.total) },
+      fulfilled: ->(item) { content_tag(:span, item.display_fulfilled, class: item.fulfilled ? "fulfilled radius-md" : "unfulfilled radius-md") },
       actions: ->(item) {
         render "shared/options_modal" do
           content_tag(:ul, class: "modal__list p-1") do
