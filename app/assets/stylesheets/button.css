@@ -19,6 +19,7 @@
 .btn__primary:hover,
 .btn__primary:focus {
   background-color: var(--grey-1);
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
 }
 
 .btn__secondary {
@@ -31,6 +32,7 @@
 .btn__secondary:focus {
   background-color: var(--dark-3);
   color: var(--light-3);
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
 }
 
 .btn__tertiary {
@@ -41,4 +43,5 @@
 .btn__tertiary:focus {
   background-color: var(--grey-3);
   color: var(--dark-3);
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
 }
