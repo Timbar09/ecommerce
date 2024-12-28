@@ -10,13 +10,15 @@
 .admin__nav {
   --icon-dimension: 2.5rem;
   
-  background-color: var(--white);
+  background-color: var(--light-1);
   height: 100%;
   border: 2px solid var(--light-3);
+  border-radius: inherit;
 }
 
 .admin__nav--logo {
-  margin-bottom: 1.5rem;
+  background-color: var(--white);
+  border-radius: 0.5rem 0.5rem 0 0;
 }
 
 .admin__nav--logo__image {
@@ -81,6 +83,11 @@
   display: block;
   height: 2px;
   background-color: var(--light-3);
+}
+
+.admin__nav--settings {
+  background-color: var(--white);
+  border-radius: 0 0 0.5rem 0.5rem;
 }
 
 .admin__content--container {

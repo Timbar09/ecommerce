@@ -1,5 +1,5 @@
-<nav class="admin__nav p-2 flex flex-col gap-1 radius-lg">
-  <div class="admin__nav--logo flex ai-center gap-1">
+<nav class="admin__nav flex flex-col radius-lg">
+  <div class="admin__nav--logo flex ai-center gap-1 pt-2 pb-3 px-2">
     <a href="<%= root_path %>">
       <img src="https://images.unsplash.com/photo-1615915468538-0fbd857888ca?q=80&w=1968&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Ecom logo" class="admin__nav--logo__image radius-circle">
     </a>
@@ -10,6 +10,8 @@
     </h1>
   </div>
 
+  <span class="admin__nav--separator"></span>
+
   <% nav_items = [
     { path: admin_path, icon: 'squares', text: 'Dashboard' },
     { path: admin_products_path, icon: 'cart', text: 'Products' },
@@ -17,7 +19,7 @@
     { path: admin_orders_path, icon: 'truck', text: 'Orders' }
   ] %>
 
-  <ul class="admin__nav--list">
+  <ul class="admin__nav--list pt-1 pb-2 px-2">
     <% nav_items.each do |item| %>
       <% icon = current_page?(item[:path]) ? "#{item[:icon]}-solid" : item[:icon] %>
 
@@ -32,7 +34,7 @@
 
   <span class="admin__nav--separator"></span>
 
-  <ul class="admin__nav--list">
+  <ul class="admin__nav--settings flex-1 pt-1 pb-2 px-2">
     <%= button_to destroy_admin_session_path, method: :delete, class: "admin__nav--link flex gap-1 ai-center radius-md" do %>
       <%= render 'shared/icon', name: 'sign-out' %>
       <span class="admin__nav--link__text">Sign out</span>

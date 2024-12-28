@@ -24,7 +24,12 @@
       <% specific_attributes = specific_attributes(@table_actions) %>
 
       <% list.each do |item| %>
-        <tr class="table__row table__row--<%= item.class.name.downcase %>" data-fulfilled="<%= item.fulfilled %>">
+        <%# Add fulfilled data attribute to the row if the item is an order %>
+        <% if item.class.name.downcase == "order" %>
+          <% fulfilled = item.fulfilled %>
+        <% end %>
+
+        <tr class="table__row table__row--<%= item.class.name.downcase %>" data-fulfilled="<%= fulfilled %>">
           <% headers.each do |attribute| %>
             <td class="table__<%= attribute == :image || attribute == :image ? "image--container" : attribute %>">
               <%= specific_attributes[attribute] ? specific_attributes[attribute].call(item) : item.send(attribute) %>
