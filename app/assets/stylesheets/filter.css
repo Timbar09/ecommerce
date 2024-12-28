@@ -17,6 +17,10 @@
   width: 1.25rem;
 }
 
+.filter__form--button.highlight i {
+  color: var(--primary);
+}
+
 .filter__form--group {
   position: absolute;
   top: calc(100% + 0.5rem);
@@ -30,4 +34,35 @@
 
 .filter__form--group.hidden {
   display: none;
+}
+
+.filter__form--checkbox:hover {
+  color: var(--color-heading);
+}
+
+.filter__form--checkbox__input,
+.filter__form--checkbox__label {
+  cursor: pointer;
+}
+
+.filter__form--checkbox__input {
+  --dimension: 1.25rem;
+
+  appearance: none;
+  margin: 0;
+  position: relative;
+  width: var(--dimension);
+  height: var(--dimension);
+  border-radius: 50%;
+  border: 2px solid var(--color-text);
+}
+.filter__form--checkbox__input:checked {
+  border-color: var(--primary);
+}
+.filter__form--checkbox__input:checked::before {
+  content: "";
+  position: absolute;
+  inset: calc(var(--dimension) / 6);
+  border-radius: inherit;
+  background-color: var(--primary);
 }

@@ -7,25 +7,27 @@
     <%= yield :title %>
   </h2>
 
-  <% if current_page?(admin_orders_path) %>
-    <div class="filter__form" data-controller="filter">
-      <%= button_tag "Filter", class: "filter__form--button btn flex ai-center gap-1", data: { action: "click->filter#toggleFilter" } do %>
-        <%= render "shared/icon", name: "filter" %>
-        <span>Filter</span>
-      <% end %>
+  <div class="flex ai-center gap-2">
+    <% if current_page?(admin_orders_path) %>
+      <div class="filter__form" data-controller="filter">
+        <%= button_tag "Filter", class: "filter__form--button btn flex ai-center gap-1", data: { action: "click->filter#toggleFilter", filter_target: "button" } do %>
+          <%= render "shared/icon", name: "filter" %>
+          <span>Filter</span>
+        <% end %>
 
-      <ul class="filter__form--group px-1 py-2 radius-md hidden">
-        <li>
-          <%= check_box_tag 'filters[]', 'fulfilled', false, class: "filter__form--checkbox__input", data: { filter_target: "checkbox" } %>
-          <%= label_tag 'filters_fulfilled', 'Fulfilled', class: "filter__form--checkbox__label" %>
-        </li>
-        <li>
-          <%= check_box_tag 'filters[]', 'not_fulfilled', false, class: "filter__form--checkbox__input", data: { filter_target: "checkbox" } %>
-          <%= label_tag 'filters_not_fulfilled', 'Not Fulfilled', class: "filter__form--checkbox__label" %>
-        </li>
-      </ul>
-    </div>
-  <% end %>
+        <ul class="filter__form--group p-1 radius-md hidden">
+          <li class="filter__form--checkbox flex ai-center py-1">
+            <%= check_box_tag 'filters[]', 'fulfilled', false, id: 'filters_fulfilled', class: "filter__form--checkbox__input", data: { filter_target: "checkbox" } %>
+            <%= label_tag 'filters_fulfilled', 'Fulfilled', class: "filter__form--checkbox__label pl-1" %>
+          </li>
+          <li class="filter__form--checkbox flex ai-center py-1">
+            <%= check_box_tag 'filters[]', 'unfulfilled', false, id: 'filters_unfulfilled', class: "filter__form--checkbox__input", data: { filter_target: "checkbox" } %>
+            <%= label_tag 'filters_unfulfilled', 'Unulfilled', class: "filter__form--checkbox__label pl-1" %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
 
-  <%= render 'shared/button', tag: "a", path: path, text: title, type: "primary" %>
+    <%= render 'shared/button', tag: "a", path: path, text: title, type: "primary" %>
+  </div>
 </header>

@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["checkbox"]
+  static targets = ["checkbox", "button"]
 
   connect() {
     this.loadFilters()
@@ -56,9 +56,15 @@ export default class extends Controller {
     orders.forEach(order => {
       const fulfilled = order.dataset.fulfilled === 'true'
       const showOrder = (selectedFilters.includes('fulfilled') && fulfilled) ||
-                        (selectedFilters.includes('not_fulfilled') && !fulfilled) ||
+                        (selectedFilters.includes('unfulfilled') && !fulfilled) ||
                         selectedFilters.length === 0
       order.style.display = showOrder ? '' : 'none'
     })
+
+    if (selectedFilters.length > 0) {
+      this.buttonTarget.classList.add('highlight')
+    } else {
+      this.buttonTarget.classList.remove('highlight')
+    }
   }
 }
