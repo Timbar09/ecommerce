@@ -36,6 +36,12 @@
   vertical-align: top;
 }
 
+@media (max-width: 48em) { 
+  .table__row:first-child {
+    border-top: 0;
+  }
+}
+
 .table__row td {
   position: relative;
   padding: 0.5rem 1rem;
@@ -47,11 +53,15 @@
 }
 .table__row td:last-child {
   text-align: right;
+  max-width: max-content;
 }
 @media (max-width: 48em) { 
   .table__row {
     display: grid;
     grid-template-columns: calc(50px + 1rem) auto auto auto auto;
+  }
+  .table__row td:last-child {
+    max-width: none;
   }
   .table__row--stock {
     grid-template-areas: 
@@ -75,11 +85,10 @@
   }
   .table__row--order {
     grid-template-areas: 
-      "sku sku sku sku actions"
-      "customer-email customer-email customer-email customer-email actions"
+      "sku sku sku fulfilled actions"
       "total total total total actions"
-      "address address address address actions"
-      "fulfilled fulfilled fulfilled fulfilled actions";
+      "customer-email customer-email customer-email customer-email customer-email"
+      "address address address address address";
   }
   .table__row td {
     display: block;
@@ -179,9 +188,6 @@
 
   .table__fulfilled {
     grid-area: fulfilled;
-  }
-  .table__fulfilled::before {
-    content: "Status: ";
   }
 }
 

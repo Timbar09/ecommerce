@@ -1,5 +1,5 @@
-<nav class="admin__nav flex flex-col radius-lg">
-  <div class="admin__nav--logo flex ai-center gap-1 pt-2 pb-3 px-2">
+<nav class="admin__nav flex">
+  <div class="admin__nav--logo ai-center gap-1 px-2 pt-2 pb-3">
     <a href="<%= root_path %>">
       <img src="https://images.unsplash.com/photo-1615915468538-0fbd857888ca?q=80&w=1968&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Ecom logo" class="admin__nav--logo__image radius-circle">
     </a>
@@ -19,12 +19,14 @@
     { path: admin_orders_path, icon: 'truck', text: 'Orders' }
   ] %>
 
-  <ul class="admin__nav--list pt-1 pb-2 px-2">
+  <ul class="admin__nav--list flex">
     <% nav_items.each do |item| %>
       <% icon = current_page?(item[:path]) ? "#{item[:icon]}-solid" : item[:icon] %>
+      <%# Calculate the width of the item text and set it as a CSS variable %>
+      <% item_text_width = item[:text].length * 0.55 %>
 
-      <li class="<%= 'active' if current_page?(item[:path]) %>">
-        <%= link_to item[:path], class: "admin__nav--link flex gap-1 ai-center radius-md" do %>
+      <li class="<%= 'active' if current_page?(item[:path]) %>" style="--text-width: <%= item_text_width %>rem;">
+        <%= link_to item[:path], class: "admin__nav--link flex ai-center radius-md" do %>
           <%= render 'shared/icon', name: icon %>
           <span class="admin__nav--link__text"><%= item[:text] %></span>
         <% end %>

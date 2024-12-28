@@ -33,6 +33,11 @@ html {
 
   --primary: var(--dark-1);
   --primary-light: var(--grey-3);
+
+  /* PADDING */
+  --p-1: 0.5rem;
+  --p-2: 1.15rem;
+  --p-3: 1.75rem;
 }
 
 body {
@@ -45,4 +50,5 @@ body {
   font-family: 'Roboto', sans-serif;
   background-color: var(--color-bg);
   color: var(--color-text);
+  min-width: 23rem;
 }

@@ -1,24 +1,49 @@
 .admin {
   height: 100vh;
+
+  @media (min-width: 48em) {
+    padding: var(--p-2);
+  }
 }
 
 .admin__container {
+  padding-bottom: 4rem;
   height: 100%;
   overflow: hidden;
+
+  @media (min-width: 48em) {
+    padding: 0;
+  }
 }
 
 .admin__nav {
   --icon-dimension: 2.5rem;
   
-  background-color: var(--light-1);
-  height: 100%;
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 1000;
+  justify-content: center;
+  background-color: var(--white);
   border: 2px solid var(--light-3);
-  border-radius: inherit;
+  
+  @media (min-width: 48em) {
+    flex-direction: column;
+    position: static;
+    inset: auto;
+    height: 100%;
+    border-radius: 0.5rem;
+    background-color: var(--light-1);
+  }
 }
 
 .admin__nav--logo {
+  display: none;
   background-color: var(--white);
   border-radius: 0.5rem 0.5rem 0 0;
+
+  @media (min-width: 48em) {
+    display: flex;
+  }
 }
 
 .admin__nav--logo__image {
@@ -42,13 +67,18 @@
   letter-spacing: 0.35rem;
 }
 
-.admin__nav--list .active a {
-  background-color: var(--primary);
-  color: var(--light-3);
+.admin__nav--list {
+  gap: var(--p-2);
+  padding: var(--p-1) var(--p-1) var(--p-2);
+
+  @media (min-width: 48em) {
+    flex-direction: column;
+    gap: var(--p-1);
+    padding: var(--p-2);
+  }
 }
 
 .admin__nav--link {
-  margin-top: 0.5rem;
   padding: 0;
   border: 0;
   font-size: inherit;
@@ -57,8 +87,14 @@
   background-color: transparent;
   
   @media (min-width: 768px) {
-   padding-right: 1.15rem;
+    padding-right: 1.15rem;
   }
+}
+
+.admin__nav--list .active a {
+  padding-right: 0.5rem;
+  color: var(--light-3);
+  background-color: var(--primary);
 }
 
 .admin__nav--link:hover {
@@ -72,11 +108,28 @@
 }
 
 .admin__nav--link__text {
-  display: none;
+  width: 0;
+  overflow: hidden;
 
-  @media (min-width: 768px) {
-    display: block;
+  @media (min-width: 48em) {
+    width: auto;
   }
+}
+
+.admin__nav--list .active .admin__nav--link__text {
+  @media (max-width: 48em) {
+    animation: grow-width 0.5s forwards;
+  }
+}
+
+@keyframes grow-width {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: var(--text-width);
+  }
+  
 }
 
 .admin__nav--separator {
@@ -86,8 +139,13 @@
 }
 
 .admin__nav--settings {
+  display: none;
   background-color: var(--white);
   border-radius: 0 0 0.5rem 0.5rem;
+
+  @media (min-width: 48em) {
+    display: block;
+  }
 }
 
 .admin__content--container {
