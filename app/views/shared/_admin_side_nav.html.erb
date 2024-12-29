@@ -29,33 +29,41 @@
     { path: admin_orders_path, icon: 'truck', text: 'Orders' }
   ] %>
 
-  <ul class="admin__nav--list flex">
-    <% nav_items.each do |item| %>
-      <% icon = current_page?(item[:path]) ? "#{item[:icon]}-solid" : item[:icon] %>
-      <% item_text_width = item[:text].length * 0.55 %>
+  <div class="admin__nav--list__container">
+    <h2 class="admin__nav--title pt-2">MENU</h2>
 
-      <li class="admin__nav--item <%= 'active' if current_page?(item[:path]) %>" style="--text-width: <%= item_text_width %>rem;" data-controller="modal">
-        <%# Trigger modal on hover %>
-        <%= link_to item[:path], class: "admin__nav--link flex ai-center radius-md", aria: { label: item[:text] }, data: { action: "mouseenter->modal#toggle mouseleave->modal#toggle" } do %>
-          <%= render 'shared/icon', name: icon %>
-          <span class="admin__nav--link__text"><%= item[:text] %></span>
-        <% end %>
+    <ul class="admin__nav--list flex">
+      <% nav_items.each do |item| %>
+        <% icon = current_page?(item[:path]) ? "#{item[:icon]}-solid" : item[:icon] %>
+        <% item_text_width = item[:text].length * 0.55 %>
 
-        <span class="admin__nav--tooltip">
-          <%= render 'shared/modal', type: 'tooltip' do %>
-            <span class="modal__tooltip p-1"><%= item[:text] %></span>
+        <li class="admin__nav--item <%= 'active' if current_page?(item[:path]) %>" style="--text-width: <%= item_text_width %>rem;" data-controller="modal">
+          <%# Trigger modal on hover %>
+          <%= link_to item[:path], class: "admin__nav--link flex ai-center radius-md", aria: { label: item[:text] }, data: { action: "mouseenter->modal#toggle mouseleave->modal#toggle" } do %>
+            <%= render 'shared/icon', name: icon %>
+            <span class="admin__nav--link__text"><%= item[:text] %></span>
           <% end %>
-        </span>
-      </li>
-    <% end %>
-  </ul>
+
+          <span class="admin__nav--tooltip">
+            <%= render 'shared/modal', type: 'tooltip' do %>
+              <span class="modal__tooltip p-1"><%= item[:text] %></span>
+            <% end %>
+          </span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 
   <span class="admin__nav--separator"></span>
 
-  <ul class="admin__nav--settings flex-1 pt-1 pb-2 px-2">
-    <%= button_to destroy_admin_session_path, method: :delete, class: "admin__nav--link flex gap-1 ai-center radius-md" do %>
-      <%= render 'shared/icon', name: 'sign-out' %>
-      <span class="admin__nav--link__text">Sign out</span>
-    <% end %>
-  </ul>
+  <div class="admin__nav--other__container flex-1 flex flex-col">
+    <h2 class="admin__nav--title p-2">OTHER</h2>
+
+    <ul class="admin__nav--other pt-1 pb-2 px-2 flex-1">
+      <%= button_to destroy_admin_session_path, method: :delete, class: "admin__nav--link flex gap-1 ai-center radius-md" do %>
+        <%= render 'shared/icon', name: 'sign-out' %>
+        <span class="admin__nav--link__text">Sign out</span>
+      <% end %>
+    </ul>
+  </div>
 </nav>

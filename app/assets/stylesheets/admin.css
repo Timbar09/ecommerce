@@ -36,6 +36,20 @@
   }
 }
 
+.admin__nav--title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: inherit;
+  text-align: center;
+}
+
+.admin__nav.expanded .admin__nav--title {
+  @media (min-width: 48em) {
+    padding-left: var(--p-2);
+    text-align: left;
+  }
+}
+
 .admin__nav--top {
   display: none;
   background-color: var(--white);
@@ -196,7 +210,7 @@
   background-color: var(--light-3);
 }
 
-.admin__nav--settings {
+.admin__nav--other {
   display: none;
   background-color: var(--white);
   border-radius: 0 0 0.5rem 0.5rem;
@@ -206,7 +220,7 @@
   }
 }
 
-.admin__nav--settings .admin__nav--link {
+.admin__nav--other .admin__nav--link {
   width: 100%;
 }
 
