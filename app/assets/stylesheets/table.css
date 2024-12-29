@@ -55,6 +55,10 @@
   text-align: right;
   max-width: max-content;
 }
+.table__actions--button {
+  position: relative;
+  display: inline-block;
+}
 @media (max-width: 48em) { 
   .table__row {
     display: grid;

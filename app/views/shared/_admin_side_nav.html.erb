@@ -26,7 +26,7 @@
       <% item_text_width = item[:text].length * 0.55 %>
 
       <li class="<%= 'active' if current_page?(item[:path]) %>" style="--text-width: <%= item_text_width %>rem;">
-        <%= link_to item[:path], class: "admin__nav--link flex ai-center radius-md" do %>
+        <%= link_to item[:path], class: "admin__nav--link flex ai-center radius-md", aria: { label: item[:text] } do %>
           <%= render 'shared/icon', name: icon %>
           <span class="admin__nav--link__text"><%= item[:text] %></span>
         <% end %>

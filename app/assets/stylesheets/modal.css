@@ -18,8 +18,8 @@
   background-color: var(--light-3);
 }
 
-.modal[data-modal-type="options"] .modal__content,
-.modal[data-modal-type="tooltip"] .modal__content {
+.modal[data-modal-type="options"],
+.modal[data-modal-type="tooltip"] {
   position: absolute;
   text-align: left;
   border-radius: 0.25rem;
@@ -27,11 +27,11 @@
   z-index: 1;
 }
 
-.modal[data-modal-type="options"] .modal__content {
+.modal[data-modal-type="options"] {
   inset: calc(100% + 0.5rem) 0 auto auto;
 }
 
-.modal__content.hidden {
+.modal.hidden {
   display: none;
 }
 

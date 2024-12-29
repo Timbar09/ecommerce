@@ -11,18 +11,26 @@ module TableHelper
       total: ->(item) { number_to_currency(item.total) },
       fulfilled: ->(item) { content_tag(:span, item.display_fulfilled, class: item.fulfilled ? "fulfilled radius-md" : "unfulfilled radius-md") },
       actions: ->(item) {
-        render "shared/modal" do
-          content_tag(:ul, class: "modal__list p-1") do
-            actions.map do |action|
-              content_tag(:li, class: "modal__list--item") do
-                if action[:method] == :delete
-                  button_to action[:name], action[:path].call(item), method: :delete, class: "modal__list--link", data_action: "click->options-modal#close"
-                else
-                  link_to action[:name], action[:path].call(item), method: action[:method], class: "modal__list--link", data_action: "click->options-modal#close"
-                end
-              end
-            end.join.html_safe
+        content_tag(:span, class: "table__actions--button", data: { controller: "modal" }) do
+          button_html = content_tag(:button, class: "modal__button", data: { action: "click->modal#toggle" }) do
+            render "shared/icon", name: "ellipsis"
           end
+
+          modal_html = render "shared/modal" do
+            content_tag(:ul, class: "modal__list p-1") do
+              actions.map do |action|
+                content_tag(:li, class: "modal__list--item") do
+                  if action[:method] == :delete
+                    button_to action[:name], action[:path].call(item), method: :delete, class: "modal__list--link", data_action: "click->options-modal#close"
+                  else
+                    link_to action[:name], action[:path].call(item), method: action[:method], class: "modal__list--link", data_action: "click->options-modal#close"
+                  end
+                end
+              end.join.html_safe
+            end
+          end
+
+          button_html + modal_html
         end
       }
     }
