@@ -1,13 +1,23 @@
-<nav class="admin__nav flex">
-  <div class="admin__nav--logo ai-center gap-1 px-2 pt-2 pb-3">
-    <a href="<%= root_path %>">
-      <img src="https://images.unsplash.com/photo-1615915468538-0fbd857888ca?q=80&w=1968&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Ecom logo" class="admin__nav--logo__image radius-circle">
-    </a>
+<nav class="admin__nav flex" data-controller="nav-expand" data-nav-expand-target="nav">
+  <div class="admin__nav--top jc-between ai-center gap-1 px-2 pt-2 pb-3">
+    <div class="admin__nav--logo ai-center gap-1">
+      <a href="<%= root_path %>" class="grid">
+        <img src="https://images.unsplash.com/photo-1615915468538-0fbd857888ca?q=80&w=1968&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Ecom logo" class="admin__nav--logo__image radius-circle">
+      </a>
 
-    <h1 class="admin__nav--logo__title flex-col">
-      <span>Ecom</span>
-      <span>Admin</span>
-    </h1>
+      <h1 class="admin__nav--logo__title flex flex-col">
+        <span>Ecom</span>
+        <span>Admin</span>
+      </h1>
+    </div>
+
+    <button class="admin__nav--toggle radius-md hidden" data-action="click->nav-expand#toggle" data-nav-expand-target="minimized">
+      <%= render 'shared/icon', name: 'chevron-double-right' %>
+    </button>
+
+    <button class="admin__nav--toggle radius-md" data-action="click->nav-expand#toggle" data-nav-expand-target="expanded">
+      <%= render 'shared/icon', name: 'chevron-double-left' %>
+    </button>
   </div>
 
   <span class="admin__nav--separator"></span>
@@ -31,9 +41,11 @@
           <span class="admin__nav--link__text"><%= item[:text] %></span>
         <% end %>
 
-        <%= render 'shared/modal', type: 'tooltip' do %>
-          <span class="modal__tooltip p-1"><%= item[:text] %></span>
-        <% end %>
+        <span class="admin__nav--tooltip">
+          <%= render 'shared/modal', type: 'tooltip' do %>
+            <span class="modal__tooltip p-1"><%= item[:text] %></span>
+          <% end %>
+        </span>
       </li>
     <% end %>
   </ul>

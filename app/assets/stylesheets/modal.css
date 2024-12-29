@@ -33,6 +33,18 @@
 
 .modal[data-modal-type="tooltip"] {
   inset: auto auto 50% calc(100% + 0.5rem);
+  animation: tooltip 200ms ease-in-out;
+}
+
+@keyframes tooltip {
+  0% {
+    transform: translateX(0.5rem);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 .modal.hidden {

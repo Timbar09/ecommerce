@@ -36,11 +36,21 @@
   }
 }
 
-.admin__nav--logo {
+.admin__nav--top {
   display: none;
   background-color: var(--white);
   border-radius: 0.5rem 0.5rem 0 0;
 
+  @media (min-width: 48em) {
+    display: flex;
+  }
+}
+
+.admin__nav--logo {
+  display: none;
+}
+
+.admin__nav.expanded .admin__nav--logo {
   @media (min-width: 48em) {
     display: flex;
   }
@@ -52,19 +62,40 @@
   object-fit: cover
 }
 
-.admin__nav--logo__title {
-  display: none;
+.admin__nav--toggle {
+  padding: 0;
+  border: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  background-color: transparent;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: color 100ms ease-in-out, border-color 100ms ease-in-out, background-color 100ms ease-in-out;
+}
 
-  @media (min-width: 768px) {
-    display: flex;
-  }
+.admin__nav--toggle:hover,
+.admin__nav--toggle:focus-visible {
+  color: var(--primary);
+  border-color: var(--light-3);
+  background-color: var(--light-3);
+}
+
+.admin__nav--toggle.hidden {
+  display: none;
+}
+
+.admin__nav--toggle i {
+  width: var(--icon-dimension);
+  padding: .75rem;
 }
 
 .admin__nav--logo__title span:last-child {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--color-text);
-  letter-spacing: 0.35rem;
+  line-height: 1;
+  letter-spacing: 0.45rem;
 }
 
 .admin__nav--list {
@@ -89,21 +120,25 @@
   font-weight: inherit;
   color: inherit;
   background-color: transparent;
-  
-  @media (min-width: 768px) {
-    padding-right: 1.15rem;
-  }
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: color 100ms ease-in-out, border-color 100ms ease-in-out, background-color 100ms ease-in-out;
 }
 
 .admin__nav--list .active a {
   padding-right: 0.5rem;
-  color: var(--light-3);
-  background-color: var(--primary);
+  color: var(--color-heading);
+  background-color: var(--light-3);
+
+  @media (min-width: 48em) {
+    padding-right: 0;
+  }
 }
 
-.admin__nav--link:hover {
-  background-color: var(--light-2);
+.admin__nav--link:hover,
+.admin__nav--link:focus-visible {
   color: var(--dark-3);
+  border-color: var(--light-3);
 }
 
 .admin__nav--link i {
@@ -116,11 +151,18 @@
   overflow: hidden;
 
   @media (min-width: 48em) {
+    display: none;
     width: auto;
   }
 }
 
-.admin__nav--list .active .admin__nav--link__text {
+.admin__nav.expanded .admin__nav--link__text {
+  @media (min-width: 48em) {
+    display: block;
+  }
+}
+
+.admin__nav--list .active .admin__nav--link__text {  
   @media (max-width: 48em) {
     animation: grow-width 0.5s forwards;
   }
@@ -134,6 +176,10 @@
     width: var(--text-width);
   }
   
+}
+
+.admin__nav.expanded .admin__nav--item .admin__nav--tooltip {
+ display: none;
 }
 
 .admin__nav--separator {
