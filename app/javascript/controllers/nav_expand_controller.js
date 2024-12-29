@@ -5,12 +5,18 @@ export default class extends Controller {
   static targets = [ "nav", "minimized", "expanded" ]
 
   connect() {
-    this.expanded = false
+    this.expanded = localStorage.getItem("navExpanded") === "true"
+    this.updateNavState()
   }
 
   toggle() {
     this.expanded = !this.expanded
-    this.navTarget.classList.toggle("expanded")
+    localStorage.setItem("navExpanded", this.expanded)
+    this.updateNavState()
+  }
+
+  updateNavState() {
+    this.navTarget.classList.toggle("expanded", this.expanded)
     
     if (this.expanded) {
       this.minimizedTarget.classList.add("hidden")
