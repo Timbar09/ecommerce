@@ -78,6 +78,10 @@
   }
 }
 
+.admin__nav--item {
+  position: relative;
+}
+
 .admin__nav--link {
   padding: 0;
   border: 0;

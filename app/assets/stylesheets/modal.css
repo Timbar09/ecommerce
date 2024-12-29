@@ -31,10 +31,15 @@
   inset: calc(100% + 0.5rem) 0 auto auto;
 }
 
+.modal[data-modal-type="tooltip"] {
+  inset: auto auto 50% calc(100% + 0.5rem);
+}
+
 .modal.hidden {
   display: none;
 }
 
+/* MODAL OPTIONS */
 .modal__list {
   background-color: var(--white);
   border-radius: inherit;
@@ -59,6 +64,15 @@
 .modal__list--link:hover {
   color: var(--color-heading);
   background-color: var(--light-2);
+}
+
+/* MODAL TOOLTIP */
+.modal__tooltip {
+  color: var(--light-3);
+  background-color: var(--dark-3);
+  border: 2px solid var(--light-3);
+  border-radius: 0.5rem 0.5rem 0.5rem 0;
+  font-size: 0.85rem;
 }
 
 /* FLASH MESSAGES */
