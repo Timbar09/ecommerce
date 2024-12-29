@@ -33,16 +33,25 @@
 
 .modal[data-modal-type="tooltip"] {
   inset: auto auto 50% calc(100% + 0.5rem);
-  animation: tooltip 200ms ease-in-out;
+  animation: tooltip 500ms ease-in-out;
 }
 
 @keyframes tooltip {
   0% {
-    transform: translateX(0.5rem);
+    transform: translateX(0.5rem) rotate(0);
     opacity: 0;
   }
+  25% {
+    transform: translateX(0.375rem) rotate(5deg);
+  }
+  50% {
+    transform: translateX(0.25rem) rotate(-5deg);
+  }
+  75% {
+    transform: translateX(0.125rem) rotate(5deg);
+  }
   100% {
-    transform: translateX(0);
+    transform: translateX(0) rotate(0);
     opacity: 1;
   }
 }

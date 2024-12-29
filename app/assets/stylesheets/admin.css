@@ -182,6 +182,14 @@
  display: none;
 }
 
+.admin__nav--item .admin__nav--tooltip {
+  display: none;
+ 
+   @media (min-width: 48em) {
+     display: block;
+   }
+ }
+
 .admin__nav--separator {
   display: block;
   height: 2px;
@@ -196,6 +204,10 @@
   @media (min-width: 48em) {
     display: block;
   }
+}
+
+.admin__nav--settings .admin__nav--link {
+  width: 100%;
 }
 
 .admin__content--container {
