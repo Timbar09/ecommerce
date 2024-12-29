@@ -11,7 +11,7 @@ module TableHelper
       total: ->(item) { number_to_currency(item.total) },
       fulfilled: ->(item) { content_tag(:span, item.display_fulfilled, class: item.fulfilled ? "fulfilled radius-md" : "unfulfilled radius-md") },
       actions: ->(item) {
-        render "shared/options_modal" do
+        render "shared/modal" do
           content_tag(:ul, class: "modal__list p-1") do
             actions.map do |action|
               content_tag(:li, class: "modal__list--item") do
