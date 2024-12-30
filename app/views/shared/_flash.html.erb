@@ -1,7 +1,11 @@
 <div class="flash" data-controller="flash">
   <% if notice %>
-    <p class="flash__notice p-1 radius-lg"><%= notice %></p>
+    <div class="flash__notice p-1 radius-lg flex gap-1 ai-center">
+      <%= render "shared/icon", name: "check-circle" %> <p><%= notice %></p>
+    </div>
   <% elsif alert %>
-    <p class="flash__alert p-1 radius-lg"><%= alert %></p>
+    <div class="flash__alert p-1 radius-lg flex gap-1 ai-center">
+      <%= render "shared/icon", name: "x-circle" %> <p><%= alert %></p>
+    </div>
   <% end %>
 </div>

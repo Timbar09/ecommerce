@@ -26,7 +26,8 @@
     { path: admin_path, icon: 'squares', text: 'Dashboard' },
     { path: admin_products_path, icon: 'cart', text: 'Products' },
     { path: admin_categories_path, icon: 'list', text: 'Categories' },
-    { path: admin_orders_path, icon: 'truck', text: 'Orders' }
+    { path: admin_orders_path, icon: 'truck', text: 'Orders' },
+    { path: admin_show_path(current_admin), icon: 'user', text: 'Profile' }
   ] %>
 
   <div class="admin__nav--list__container">
@@ -39,7 +40,7 @@
 
         <li class="admin__nav--item <%= 'active' if current_page?(item[:path]) %>" style="--text-width: <%= item_text_width %>rem;" data-controller="modal">
           <%# Trigger modal on hover %>
-          <%= link_to item[:path], class: "admin__nav--link flex ai-center radius-md", aria: { label: item[:text] }, data: { action: "mouseenter->modal#toggle mouseleave->modal#toggle" } do %>
+          <%= link_to item[:path], class: "admin__nav--link flex ai-center radius-lg", aria: { label: item[:text] }, data: { action: "mouseenter->modal#toggle mouseleave->modal#toggle" } do %>
             <%= render 'shared/icon', name: icon %>
             <span class="admin__nav--link__text"><%= item[:text] %></span>
           <% end %>
@@ -56,11 +57,11 @@
 
   <span class="admin__nav--separator"></span>
 
-  <div class="admin__nav--other__container flex-1 flex flex-col">
+  <div class="admin__nav--other__container flex-1 flex-col">
     <h2 class="admin__nav--title p-2">OTHER</h2>
 
     <ul class="admin__nav--other pt-1 pb-2 px-2 flex-1">
-      <%= button_to destroy_admin_session_path, method: :delete, class: "admin__nav--link flex gap-1 ai-center radius-md" do %>
+      <%= button_to destroy_admin_session_path, method: :delete, class: "admin__nav--link flex gap-1 ai-center radius-lg" do %>
         <%= render 'shared/icon', name: 'sign-out' %>
         <span class="admin__nav--link__text">Sign out</span>
       <% end %>

@@ -6,7 +6,6 @@
   color: inherit;
   background-color: transparent;
   border: 0;
-  border-radius: 0.25rem;
   padding: 0.25rem 0.5rem;
   font-size: 0.85rem;
   cursor: pointer;
@@ -14,15 +13,14 @@
 }
 
 .modal__button:hover {
-  color: var(--color-heading);
-  background-color: var(--light-3);
+  color: var(--heading-clr-2);
+  background-color: var(--bg-clr-4);
 }
 
 .modal[data-modal-type="options"],
 .modal[data-modal-type="tooltip"] {
   position: absolute;
   text-align: left;
-  border-radius: 0.25rem;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
   z-index: 1;
 }
@@ -62,7 +60,7 @@
 
 /* MODAL OPTIONS */
 .modal__list {
-  background-color: var(--white);
+  background-color: var(--bg-clr-1);
   border-radius: inherit;
 }
 
@@ -83,15 +81,16 @@
 }
 
 .modal__list--link:hover {
-  color: var(--color-heading);
-  background-color: var(--light-2);
+  color: var(--heading-clr-2);
+  background-color: var(--bg-clr-3);
+  
 }
 
 /* MODAL TOOLTIP */
 .modal__tooltip {
-  color: var(--light-3);
-  background-color: var(--dark-3);
-  border: 2px solid var(--light-3);
+  color: var(--bg-clr-4);
+  background-color: var(--heading-clr-2);
+  border: 2px solid var(--heading-clr-3);
   border-radius: 0.5rem 0.5rem 0.5rem 0;
   font-size: 0.85rem;
 }
@@ -100,21 +99,39 @@
 
 .flash {
   position: absolute;
-  top: 0;
+  top: 1rem;
   left: 50%;
   translate: -50%;
-  color: var(--light-3);
   transition: opacity 1000ms ease-in-out;
+  z-index: 500;
+}
+
+.flash__notice,
+.flash__alert {
+  background-color: var(--heading-clr-3);
+}
+
+.flash__notice i,
+.flash__alert i {
+  width: 1.75rem;
+  padding: 0.15rem;
+  border-radius: 0.25rem;
+  background-color: var(--heading-clr-2);
+}
+
+.flash__notice p,
+.flash__alert p {
+  margin: 0;
 }
 
 .flash.fade-out {
   opacity: 0;
-}
-
+  }
+  
 .flash__notice {
-  background-color: var(--light-green);
+  color: var(--green);
 }
 
 .flash__alert {
-  background-color: var(--light-red);
+  color: var(--red);
 }
