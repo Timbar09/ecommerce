@@ -15,7 +15,7 @@
           <span>Filter</span>
         <% end %>
 
-        <ul class="filter__form--group p-1 radius-md hidden">
+        <ul class="filter__form--group p-1 radius-lg hidden">
           <li class="filter__form--checkbox flex ai-center py-1">
             <%= check_box_tag 'filters[]', 'fulfilled', false, id: 'filters_fulfilled', class: "filter__form--checkbox__input", data: { filter_target: "checkbox" } %>
             <%= label_tag 'filters_fulfilled', 'Fulfilled', class: "filter__form--checkbox__label pl-1" %>
