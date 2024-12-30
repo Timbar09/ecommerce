@@ -26,7 +26,7 @@
       </div>
 
       <div class="category__show--header__image">
-        <%= image_tag @admin_category.display_medium_image, class: "radius-md" %>
+        <%= image_tag @admin_category.display_medium_image, class: "radius-lg" %>
       </div>
     </header>
 
@@ -37,8 +37,8 @@
         <% if @admin_category.products.any? %>
           <ul class="category__show--body__product--list flex gap-2 pt-2">
             <% @admin_category.products.each do |product| %>
-              <li class="category__show--body__product--item radius-md">
-                <%= image_tag product.display_small_image, class: "radius-md" %>
+              <li class="category__show--body__product--item radius-lg">
+                <%= image_tag product.display_small_image, class: "radius-lg" %>
                 <%= link_to admin_product_path(product) do %>
                   <h3><%= product.name %></h3>
                 <% end %>

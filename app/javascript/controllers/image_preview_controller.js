@@ -17,7 +17,7 @@ export default class extends Controller {
       reader.onload = (e) => {
         const img = document.createElement('img');
         img.src = e.target.result;
-        img.classList.add('radius-md');
+        img.classList.add('radius-lg');
         this.previewTarget.appendChild(img);
       };
       reader.readAsDataURL(file);

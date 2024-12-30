@@ -1,7 +1,7 @@
 <%= render "admin/form_header", page: "Products" %>
 
 <div class="product__show grid place-center p-1">
-  <div class="product__show--container flex-inline flex-col radius-lg">
+  <div class="product__show--container flex-inline flex-col radius-xl">
     <div class="product__show--image grid">
       <%= image_tag @admin_product.display_large_image, class: "product__show--image" %>
 
@@ -19,37 +19,40 @@
       </ul>
     </div>
 
-    <div class="product__show--info p-2">
-      <h1 class="product__show--title"><%= @admin_product.name %></h1>
-      <p class="product__show--description"><%= @admin_product.description %></p>
+    <div class="product__show--info p-2 flex gap-2 flex-col">
+      <div class="product__show--info__text">
+        <h1 class="product__show--title"><%= @admin_product.name %></h1>
+        <p class="product__show--description"><%= @admin_product.description %></p>
 
-      <div class="flex jc-between ai-center gap-1 flex-wrap">
-        <p class="product__show--price"><%= number_to_currency(@admin_product.price) %></p>
+        <div class="flex jc-between ai-center gap-1 flex-wrap">
+          <div class="product__show--price__container">
+            <p class="product__show--price"><%= number_to_currency(@admin_product.price) %></p>
+            <p class="product__show--stock"><%= @admin_product.stocks.count %> in stock</p>
+          </div>
 
-        <%= link_to "View Stock", admin_product_stocks_path(@admin_product), class: "btn btn__primary" %>
+          <%= link_to "View Stock", admin_product_stocks_path(@admin_product), class: "btn btn__primary" %>
+        </div>
       </div>
 
-      <h3 class="product__show--details--title pt-2 pb-1">Product Details</h3>
-      <ul class="product__show--details">
-        <li class="product__show--stock">
-          <strong>Stock:</strong>
-          <%= @admin_product.stocks.count %>
-        </li>
+      <div class="product__show--details__container p-1 radius-lg flex-1">
+        <h3 class="product__show--details--title pb-1">Product Details</h3>
 
-        <li class="product__show--category">
-          <strong>Category:</strong>
-          <%= link_to @admin_product.category.name, admin_category_path(@admin_product.category) %>
-        </li>
+        <ul class="product__show--details__list">
+          <li class="product__show--category">
+            <strong>Category:</strong>
+            <%= link_to @admin_product.category.name, admin_category_path(@admin_product.category) %>
+          </li>
 
-        <li class="product__show--created-at">
-          <strong>Created At:</strong>
-          <%= @admin_product.created_at.strftime("%B %d, %Y") %>
-        </li>
+          <li class="product__show--created-at">
+            <strong>Created At:</strong>
+            <%= @admin_product.created_at.strftime("%B %d, %Y") %>
+          </li>
 
-        <li class="product__show--updated-at">
-          <strong>Updated At:</strong>
-          <%= @admin_product.updated_at.strftime("%B %d, %Y") %>
-        </li>
-      </ul>
+          <li class="product__show--updated-at">
+            <strong>Updated At:</strong>
+            <%= @admin_product.updated_at.strftime("%B %d, %Y") %>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>

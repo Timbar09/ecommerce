@@ -7,8 +7,8 @@
   max-width: 25rem;
   margin: 0 auto;
   overflow: hidden;
-  background-color: var(--white);
-  border: 2px solid var(--light-1);
+  background-color: var(--bg-clr-1);
+  border: 2px solid var(--bg-clr-2);
 }
 
 .product__show--image {
@@ -43,11 +43,25 @@
 }
 
 .product__show--info {
-  border-top: 2px solid var(--light-1);
+  border-top: 2px solid var(--bg-clr-2);
+
+  @media (min-width: 60em) {
+    border-top: none;
+    border-left: 2px solid var(--bg-clr-2);
+  }
 }
 
 .product__show--title {
   font-size: 1.5rem;
+}
+
+.product__show--price__container p {
+  margin: 0;
+}
+
+.product__show--stock {
+  font-size: 0.75rem;
+  font-weight: 600;
 }
 
 .product__show--price {
@@ -56,7 +70,11 @@
   color: var(--primary);
 }
 
-.product__show--details li {
+.product__show--details__container {
+  background-color: var(--bg-clr-2);
+}
+
+.product__show--details__list li {
   margin-top: 0.25rem;
   font-size: 0.925rem;
 }

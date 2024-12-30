@@ -13,6 +13,6 @@ class AdminController < ApplicationController
   private
 
   def set_admin
-    @admin = Admin.find(params[:id])
+    @admin = Admin.find(current_admin.id)
   end
 end

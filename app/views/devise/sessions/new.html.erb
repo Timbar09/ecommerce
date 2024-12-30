@@ -7,12 +7,12 @@
     <% end %>
 
     <%= form_with(model: resource, as: resource_name, url: session_path(resource_name), html: { class: "form flex flex-col gap-1" }) do |f| %>
-      <div class="form__field p-1 radius-md">
+      <div class="form__field p-1 radius-lg">
         <%= f.label :email, style: "display: block" %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email address" %>
       </div>
 
-      <div class="form__field p-1 radius-md flex-1">
+      <div class="form__field p-1 radius-lg flex-1">
         <%= f.label :password %><br />
         <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password" %>
       </div>

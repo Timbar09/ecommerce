@@ -11,17 +11,17 @@
     </div>
   <% end %>
 
-  <div class="form__field p-1 radius-md">
+  <div class="form__field p-1 radius-lg">
     <%= form.label :name, style: "display: block" %>
     <%= form.text_field :name, autofocus: true, required: true, placeholder: "Category name" %>
   </div>
 
-  <div class="form__field p-1 radius-md">
+  <div class="form__field p-1 radius-lg">
     <%= form.label :description, style: "display: block" %>
     <%= form.textarea :description, required: true, placeholder: "Category description" %>
   </div>
 
-  <div class="form__field p-1 radius-md">
+  <div class="form__field p-1 radius-lg">
     <div class="file__container flex ai-center gap-1">
       <label for="category_image" class="btn btn__secondary" tabindex="0">
         <%= @admin_category.image.attached? ? "Change Image" : "Upload Image" %>
@@ -36,7 +36,7 @@
     <% if @admin_category.image.attached? %>
       <div class="image__list">
         <div class="image__container">
-          <%= image_tag @admin_category.display_thumb_image, class: "radius-md" %>
+          <%= image_tag @admin_category.display_thumb_image, class: "radius-lg" %>
         </div>
       </div>
     <% end %>

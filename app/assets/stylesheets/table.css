@@ -235,7 +235,7 @@
   background-color: rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(0.15rem);
   padding: 0.15rem;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
   opacity: 0;
   transition: opacity 100ms ease-in-out;
 }
