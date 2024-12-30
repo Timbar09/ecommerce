@@ -17,30 +17,37 @@
 }
 
 .admin__nav {
-  --icon-dimension: 2.5rem;
+  --icon-dimension: 2rem;
   
   position: fixed;
   inset: auto 0 0 0;
   z-index: 1000;
   justify-content: center;
-  background-color: var(--white);
-  border: 2px solid var(--light-3);
+  background-color: var(--bg-clr-1);
+  border: 2px solid var(--bg-clr-4);
   
   @media (min-width: 48em) {
+    --icon-dimension: 2.5rem;
+  
     flex-direction: column;
     position: static;
     inset: auto;
     height: 100%;
-    border-radius: 0.5rem;
-    background-color: var(--light-1);
+    border-radius: 1rem;
+    background-color: var(--bg-clr-2);
   }
 }
 
 .admin__nav--title {
+  display: none;
   font-size: 0.75rem;
   font-weight: 600;
   color: inherit;
   text-align: center;
+
+  @media (min-width: 48em) {
+    display: block;
+  }
 }
 
 .admin__nav.expanded .admin__nav--title {
@@ -52,8 +59,8 @@
 
 .admin__nav--top {
   display: none;
-  background-color: var(--white);
-  border-radius: 0.5rem 0.5rem 0 0;
+  background-color: var(--bg-clr-1);
+  border-radius: 1rem 1rem 0 0;
 
   @media (min-width: 48em) {
     display: flex;
@@ -91,8 +98,8 @@
 .admin__nav--toggle:hover,
 .admin__nav--toggle:focus-visible {
   color: var(--primary);
-  border-color: var(--light-3);
-  background-color: var(--light-3);
+  border-color: var(--bg-clr-4);
+  background-color: var(--bg-clr-4);
 }
 
 .admin__nav--toggle.hidden {
@@ -141,8 +148,8 @@
 
 .admin__nav--list .active a {
   padding-right: 0.5rem;
-  color: var(--color-heading);
-  background-color: var(--light-3);
+  color: var(--heading-clr-2);
+  background-color: var(--bg-clr-4);
 
   @media (min-width: 48em) {
     padding-right: 0;
@@ -152,7 +159,7 @@
 .admin__nav--link:hover,
 .admin__nav--link:focus-visible {
   color: var(--dark-3);
-  border-color: var(--light-3);
+  border-color: var(--bg-clr-4);
 }
 
 .admin__nav--link i {
@@ -162,6 +169,7 @@
 
 .admin__nav--link__text {
   width: 0;
+  font-size: 0.95rem;
   overflow: hidden;
 
   @media (min-width: 48em) {
@@ -207,16 +215,16 @@
 .admin__nav--separator {
   display: block;
   height: 2px;
-  background-color: var(--light-3);
+  background-color: var(--bg-clr-4);
 }
 
-.admin__nav--other {
+.admin__nav--other__container {
   display: none;
-  background-color: var(--white);
-  border-radius: 0 0 0.5rem 0.5rem;
+  background-color: var(--bg-clr-1);
+  border-radius: 0 0 1rem 1rem;
 
   @media (min-width: 48em) {
-    display: block;
+    display: flex;
   }
 }
 
@@ -226,9 +234,9 @@
 
 .admin__content--container {
   position: relative;
-  background-color: var(--light-2);
+  background-color: var(--bg-clr-3);
   height: 100%;
-  border: 2px solid var(--light-3);
+  border: 2px solid var(--bg-clr-4);
   overflow: hidden;
 }
 
@@ -250,7 +258,7 @@
 }
 
 .admin__content--card {
-  background-color: var(--light-2);
+  background-color: var(--bg-clr-3);
 }
 
 .admin__content--card__image {

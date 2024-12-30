@@ -18,7 +18,7 @@
 
 .table th {
   padding: 1rem;
-  background-color: var(--white);
+  background-color: var(--bg-clr-1);
   text-align: left;
 }
 
@@ -32,7 +32,7 @@
 }
 
 .table__row {
-  border-top: 2px solid var(--light-3);
+  border-top: 2px solid var(--bg-clr-3);
   vertical-align: top;
 }
 
@@ -46,7 +46,7 @@
   position: relative;
   padding: 0.5rem 1rem;
   text-align: left;
-  background-color: var(--white);
+  background-color: var(--bg-clr-1);
 }
 .table__row td:first-child {
   padding: 0.5rem 0 0.5rem 1rem;
@@ -196,7 +196,7 @@
 }
 
 .table tbody tr:nth-of-type(odd) td {
-  background-color: var(--light-1);
+  background-color: var(--bg-clr-2);
 }
 
 .table__description {
@@ -231,7 +231,7 @@
   place-items: center;
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--light-3);
+  color: var(--bg-clr-4);
   background-color: rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(0.15rem);
   padding: 0.15rem;
@@ -244,11 +244,11 @@
 }
 
 .table__image {
-  border: 2px solid var(--light-3);
+  border: 2px solid var(--bg-clr-4);
 }
 
 .table__footer--container {
-  background-color: var(--white);
+  background-color: var(--bg-clr-1);
   border-radius: 0 0 1rem 1rem;
 }
 
@@ -262,8 +262,8 @@
 }
 
 .table__footer--nav__button:hover {
-  color: var(--color-heading);
-  background-color: var(--light-3);
+  color: var(--heading-clr-2);
+  background-color: var(--bg-clr-4);
 }
 
 .table__footer--nav__button svg {
@@ -277,12 +277,13 @@
 }
 
 .table__footer--page__button:hover {
-  color: var(--color-heading);
-  background-color: var(--light-3);
+  color: var(--heading-clr-2);
+  background-color: var(--bg-clr-4);
 }
 
 .table .fulfilled,
 .table .unfulfilled {
+  display: inline-block;
   font-size: 0.85rem;
   font-weight: 600;
   padding: 0.5rem 1rem;

@@ -1,6 +1,6 @@
 .btn {
   border: none;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
   font-family: inherit;
   font-size: 0.85rem;
   font-weight: 600;
@@ -14,7 +14,7 @@
 
 .btn__primary {
   background-color: var(--primary);
-  color: var(--light-3);
+  color: var(--bg-clr-4);
 }
 .btn__primary:hover,
 .btn__primary:focus {
@@ -31,12 +31,12 @@
 .btn__secondary:hover,
 .btn__secondary:focus {
   background-color: var(--dark-3);
-  color: var(--light-3);
+  color: var(--bg-clr-4);
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
 }
 
 .btn__tertiary {
-  background-color: var(--light-3);
+  background-color: var(--bg-clr-4);
   color: var(--grey-1);
 }
 .btn__tertiary:hover,

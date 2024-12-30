@@ -5,11 +5,11 @@
 .filter__form--button {
   font-family: inherit;
   color: inherit;
-  background-color: var(--white);
+  background-color: var(--bg-clr-1);
 }
 
 .filter__form--button:hover {
-  color: var(--color-heading);
+  color: var(--heading-clr-2);
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
 }
 
@@ -27,7 +27,7 @@
   left: 50%;
   transform: translateX(-50%);
   width: max-content;
-  background-color: var(--white);
+  background-color: var(--bg-clr-1);
   z-index: 5;
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
 }
@@ -37,7 +37,7 @@
 }
 
 .filter__form--checkbox:hover {
-  color: var(--color-heading);
+  color: var(--heading-clr-2);
 }
 
 .filter__form--checkbox__input,
