@@ -1,0 +1,23 @@
+<% content_for :title, "Admin Profile" %>
+
+<section class="admin__content flex flex-col pb-2">
+  <h1 class="admin__content--title">Admin Profile</h1>
+
+  <div class="admin__content--profile flex gap-1">
+    <div class="admin__content--profile__image">
+      <%= image_tag "https://via.placeholder.com/250", class: "admin__content--profile__image" %>
+    </div>
+
+    <div class="admin__content--profile__info">
+      <p class="admin__content--profile__email"><%= @admin.email %></p>
+    </div>
+  </div>
+
+  <div class="admin__content--profile__actions flex gap-1">
+    <li>
+      <%= link_to edit_admin_registration_path, class: "btn btn__tertiary", title: "Edit" do %>
+        <%= render "shared/icon", name: "edit" %>
+      <% end %>
+    </li>
+  </div>
+</section>
