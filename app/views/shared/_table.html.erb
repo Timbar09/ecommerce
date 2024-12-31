@@ -1,18 +1,12 @@
 <div id="<%= list.first.class.name.downcase.pluralize %>-table" class="table__container radius-xl">
   <table class="table">
     <thead>
+      <% table_headers = header_renderers %>
+
       <tr>
         <% headers.each do |header| %>
-          <th>
-            <% if header == :id %>
-              SKU
-            <% elsif header == :product_name %>
-              Belongs To
-            <% elsif header == :fulfilled %>
-              Status
-            <% else %>
-              <%= header.to_s.titleize %>
-            <% end %>
+          <th class="table__header--<%= header.to_s.downcase %>">
+            <%= table_headers[header] ? table_headers[header] : header.to_s.titleize %>
           </th>
         <% end %>
       </tr>
@@ -21,7 +15,7 @@
     <%= render 'shared/table_footer', col_span: headers.size %>
 
     <tbody>
-      <% specific_attributes = specific_attributes(@table_actions) %>
+      <% table_data = attribute_renderers(@table_actions) %>
 
       <% list.each do |item| %>
         <%# Add fulfilled data attribute to the row if the item is an order %>
@@ -32,7 +26,7 @@
         <tr class="table__row table__row--<%= item.class.name.downcase %>" data-fulfilled="<%= fulfilled %>">
           <% headers.each do |attribute| %>
             <td class="table__<%= attribute == :image || attribute == :image ? "image--container" : attribute %>">
-              <%= specific_attributes[attribute] ? specific_attributes[attribute].call(item) : item.send(attribute) %>
+              <%= table_data[attribute] ? table_data[attribute].call(item) : item.send(attribute) %>
             </td>
           <% end %>
         </tr>

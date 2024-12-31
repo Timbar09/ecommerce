@@ -1,15 +1,29 @@
 module TableHelper
-  def specific_attributes(actions)
+  def header_renderers
+    {
+      id: controller_name ? "#{controller_name.singularize.titleize} ID" : "ID",
+      product_name: "Belongs To",
+      fulfilled: "Status"
+    }
+  end
+
+  def attribute_renderers(actions)
     show_action = actions.find { |action| action[:name].include?("View") }
 
     {
       image: ->(item) { link_to image_tag(item.display_thumb_image, class: "table__image radius-lg"), show_action[:path].call(item) },
       product_name: ->(item) { item.display_product_name },
       size: ->(item) { item.size.upcase },
-      id: ->(item) { item.display_sku },
+      id: ->(item) { link_to item.display_id, show_action[:path].call(item), class: "form__link--primary" },
       price: ->(item) { number_to_currency(item.price) },
       total: ->(item) { number_to_currency(item.total) },
-      fulfilled: ->(item) { content_tag(:span, item.display_fulfilled, class: item.fulfilled ? "fulfilled radius-lg" : "unfulfilled radius-lg") },
+      fulfilled: ->(item) { content_tag(:span, class: item.fulfilled ? "fulfilled flex-inline ai-center gap-1 radius-lg" : "unfulfilled flex-inline ai-center gap-1 radius-lg") do
+        icon_html = render "shared/icon", name: item.fulfilled ? "check" : "clock"
+        text_html = item.display_fulfilled
+
+        icon_html + text_html
+      end
+      },
       actions: ->(item) {
         content_tag(:span, class: "table__actions--button", data: { controller: "modal" }) do
           button_html = content_tag(:button, class: "modal__button radius-lg", data: { action: "click->modal#toggle" }) do

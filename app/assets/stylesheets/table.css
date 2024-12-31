@@ -283,18 +283,35 @@
 
 .table .fulfilled,
 .table .unfulfilled {
-  display: inline-block;
   font-size: 0.85rem;
   font-weight: 600;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.75rem;
+}
+
+.table .fulfilled i,
+.table .unfulfilled i {
+  width: 1.15rem;
+  color: var(--bg-clr-4);
+  border-radius: 50%;
+}
+
+.table .fulfilled svg,
+.table .unfulfilled svg {
+  stroke-width: 2;
 }
 
 .table .fulfilled {
   background-color: var(--light-green);
   color: var(--green);
 }
+.table .fulfilled i {
+  background-color: var(--green);
+}
 
 .table .unfulfilled {
   background-color: var(--light-orange);
   color: var(--orange);
+}
+.table .unfulfilled i {
+  background-color: var(--orange);
 }
