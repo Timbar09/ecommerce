@@ -54,7 +54,7 @@
   width: var(--dimension);
   height: var(--dimension);
   border-radius: 50%;
-  border: 2px solid var(--color-text);
+  border: 2px solid var(--text-clr-1);
 }
 .filter__form--checkbox__input:checked {
   border-color: var(--primary);

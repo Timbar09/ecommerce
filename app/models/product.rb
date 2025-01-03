@@ -10,6 +10,11 @@ class Product < ApplicationRecord
   has_many :order_products
   has_many :orders, through: :order_products
 
+  def display_id
+    id_str = id.to_s
+    "##{id_str.rjust(9, '0')}"
+  end
+
   def display_thumb_image
     if respond_to?(:images) && images.any?
       images.first.variant(:thumb)
