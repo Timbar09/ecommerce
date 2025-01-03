@@ -1,0 +1,57 @@
+  
+<header class="order__header grid gap-2 p-2">
+  <div class="order__header--group order__titles flex flex-col gap-2">
+    <div class="order__header--title-group">
+      <h1 class="order__title">Sales Order</h1>
+
+      <span class="order__id"><%= order.display_id %></span>
+    </div>
+
+    <p class="order__status flex-inline py-1 px-2 gap-1 ai-center radius-lg <%= order.fulfilled ? "order__status--fulfilled" : "order__status--pending" %>">
+      <%= render "shared/icon", name: "#{order.fulfilled ? "check" : "clock"}" %>
+      <span class="order__status--text"><%= order.fulfilled ? "Fulfilled" : "Pending" %></span>
+    </p>
+  </div>
+
+  <div class="order__header--group order__dates">
+    <div class="order__dates--content">
+      <div class="order__date flex ai-center gap-1">
+        <%= render "shared/icon", name: "document-text" %>
+
+        <div class="order__date--value">
+          <h2 class="order__subtitle">Order Date</h2>
+          <p class="order__date--value__text"><%= order.display_order_date %></p>
+        </div>
+      </div>
+
+      <div class="order__date flex ai-center gap-1">
+        <%= render "shared/icon", name: "truck" %>
+
+        <div class="order__date--value">
+          <h2 class="order__subtitle">Expected Delivery Date:</h2>
+          <p class="order__date--value__text"><%= order.display_delivery_date %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="order__header--group order__customer">
+    <div class="order__customer--content p-2 radius-xl">
+      <h2 class="order__subtitle pb-1">Billing To:</h2>
+
+      <div class="order__customer--text flex-inline gap-2">
+        <div class="order__customer--image flex flex-col gap-1 ai-start">
+          <%= image_tag "https://via.placeholder.com/100", alt: order.display_name, class: "radius-lg" %>
+        </div>
+
+        <div class="order__customer--address">
+          <p class="order__customer--name pb-1"><%= order.display_name %></p>
+
+          <% order.address.split(", ").each do |line| %>
+            <p class="order__customer--address__line"><%= line %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

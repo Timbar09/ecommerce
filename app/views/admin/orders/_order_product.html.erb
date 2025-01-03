@@ -1,0 +1,43 @@
+<li class="order__product grid gap-2 p-1 radius-lg">
+  <div class="order__product--details flex gap-2">
+    <%= image_tag product.display_thumb_image, alt: product.name, class: "radius-lg" %>
+
+    <div class="flex flex-col gap-1">
+      <span class="order__product--name"><%= product.name %></span>
+
+      <span class="order__product--sku">SKU: <%= product.display_id %></span>
+    </div>
+  </div>
+
+  <% status = rand(0..1) == 1 %>
+
+  <div class="order__product--packaged flex ai-center" data-status="<%= status %>">
+
+    <% if status %>
+      <%= render 'shared/icon', name: 'check' %>
+    <% else %>
+      <%= render 'shared/icon', name: 'clock' %>
+    <% end %>
+  </div>
+
+  <div class="order__product--shipped flex ai-center" data-status="<%= status %>">
+
+    <% if status %>
+      <%= render 'shared/icon', name: 'check' %>
+    <% else %>
+      <%= render 'shared/icon', name: 'clock' %>
+    <% end %>
+  </div>
+
+  <div class="order__product--price flex ai-center">
+    <span><%= number_to_currency(product.price) %></span>
+  </div>
+
+  <div class="order__product--quantity flex ai-center">
+    <span class="p-1 radius-lg">2</span>
+  </div>
+
+  <div class="order__product--total flex ai-center">
+    <span><%= number_to_currency(product.price * 2) %></span>
+  </div>
+</li>
