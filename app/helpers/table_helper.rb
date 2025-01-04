@@ -31,7 +31,7 @@ module TableHelper
           end
 
           modal_html = render "shared/modal" do
-            content_tag(:ul, class: "modal__list p-1") do
+            content_tag(:ul, class: "modal__list p-1 radius-lg") do
               actions.map do |action|
                 content_tag(:li, class: "modal__list--item") do
                   if action[:method] == :delete

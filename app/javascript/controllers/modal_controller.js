@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="modal"
 export default class extends Controller {
-  static targets = ["popup"]
+  static targets = ["popup", "button"]
 
   connect() {
     document.addEventListener("click", this.handleClickOutside.bind(this))
@@ -22,11 +22,13 @@ export default class extends Controller {
       }
     })
     this.popupTarget.classList.toggle("hidden")
+    this.buttonTarget.classList.toggle("open")
   }
 
   handleClickOutside(e) {
     if (!this.element.contains(e.target)) {
       this.popupTarget.classList.add("hidden")
+      this.buttonTarget.classList.remove("open")
     }
   }
 }
