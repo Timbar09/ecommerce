@@ -1,49 +1,92 @@
-<li class="order__product--list__item grid gap-2 p-1 radius-lg">
-  <div class="order__product--item order__product--details flex gap-2">
-    <%= image_tag product.display_thumb_image, alt: product.name, class: "radius-lg" %>
+<li class="order__product--list__item radius-lg" data-controller="modal">
+  <div class="order__product--list__item--container grid gap-2 p-1">
+    <div class="order__product--item order__product--details flex gap-2">
+      <%= image_tag product.display_thumb_image, alt: product.name, class: "radius-lg" %>
 
-    <div class="flex flex-col gap-1">
-      <span class="order__product--name"><%= product.name %></span>
+      <div class="flex flex-col gap-1">
+        <span class="order__product--name"><%= product.name %></span>
 
-      <span class="order__product--sku">SKU: <%= product.display_id %></span>
+        <span class="order__product--sku">SKU: <%= product.display_id %></span>
+      </div>
+    </div>
+
+    <% status = rand(0..1) == 1 %>
+
+    <div class="order__product--item order__product--packaged flex ai-center" data-status="<%= status %>">
+
+      <% if status %>
+        <%= render 'shared/icon', name: 'check' %>
+      <% else %>
+        <%= render 'shared/icon', name: 'clock' %>
+      <% end %>
+    </div>
+
+    <div class="order__product--item order__product--shipped flex ai-center" data-status="<%= status %>">
+
+      <% if status %>
+        <%= render 'shared/icon', name: 'check' %>
+      <% else %>
+        <%= render 'shared/icon', name: 'clock' %>
+      <% end %>
+    </div>
+
+    <div class="order__product--item order__product--price flex ai-center">
+      <span><%= number_to_currency(product.price) %></span>
+    </div>
+
+    <div class="order__product--item order__product--quantity flex ai-center">
+      <span class="p-1 radius-lg">2</span>
+    </div>
+
+    <div class="order__product--item order__product--total flex ai-center">
+      <span><%= number_to_currency(product.price * 2) %></span>
+    </div>
+
+    <div class="order__product--more flex jc-end ai-center">
+      <%= button_tag class: "order__product--more__button radius-lg", type: "button", data: { action: "click->modal#toggle", target: "modal.button" } do %>
+        <%= render 'shared/icon', name: 'chevron-down' %>
+      <% end %>
     </div>
   </div>
 
-  <% status = rand(0..1) == 1 %>
+  <%= render 'shared/modal', type: "more" do %>
+    <div class="order__product--modal py-1 flex gap-2 ai-center flex-wrap">
+      <div class="order__product--modal__item flex gap-1 ai-center" data-view="md" data-status="<%= status %>">
 
-  <div class="order__product--item order__product--packaged flex ai-center" data-status="<%= status %>">
+        <% if status %>
+          <span>Product Packaged:</span>
+          <%= render 'shared/icon', name: 'check' %>
+        <% else %>
+          <span>Product Packaging:</span>
+          <%= render 'shared/icon', name: 'clock' %>
+        <% end %>
+      </div>
 
-    <% if status %>
-      <%= render 'shared/icon', name: 'check' %>
-    <% else %>
-      <%= render 'shared/icon', name: 'clock' %>
-    <% end %>
-  </div>
+      <div class="order__product--modal__item flex gap-1 ai-center" data-view="md" data-status="<%= status %>">
 
-  <div class="order__product--item order__product--shipped flex ai-center" data-status="<%= status %>">
+        <% if status %>
+          <span>Product Shipped:</span>
+          <%= render 'shared/icon', name: 'check' %>
+        <% else %>
+          <span>Product Shipping:</span>
+          <%= render 'shared/icon', name: 'clock' %>
+        <% end %>
+      </div>
 
-    <% if status %>
-      <%= render 'shared/icon', name: 'check' %>
-    <% else %>
-      <%= render 'shared/icon', name: 'clock' %>
-    <% end %>
-  </div>
+      <div class="order__product--modal__item flex gap-1 ai-center">
+        <span>Unit Price:</span>
+        <span><%= number_to_currency(product.price) %></span>
+      </div>
 
-  <div class="order__product--item order__product--price flex ai-center">
-    <span><%= number_to_currency(product.price) %></span>
-  </div>
+      <div class="order__product--modal__item flex gap-1 ai-center">
+        <span>Quantity:</span>
+        <span class="p-1 radius-lg">2</span>
+      </div>
 
-  <div class="order__product--item order__product--quantity flex ai-center">
-    <span class="p-1 radius-lg">2</span>
-  </div>
-
-  <div class="order__product--item order__product--total flex ai-center">
-    <span><%= number_to_currency(product.price * 2) %></span>
-  </div>
-
-  <div class="order__product--more flex jc-end ai-center">
-    <%= button_tag class: "order__product--more__button radius-lg", type: "button" do %>
-      <%= render 'shared/icon', name: 'chevron-down' %>
-    <% end %>
-  </div>
+      <div class="order__product--modal__item flex gap-1 ai-center" data-view="sm">
+        <span>Total Amount:</span>
+        <span><%= number_to_currency(product.price * 2) %></span>
+      </div>
+    </div>
+  <% end %>
 </li>
