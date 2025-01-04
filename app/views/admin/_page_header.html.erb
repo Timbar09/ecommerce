@@ -10,7 +10,7 @@
   <div class="flex ai-center gap-2">
     <% if current_page?(admin_orders_path) %>
       <div class="filter__form" data-controller="filter">
-        <%= button_tag "Filter", class: "filter__form--button btn flex ai-center gap-1", data: { action: "click->filter#toggleFilter", filter_target: "button" } do %>
+        <%= button_tag "Filter", class: "filter__form--button btn flex ai-center gap-1", data: { action: "click->filter#toggleFilter", filter_target: "button" }, aria: { label: "Filter" } do %>
           <%= render "shared/icon", name: "filter" %>
           <span>Filter</span>
         <% end %>
@@ -28,6 +28,9 @@
       </div>
     <% end %>
 
-    <%= render 'shared/button', tag: "a", path: path, text: title, type: "primary" %>
+    <%= link_to path, class: "btn btn__primary flex ai-center", aria: { label: title } do %>
+      <%= render "shared/icon", name: "plus" %>
+      <span><%= title %></span>
+    <% end %>
   </div>
 </header>

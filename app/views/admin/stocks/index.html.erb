@@ -1,7 +1,7 @@
 <% content_for :title, "Stock" %>
 
 <section class="admin__content flex flex-col pb-2">
-  <%= render 'admin/page_header', specific_title: @product.name, path: new_admin_product_stock_path, title: "+ Add New Stock" %>
+  <%= render 'admin/page_header', specific_title: @product.name, path: new_admin_product_stock_path, title: "Add New Stock" %>
 
   <%= render partial: 'shared/table', locals: { headers: @table_headers, list: @admin_stocks, actions: @table_actions } %>
 </section>
