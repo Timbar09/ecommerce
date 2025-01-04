@@ -2,38 +2,8 @@
   <div class="oder flex-col pb-2">
     <%= render 'show_header', order: @admin_order %>
 
-    <div class="order__product--container p-2">
-      <ul class="order__product--list p-2 radius-xl">
-        <li class="order__product--list--header grid gap-2 pb-2 px-1 radius-lg">
-          <div class="order__product--header flex gap-2">
-            <p class="order__product--header__name">Product</p>
-          </div>
-
-          <div class="order__product--header flex gap-2">
-            <p class="order__product--header__name">Packaged</p>
-          </div>
-
-          <div class="order__product--header flex gap-2">
-            <p class="order__product--header__name">Shipped</p>
-          </div>
-
-          <div class="order__product--header flex gap-2">
-            <p class="order__product--header__name">Price</p>
-          </div>
-
-          <div class="order__product--header flex gap-2">
-            <p class="order__product--header__name">Quantity</p>
-          </div>
-
-          <div class="order__product--header flex gap-2">
-            <p class="order__product--header__name">Total</p>
-          </div>
-        </li>
-
-        <% @admin_order.products.each do |product| %>
-          <%= render 'order_product', product: product %>
-        <% end %>
-      </ul>
+    <div class="order__product--list__container p-2">
+      <%= render 'order_product_list' %>
     </div>
   </div>
 </section>

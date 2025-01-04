@@ -1,0 +1,19 @@
+<ul class="order__product--list p-2 radius-xl">
+  <% header_names = ['Product', 'Packaged', 'Shipped', 'Unit', 'Quantity', 'Amount'] %>
+
+  <li class="order__product--list__header grid gap-2 pb-2 px-1 radius-lg">
+    <% header_names.each do |name| %>
+      <div class="order__product--header gap-2">
+        <p class="order__product--header__name"><%= name %></p>
+      </div>
+    <% end %>
+
+    <div class="order__product--more flex jc-end">
+      <p class="order__product--header__name">More</p>
+    </div>
+  </li>
+
+  <% @admin_order.products.each do |product| %>
+    <%= render 'order_product', product: product %>
+  <% end %>
+</ul>

@@ -1,5 +1,5 @@
-<li class="order__product grid gap-2 p-1 radius-lg">
-  <div class="order__product--details flex gap-2">
+<li class="order__product--list__item grid gap-2 p-1 radius-lg">
+  <div class="order__product--item order__product--details flex gap-2">
     <%= image_tag product.display_thumb_image, alt: product.name, class: "radius-lg" %>
 
     <div class="flex flex-col gap-1">
@@ -11,7 +11,7 @@
 
   <% status = rand(0..1) == 1 %>
 
-  <div class="order__product--packaged flex ai-center" data-status="<%= status %>">
+  <div class="order__product--item order__product--packaged flex ai-center" data-status="<%= status %>">
 
     <% if status %>
       <%= render 'shared/icon', name: 'check' %>
@@ -20,7 +20,7 @@
     <% end %>
   </div>
 
-  <div class="order__product--shipped flex ai-center" data-status="<%= status %>">
+  <div class="order__product--item order__product--shipped flex ai-center" data-status="<%= status %>">
 
     <% if status %>
       <%= render 'shared/icon', name: 'check' %>
@@ -29,15 +29,21 @@
     <% end %>
   </div>
 
-  <div class="order__product--price flex ai-center">
+  <div class="order__product--item order__product--price flex ai-center">
     <span><%= number_to_currency(product.price) %></span>
   </div>
 
-  <div class="order__product--quantity flex ai-center">
+  <div class="order__product--item order__product--quantity flex ai-center">
     <span class="p-1 radius-lg">2</span>
   </div>
 
-  <div class="order__product--total flex ai-center">
+  <div class="order__product--item order__product--total flex ai-center">
     <span><%= number_to_currency(product.price * 2) %></span>
+  </div>
+
+  <div class="order__product--more flex jc-end ai-center">
+    <%= button_tag class: "order__product--more__button radius-lg", type: "button" do %>
+      <%= render 'shared/icon', name: 'chevron-down' %>
+    <% end %>
   </div>
 </li>
