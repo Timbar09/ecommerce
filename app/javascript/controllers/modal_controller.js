@@ -22,13 +22,17 @@ export default class extends Controller {
       }
     })
     this.popupTarget.classList.toggle("hidden")
+    if (this.hasButtonTarget) {
     this.buttonTarget.classList.toggle("open")
+    }
   }
 
   handleClickOutside(e) {
     if (!this.element.contains(e.target)) {
       this.popupTarget.classList.add("hidden")
+      if (this.hasButtonTarget) {
       this.buttonTarget.classList.remove("open")
+      }
     }
   }
 }

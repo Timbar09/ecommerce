@@ -202,6 +202,11 @@
   border: 2px solid var(--bg-clr-3);
 }
 
+.order__product--item__icon {
+  display: inline-block;
+  position: relative;
+}
+
 .order__product--name {
   font-size: 1.15rem;
   font-weight: 500;

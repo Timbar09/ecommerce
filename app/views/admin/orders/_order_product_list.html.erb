@@ -3,7 +3,7 @@
 
   <li class="order__product--list__header grid gap-2 pb-2 px-1 radius-lg">
     <% header_names.each do |name| %>
-      <div class="order__product--header gap-2">
+      <div class="order__product--header gap-2 <%= 'flex jc-center' if name == 'Packaged' || name == 'Shipped' %>">
         <p class="order__product--header__name"><%= name %></p>
       </div>
     <% end %>

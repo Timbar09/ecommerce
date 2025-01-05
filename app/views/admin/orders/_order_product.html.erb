@@ -12,22 +12,24 @@
 
     <% status = rand(0..1) == 1 %>
 
-    <div class="order__product--item order__product--packaged flex ai-center" data-status="<%= status %>">
+    <div class="order__product--item order__product--packaged flex jc-center ai-center" data-status="<%= status %>">
+      <span class="order__product--item__icon" data-controller="modal" data-action="mouseover->modal#toggle mouseout->modal#toggle">
+        <%= render 'shared/icon', name: "#{status ? 'check' : 'clock'}" %>
 
-      <% if status %>
-        <%= render 'shared/icon', name: 'check' %>
-      <% else %>
-        <%= render 'shared/icon', name: 'clock' %>
-      <% end %>
+        <%= render 'shared/modal', type: "tooltip" do %>
+          <span class="modal__tooltip p-1"><%= status ? 'Packaged' : 'Packaging' %></span>
+        <% end %>
+      </span>
     </div>
 
-    <div class="order__product--item order__product--shipped flex ai-center" data-status="<%= status %>">
+    <div class="order__product--item order__product--shipped flex jc-center ai-center" data-status="<%= status %>">
+      <span class="order__product--item__icon" data-controller="modal" data-action="mouseover->modal#toggle mouseout->modal#toggle">
+        <%= render 'shared/icon', name: "#{status ? 'check' : 'clock'}" %>
 
-      <% if status %>
-        <%= render 'shared/icon', name: 'check' %>
-      <% else %>
-        <%= render 'shared/icon', name: 'clock' %>
-      <% end %>
+        <%= render 'shared/modal', type: "tooltip" do %>
+          <span class="modal__tooltip p-1"><%= status ? 'Shipped' : 'Shipping' %></span>
+        <% end %>
+      </span>
     </div>
 
     <div class="order__product--item order__product--price flex ai-center">
@@ -57,7 +59,7 @@
           <span>Product Packaged:</span>
           <%= render 'shared/icon', name: 'check' %>
         <% else %>
-          <span>Product Packaging:</span>
+          <span>Packaging Product:</span>
           <%= render 'shared/icon', name: 'clock' %>
         <% end %>
       </div>
@@ -68,7 +70,7 @@
           <span>Product Shipped:</span>
           <%= render 'shared/icon', name: 'check' %>
         <% else %>
-          <span>Product Shipping:</span>
+          <span>Shipping Product:</span>
           <%= render 'shared/icon', name: 'clock' %>
         <% end %>
       </div>
