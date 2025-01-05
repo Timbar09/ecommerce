@@ -1,0 +1,43 @@
+
+:root {
+  /* COLORS */
+  --red: rgb(224, 0, 94);
+  --light-red: rgb(248, 215, 228);
+  --orange: rgb(255, 165, 0);
+  --light-orange: rgb(255, 243, 224);
+  --green: rgb(0, 219, 116);
+  --light-green: rgb(224, 247, 236);
+
+  --black: rgb(0, 0, 0);
+  --dark-1: rgb(10, 10, 10);
+  --dark-2: rgb(30, 30, 30);
+  --dark-3: rgb(50, 50, 50);
+
+  --grey-1: rgb(100, 100, 100);
+  --grey-2: rgb(150, 150, 150);
+  --grey-3: rgb(200, 200, 200);
+
+  --white: rgb(255, 255, 255);
+  --light-1: rgb(250, 250, 250);
+  --light-2: rgb(245, 245, 245);
+  --light-3: rgb(240, 240, 240);
+
+  --primary: var(--dark-1);
+  --primary-light: var(--grey-3);
+
+  /* PADDING & MARGIN */
+  --p-1: 0.5rem;
+  --p-2: 1.15rem;
+  --p-3: 1.75rem;
+
+  /* BORDER RADIUS */
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 1rem;
+  --radius-xxl: 2rem;
+  --radius-circle: 50%;
+  --radius-pill: 9999px;
+
+
+}

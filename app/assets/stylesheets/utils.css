@@ -1,27 +1,27 @@
 .radius-sm {
-  border-radius: 0.125rem;
+  border-radius: var(--radius-sm);
 }
 
 .radius-md {
-  border-radius: 0.25rem;
+  border-radius: var(--radius-md);
 }
 
 .radius-lg {
-  border-radius: 0.5rem;
+  border-radius: var(--radius-lg);
 }
 
 .radius-xl {
-  border-radius: 1rem;
+  border-radius: var(--radius-xl);
 }
 
 .radius-xxl {
-  border-radius: 2rem;
+  border-radius: var(--radius-xxl);
 }
 
 .radius-pill {
-  border-radius: 9999px;
+  border-radius: var(--radius-pill);
 }
 
 .radius-circle {
-  border-radius: 50%;
+  border-radius: var(--radius-circle);
 }
