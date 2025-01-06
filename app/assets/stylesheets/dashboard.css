@@ -1,0 +1,40 @@
+.dashboard__quick-stat--container {
+  container-type: inline-size;
+}
+
+.dashboard__quick-stat--title {
+  font-size: 1.15rem;
+}
+
+@container (width > 30em) {
+  .dashboard__quick-stat--list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@container (width > 50em) {
+  .dashboard__quick-stat--list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.dashboard__quick-stat--item {
+  background-color: var(--bg-clr-1);
+}
+
+.dashboard__quick-stat--item__header i {
+  padding: 0.25rem;
+  width: 1.75rem;
+  background-color: var(--bg-clr-3);
+  border-radius: var(--radius-lg);
+}
+
+.dashboard__quick-stat--item__title {
+  font-size: 0.875rem;
+  color: var(--text-clr-1);
+}
+
+.dashboard__quick-stat--item__value {
+  margin: 1rem 0 0;
+  font-size: 1.5rem;
+  color: var(--heading-clr-1);
+}

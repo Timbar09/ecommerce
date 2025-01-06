@@ -6,14 +6,14 @@ class AdminController < ApplicationController
   def index
     @admins = Admin.all
     @orders = Order.where(fulfilled: false).order(created_at: :desc).take(5)
-    @quick_stats = {
-      sales: Order.where(created_at: Time.now.midnight..Time.now).count,
-      revenue: Order.where(created_at: Time.now.midnight..Time.now).sum(:total).round(),
-      average_sale: Order.where(created_at: Time.now.midnight..Time.now).average(:total).round(),
-      per_sale: OrderProduct.joins(:order).where(orders: { created_at: Time.now.midnight..Time.now }).average(:quantity).round()
-    }
+    @quick_stats = [
+      { title: "Sales", icon: "cart", value: Order.where(created_at: Time.now.midnight..Time.now).count },
+      { title: "Revenue", icon: "credit-card", value: Order.where(created_at: Time.now.midnight..Time.now).sum(:total).to_f.round },
+      { title: "Average Sale", icon: "document-currency", value: Order.where(created_at: Time.now.midnight..Time.now).average(:total).to_f.round },
+      { title: "Per Sale", icon: "currency-dollar", value: OrderProduct.joins(:order).where(orders: { created_at: Time.now.midnight..Time.now }).average(:quantity).to_f.round }
+    ]
 
-    @orders_by_day = Order.where("created_at >= ?", 1.week.ago).order(created_at:).group_by_day(:created_at)
+    @orders_by_day = Order.where("created_at >= ?", 1.week.ago).order(:created_at).group_by { |order| order.created_at.to_date }
     @revenues_by_day = @orders_by_day.map do |day, orders|
       [ day.strftime("%A"), orders.sum(&:total) ]
     end

@@ -1,11 +1,22 @@
 <section class="admin__dashboard flex-1 p-2">
-  <h1 class="text-center">Dashboard</h1>
+  <h1 class="mb-2">Dashboard</h1>
 
-  <h4>List of Admins</h4>
+  <div class="dashboard__quick-stat--container">
+    <h2 class="dashboard__quick-stat--title mb-1">Daily Stats</h2>
 
-  <ul>
-    <% @admins.each do |admin| %>
-      <li><%= admin.email %></li>
-    <% end %>
-  </ul>
+    <ul class="dashboard__quick-stat--list grid gap-2">
+      <% @quick_stats.each do |stat| %>
+        <% stat_value = ["Revenue", "Average Sale"].include?(stat[:title]) ? number_to_currency(stat[:value]) : stat[:value] %>
+
+        <li class="dashboard__quick-stat--item p-2 radius-xl">
+          <header class="dashboard__quick-stat--item__header flex ai-center jc-between">
+            <h4 class="dashboard__quick-stat--item__title"><%= stat[:title] %></h4>
+            <%= render 'shared/icon', name: stat[:icon] %>
+          </header>
+
+          <p class="dashboard__quick-stat--item__value"><%= stat_value %></p>
+        </header>
+      <% end %>
+    </div>
+  </div>
 </section>
