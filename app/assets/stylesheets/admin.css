@@ -148,7 +148,7 @@
 
 .admin__nav--list .active a {
   padding-right: 0.5rem;
-  color: var(--heading-clr-2);
+  color: var(--primary);
   background-color: var(--bg-clr-4);
 
   @media (min-width: 48em) {

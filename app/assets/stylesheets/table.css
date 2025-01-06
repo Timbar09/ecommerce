@@ -276,7 +276,7 @@
 }
 
 .table__footer--nav__button:hover {
-  color: var(--heading-clr-2);
+  color: var(--heading-clr-4);
   background-color: var(--bg-clr-4);
 }
 
@@ -291,7 +291,7 @@
 }
 
 .table__footer--page__button:hover {
-  color: var(--heading-clr-2);
+  color: var(--heading-clr-4);
   background-color: var(--bg-clr-4);
 }
 

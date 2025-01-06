@@ -95,7 +95,7 @@
 .order__date--value__text {
   font-size: 1rem;
   font-weight: 700;
-  color: var(--heading-clr-2);
+  color: var(--heading-clr-4);
 
   @media (min-width: 48em) {
     font-size: 1.25rem;
@@ -210,7 +210,7 @@
 .order__product--name {
   font-size: 1.15rem;
   font-weight: 500;
-  color: var(--heading-clr-2);
+  color: var(--heading-clr-4);
 }
 
 .order__product--sku {
@@ -241,7 +241,7 @@
 }
 
 .order__product--total {
-  color: var(--heading-clr-2);
+  color: var(--heading-clr-4);
 }
 
 @container (width > 50em) {
@@ -253,7 +253,7 @@
 .order__product--more__button {
   padding: 0;
   background-color: transparent;
-  color: var(--heading-clr-2);
+  color: var(--heading-clr-4);
   border: 2px solid var(--bg-clr-3);
   cursor: pointer;
   transition: background-color 100ms ease-in-out;
@@ -273,14 +273,14 @@
 }
 
 .order__product--more__button i {
-  color: var(--heading-clr-2);
+  color: var(--heading-clr-4);
   background-color: transparent;
 }
 
 .order__product--modal {
   margin: 0.5rem 0.5rem 0;
   border-top: 2px solid var(--bg-clr-3);
-  color: var(--heading-clr-2);
+  color: var(--heading-clr-4);
   font-weight: 700;
 }
 

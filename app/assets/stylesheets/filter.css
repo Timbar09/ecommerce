@@ -9,7 +9,7 @@
 }
 
 .filter__form--button:hover {
-  color: var(--heading-clr-2);
+  color: var(--heading-clr-4);
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
 }
 
@@ -37,7 +37,7 @@
 }
 
 .filter__form--checkbox:hover {
-  color: var(--heading-clr-2);
+  color: var(--heading-clr-4);
 }
 
 .filter__form--checkbox__input,
