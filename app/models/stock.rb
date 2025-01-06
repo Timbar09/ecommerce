@@ -11,8 +11,9 @@ class Stock < ApplicationRecord
     "#{product.name} (#{product.category.name})"
   end
 
-  def display_sku
-    "stock0#{product.id}S0#{id}"
+  def display_id
+    id_str = id.to_s
+    "#sk#{id_str.rjust(6, '0')}#{product.id}"
   end
 
   private
