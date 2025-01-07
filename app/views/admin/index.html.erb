@@ -1,8 +1,8 @@
-<section class="admin__dashboard flex-1 p-2">
+<section class="dashboard admin__content flex flex-col gap-2 p-2">
   <h1 class="mb-2">Dashboard</h1>
 
   <div class="dashboard__quick-stat--container">
-    <h2 class="dashboard__quick-stat--title mb-1">Daily Stats</h2>
+    <h2 class="dashboard__subtitle mb-1">Daily Stats</h2>
 
     <ul class="dashboard__quick-stat--list grid gap-2">
       <% @quick_stats.each do |stat| %>
@@ -15,8 +15,14 @@
           </header>
 
           <p class="dashboard__quick-stat--item__value"><%= stat_value %></p>
-        </header>
+        </li>
       <% end %>
-    </div>
+    </ul>
+  </div>
+
+  <div class="dashboard__revenue-chart--container">
+    <h2 class="dashboard__subtitle mb-1">Revenue</h2>
+
+    <%= area_chart @revenues_by_day, thousands: "," %>
   </div>
 </section>

@@ -7,10 +7,10 @@ class AdminController < ApplicationController
     @admins = Admin.all
     @orders = Order.where(fulfilled: false).order(created_at: :desc).take(5)
     @quick_stats = [
-      { title: "Sales", icon: "cart", value: Order.where(created_at: Time.now.midnight..Time.now).count },
-      { title: "Revenue", icon: "credit-card", value: Order.where(created_at: Time.now.midnight..Time.now).sum(:total).to_f.round },
+      { title: "Sales", icon: "credit-card", value: Order.where(created_at: Time.now.midnight..Time.now).count },
+      { title: "Revenue", icon: "currency-dollar", value: Order.where(created_at: Time.now.midnight..Time.now).sum(:total).to_f.round },
       { title: "Average Sale", icon: "document-currency", value: Order.where(created_at: Time.now.midnight..Time.now).average(:total).to_f.round },
-      { title: "Products / Sale", icon: "currency-dollar", value: OrderProduct.joins(:order).where(orders: { created_at: Time.now.midnight..Time.now }).average(:quantity).to_f.round }
+      { title: "Products / Sale", icon: "cube", value: OrderProduct.joins(:order).where(orders: { created_at: Time.now.midnight..Time.now }).average(:quantity).to_f.round }
     ]
 
     @orders_by_day = Order.where("created_at >= ?", 1.week.ago).order(:created_at).group_by { |order| order.created_at.to_date }
