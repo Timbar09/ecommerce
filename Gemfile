@@ -63,3 +63,5 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
+
+gem "chartkick", "~> 5.1"

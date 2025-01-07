@@ -10,7 +10,7 @@ class AdminController < ApplicationController
       { title: "Sales", icon: "cart", value: Order.where(created_at: Time.now.midnight..Time.now).count },
       { title: "Revenue", icon: "credit-card", value: Order.where(created_at: Time.now.midnight..Time.now).sum(:total).to_f.round },
       { title: "Average Sale", icon: "document-currency", value: Order.where(created_at: Time.now.midnight..Time.now).average(:total).to_f.round },
-      { title: "Per Sale", icon: "currency-dollar", value: OrderProduct.joins(:order).where(orders: { created_at: Time.now.midnight..Time.now }).average(:quantity).to_f.round }
+      { title: "Products / Sale", icon: "currency-dollar", value: OrderProduct.joins(:order).where(orders: { created_at: Time.now.midnight..Time.now }).average(:quantity).to_f.round }
     ]
 
     @orders_by_day = Order.where("created_at >= ?", 1.week.ago).order(:created_at).group_by { |order| order.created_at.to_date }
