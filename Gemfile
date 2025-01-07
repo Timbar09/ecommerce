@@ -62,6 +62,11 @@ group :test do
   gem "selenium-webdriver"
 end
 
+# Use devise for authentication [https://github.com/heartcombo/devise]
 gem "devise", "~> 4.9"
 
+# Use chartkick for charting [https://chartkick.com/]
 gem "chartkick", "~> 5.1"
+
+# Use faker for seeding [h ttps://github.com/faker-ruby/faker]
+gem "faker"

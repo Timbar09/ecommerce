@@ -117,6 +117,8 @@ GEM
     erubi (1.13.0)
     et-orbi (1.2.11)
       tzinfo
+    faker (3.5.1)
+      i18n (>= 1.8.11, < 2)
     ffi (1.17.0-aarch64-linux-gnu)
     ffi (1.17.0-arm-linux-gnu)
     ffi (1.17.0-arm64-darwin)
@@ -377,6 +379,7 @@ DEPENDENCIES
   chartkick (~> 5.1)
   debug
   devise (~> 4.9)
+  faker
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
