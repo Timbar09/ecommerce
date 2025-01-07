@@ -2,8 +2,18 @@
   container-type: inline-size;
 }
 
+.dashboard__subsection-container {
+  background-color: var(--bg-clr-1);
+}
+
 .dashboard__subtitle {
-  font-size: 1.15rem;
+  font-size: 0.75rem;
+  color: var(--text-clr-1);
+}
+@media (width > 30em) {
+  .dashboard__subtitle {
+    font-size: 0.875rem;
+  }
 }
 
 .dashboard__quick-stat--list {
@@ -27,11 +37,6 @@
   border-radius: var(--radius-lg);
 }
 
-.dashboard__quick-stat--item__title {
-  font-size: 0.75rem;
-  color: var(--text-clr-1);
-}
-
 .dashboard__quick-stat--item__value {
   margin: 1rem 0 0;
   font-size: 1rem;
@@ -39,10 +44,6 @@
 }
 
 @media (width > 30em) {
-  .dashboard__quick-stat--item__title {
-    font-size: 0.875rem;
-  }
-
   .dashboard__quick-stat--item__value {
     font-size: 1.5rem;
   }

@@ -1,8 +1,8 @@
 <section class="dashboard admin__content flex flex-col gap-2 p-2">
-  <h1 class="mb-2">Dashboard</h1>
+  <h1 class="sr-only">Admin Dashboard</h1>
 
   <div class="dashboard__quick-stat--container">
-    <h2 class="dashboard__subtitle mb-1">Daily Stats</h2>
+    <h2 class="sr-only">Daily Stats</h2>
 
     <ul class="dashboard__quick-stat--list grid gap-2">
       <% @quick_stats.each do |stat| %>
@@ -10,7 +10,7 @@
 
         <li class="dashboard__quick-stat--item p-2 radius-xl">
           <header class="dashboard__quick-stat--item__header flex ai-center jc-between">
-            <h4 class="dashboard__quick-stat--item__title"><%= stat[:title] %></h4>
+            <h2 class="dashboard__subtitle"><%= stat[:title] %></h2>
             <%= render 'shared/icon', name: stat[:icon] %>
           </header>
 
@@ -20,9 +20,19 @@
     </ul>
   </div>
 
-  <div class="dashboard__revenue-chart--container">
-    <h2 class="dashboard__subtitle mb-1">Revenue</h2>
+  <div class="dashboard__revenue-chart--container dashboard__subsection-container p-2 radius-xl">
+    <header class="dashboard__revenue-chart--header">
+      <h2 class="dashboard__subtitle mb-1">Revenue</h2>
+    </header>
 
     <%= area_chart @revenues_by_day, thousands: "," %>
+  </div>
+
+  <div class="dashboard__orders--table dashboard__subsection-container p-2 radius-xl">
+    <header class="dashboard__orders--header">
+      <h2 class="dashboard__subtitle mb-1">Orders</h2>
+    </header>
+
+    <%= render partial: 'shared/table', locals: { headers: @order_headers, list: @orders, actions: @order_actions } %>
   </div>
 </section>

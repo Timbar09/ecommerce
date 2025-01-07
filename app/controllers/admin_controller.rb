@@ -33,6 +33,9 @@ class AdminController < ApplicationController
 
       @revenues_by_day = complete_ordered_array_with_current_last
     end
+
+    @order_headers = [ :id, :name, :created_at, :total ]
+    @order_actions = [ { path: ->(order) { admin_order_path(order) }, name: "View Order" } ]
   end
 
   def show
