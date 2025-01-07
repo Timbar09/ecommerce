@@ -1,21 +1,24 @@
 module TableHelper
-  def header_renderers
+  def header_renderers(class_name)
     {
-      id: controller_name ? "#{controller_name.singularize.titleize} ID" : "ID",
+      id: class_name ? "#{class_name.singularize.titleize} ID" : "ID",
+      created_at: "Order Date",
       product_name: "Belongs To",
       fulfilled: "Status"
     }
   end
 
   def attribute_renderers(actions)
-    show_action = actions.find { |action| action[:name].include?("View") }
+    show_action = actions.find { |action| action[:name].include?("View") } if actions.any?
 
     {
+      name: ->(item) { item.respond_to?(:display_name) ? item.display_name : item.name },
       image: ->(item) { link_to image_tag(item.display_thumb_image, class: "table__image radius-lg"), show_action[:path].call(item) },
       product_name: ->(item) { item.display_product_name },
       size: ->(item) { item.size.upcase },
-      id: ->(item) { link_to item.display_id, show_action[:path].call(item), class: "form__link--primary" },
+      id: ->(item) { link_to item.display_id, show_action ? show_action[:path].call(item) : "#", class: "form__link--primary" },
       price: ->(item) { number_to_currency(item.price) },
+      created_at: ->(item) { item.display_order_date },
       total: ->(item) { number_to_currency(item.total) },
       fulfilled: ->(item) { content_tag(:span, class: item.fulfilled ? "fulfilled flex-inline ai-center gap-1 radius-lg" : "unfulfilled flex-inline ai-center gap-1 radius-lg") do
         icon_html = render "shared/icon", name: item.fulfilled ? "check" : "clock"

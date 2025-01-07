@@ -1,7 +1,9 @@
 <div id="<%= list.first.class.name.downcase.pluralize %>-table" class="table__container radius-xl">
   <table class="table">
     <thead>
-      <% table_headers = header_renderers %>
+      <% class_name = list.first.class.name.downcase %>
+
+      <% table_headers = header_renderers(class_name) %>
 
       <tr>
         <% headers.each do |header| %>
@@ -15,7 +17,13 @@
     <%= render 'shared/table_footer', col_span: headers.size %>
 
     <tbody>
-      <% table_data = attribute_renderers(@table_actions) %>
+      <% if local_assigns[:actions] %>
+        <% actions = local_assigns[:actions] %>
+      <% else %>
+        <% actions = [] %>
+      <% end %>
+
+      <% table_data = attribute_renderers(actions) %>
 
       <% list.each do |item| %>
         <%# Add fulfilled data attribute to the row if the item is an order %>
