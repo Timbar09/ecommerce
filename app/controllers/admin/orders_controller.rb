@@ -5,7 +5,7 @@ class Admin::OrdersController < AdminController
   def index
     @orders = Order.all.order(created_at: :asc)
 
-    @table_headers = [ :id, :customer_email, :total, :address, :fulfilled, :actions ]
+    @table_headers = [ :id, :name, :created_at, :fulfilled, :total, :actions ]
     @table_actions = [
       { path: ->(order) { admin_order_path(order) }, name: "View Order" },
       { path: ->(order) { edit_admin_order_path(order) }, name: "Edit Order" },

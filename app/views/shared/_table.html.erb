@@ -1,5 +1,18 @@
-<div id="<%= list.first.class.name.downcase.pluralize %>-table" class="table__container radius-xl">
-  <table class="table">
+<%# 
+  This partial renders a table with the given list of items.
+  Required local variables:
+  - list: An array of items to be displayed in the table.
+  - headers: An array of symbols representing the headers of the table.
+  - class_name: (Optional) A string representing the CSS class name to be added to the table container.
+  - actions: (Optional) An array of actions to be displayed in the actions column.
+  - responsive: (Optional) A boolean representing whether the table should be responsive.
+  - id: (Optional) A string representing the id of the table container.
+%>
+
+<div id="<%= id if local_assigns[:id] %>" class="<%= class_names + " " if local_assigns[:class_names] %>table__container radius-xl">
+  <% responsive = local_assigns[:responsive] || false %>
+
+  <table class="table" data-responsive="<%= responsive %>">
     <thead>
       <% class_name = list.first.class.name.downcase %>
 
@@ -14,14 +27,10 @@
       </tr>
     </thead>
 
-    <%= render 'shared/table_footer', col_span: headers.size %>
+    <%= render 'shared/table_footer', col_span: headers.size, row_count: list.size %>
 
     <tbody>
-      <% if local_assigns[:actions] %>
-        <% actions = local_assigns[:actions] %>
-      <% else %>
-        <% actions = [] %>
-      <% end %>
+      <% actions = local_assigns[:actions] || [] %>
 
       <% table_data = attribute_renderers(actions) %>
 
