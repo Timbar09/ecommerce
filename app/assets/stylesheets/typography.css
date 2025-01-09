@@ -3,6 +3,20 @@ a {
   color: inherit;
 }
 
+.link {
+  text-decoration: underline;
+}
+.link:hover {
+  color: var(--primary);
+  text-decoration: underline;
+
+}
+
+.link__primary {
+  color: var(--primary);  
+  text-decoration: none;
+}
+
 h1,
 h2,
 h3,
@@ -20,4 +34,12 @@ ul {
 .container {
   max-width: 75rem;
   margin: 0 auto;
+}
+
+.section__table--container {
+  padding-top: 5.5rem;
+}
+
+.full-height {
+  height: 100%;
 }
