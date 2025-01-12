@@ -233,6 +233,7 @@
 }
 
 .admin__content--container {
+  container-type: inline-size;
   position: relative;
   background-color: var(--bg-clr-3);
   height: 100%;

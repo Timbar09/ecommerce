@@ -1,3 +1,31 @@
+.dashboard {
+  grid-template-areas: 
+    "quick-stats"
+    "user-charts"
+    "sales-chart"
+    "payment-charts"
+    "revenues-chart"
+    "orders-table"
+    ;
+}
+
+@container (width > 48em) {
+  .dashboard {
+    grid-template-areas: 
+      "quick-stats user-charts"
+      "quick-stats user-charts"
+      "sales-chart user-charts"
+      "sales-chart payment-charts"
+      "sales-chart payment-charts"
+      "sales-chart orders-table"
+      "revenues-chart orders-table"
+      "revenues-chart orders-table"
+      "revenues-chart orders-table"
+      ;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 .dashboard__quick-stat--container {
   container-type: inline-size;
 }
@@ -10,10 +38,25 @@
   font-size: 0.75rem;
   color: var(--text-clr-1);
 }
+
+.dashboard__link {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.dashboard__link:hover {
+  text-decoration: underline;
+}
+
 @media (width > 30em) {
   .dashboard__subtitle {
     font-size: 0.875rem;
   }
+}
+
+.dashboard__quick-stat--container {
+  grid-area: quick-stats;
 }
 
 .dashboard__quick-stat--list {
@@ -47,4 +90,42 @@
   .dashboard__quick-stat--item__value {
     font-size: 1.5rem;
   }
+}
+
+.dashboard__user--chart--container {
+  grid-area: user-charts;
+}
+/* @container (width > 48em) {
+  .dashboard__user--chart--container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+} */
+
+.dashboard__sales--chart--container {
+  grid-area: sales-chart;
+}
+
+.dashboard__payment--chart--container {
+  grid-area: payment-charts;
+}
+@container (width > 48em) {
+  .dashboard__payment--chart--container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.dashboard__revenue-chart--container {
+  grid-area: revenues-chart;
+}
+
+.dashboard__orders--table {
+  grid-area: orders-table;
+}
+
+.dashboard__orders--table .table__row[data-fulfilled="true"] td {
+  background-color: var(--light-green);
+}
+
+.dashboard__orders--table .table__row[data-fulfilled="false"] td {
+  background-color: var(--light-orange);
 }
