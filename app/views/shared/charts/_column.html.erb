@@ -1,0 +1,32 @@
+<% options = local_assigns[:options] || {} %>
+
+<% chart_data = process_chart_data(data, options) %>
+
+<div class="chart__container" style="<%= chart_data[:style_string] %>">
+  <div class="chart flex px-1" style="--bar-gap: <%= chart_data[:bar_gap] %>;">
+    <%# Generate the x-axis grid lines %>
+    <% (0..chart_data[:x_axis_grid_num]).each do |num| %>
+      <div class="chart__grid chart__grid--x" style="bottom: <%= (num.to_f / chart_data[:x_axis_grid_num]) * 100 %>%;" data-grid="<%=chart_data[:grid_lines] %>">
+        <div class="chart__grid--label">
+          <%= num * chart_data[:denominator] %>
+        </div>
+      </div>
+    <% end %>
+
+    <%# Generate the bars %>
+    <% data.each do |bar| %>
+      <% bar_height = (bar[1].to_f / chart_data[:highest_value_rounded_up]) * 100 %>
+      <% bar_styles = {
+        "--bar-height" => "#{bar_height}%",
+        "--bar-label" => bar[0],
+        "--bar-color" => chart_data[:hex_color],
+        "background-color" => chart_data[:rgba_color]
+      } %>
+      <% bar_style_string = bar_styles.map { |key, value| "#{key}: #{value};" }.join(" ") %>
+
+      <div class="chart__bar--container flex-1 radius-pill flex ai-end" style="<%= bar_style_string %>" title="<%= bar[1] %>">
+        <p class="chart__bar--label"><%= bar[0] %></p>
+      </div>
+    <% end %>
+  </div>
+</div>

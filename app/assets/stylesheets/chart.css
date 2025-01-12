@@ -1,0 +1,93 @@
+.chart__container {
+  --grid-color: rgba(136, 136, 136, 0.125);
+  --grid-height: 0.85px;
+  --bar-gap: 0.5rem;
+  --bar-shadow-left: -3px -3px 5px rgba(255, 255, 255, 0.35);
+  --bar-shadow-right: 3px 3px 5px rgba(0, 0, 0, 0.05);
+
+  border: 1px solid var(--bar-color);
+  aspect-ratio: 16 / 9;
+  padding: 0 0 2rem var(--padding);
+}
+
+.chart {
+  position: relative;
+  border-left: 1px solid var(--grid-color);
+  border-bottom: 1px solid var(--grid-color);
+  height: 100%;
+  gap: var(--bar-gap);
+}
+
+.chart__bar--container {
+  position: relative;
+  height: 100%;
+  box-shadow:
+    inset var(--bar-shadow-left),
+    inset var(--bar-shadow-right);
+}
+
+.chart__bar--container::before,
+.chart__bar--container::after {
+  content: '';
+  position: absolute;
+}
+
+.chart__bar--container::before {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 0.5rem;
+  background-color: var(--grid-color);
+}
+
+.chart__bar--container::after {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--bar-height);
+  background-color: var(--bar-color);
+  border-radius: inherit;
+  transition: height 0.5s;
+}
+
+.chart__bar--label {
+  margin: 0;
+  position: absolute;
+  top: calc(100% + 0.75rem);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  color: var(--heading-clr-1);
+}
+
+.chart__grid {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: var(--grid-height);
+}
+
+.chart__grid[data-grid='true'] {
+  background-color: var(--grid-color);
+}
+
+.chart__grid::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 100%;
+  bottom: 0;
+  width: 0.5rem;
+  font-size: 0.75rem;
+  background-color: var(--grid-color);
+}
+
+.chart__grid--label {
+  position: absolute;
+  right: calc(100% + 0.75rem);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.75rem;
+  color: var(--heading-clr-1);
+}
