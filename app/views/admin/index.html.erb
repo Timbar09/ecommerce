@@ -1,4 +1,4 @@
-<section class="dashboard admin__content flex flex-col gap-2 p-2">
+<section class="dashboard admin__content grid gap-2 p-2">
   <h1 class="sr-only">Admin Dashboard</h1>
 
   <div class="dashboard__quick-stat--container">
@@ -20,17 +20,55 @@
     </ul>
   </div>
 
-  <div class="dashboard__revenue-chart--container dashboard__subsection-container p-2 radius-xl">
-    <header class="dashboard__revenue-chart--header">
-      <h2 class="dashboard__subtitle mb-1">Revenue</h2>
+  <div class="dashboard__user--chart--container grid gap-2">
+    <div class="dashboard__user--chart__users  dashboard__subsection-container p-2 radius-xl">
+      <header class="dashboard__user--chart__header mb-1">
+        <h2 class="dashboard__subtitle">Users</h2>
+
+        <p class="dashboard__user--chart__total">5, 987</p>
+
+        <span class="dashboard__user--chart__total--description">Total users description</span>
+      </header>
+
+      <div>
+        <%= pie_chart @products_by_price_range, legend: "left", donut: true, suffix: " product(s)" , height: "10rem", colors: ["#fff3e0", "#fcd895", "#fcbe4c", "#ffa500"] %>
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard__sales--chart--container dashboard__subsection-container p-2 radius-xl">
+    <header class="dashboard__sales--chart--header mb-1">
+      <h2 class="dashboard__subtitle">Sales</h2>
     </header>
 
-    <%= area_chart @revenues_by_day, thousands: "," %>
+    <%= column_chart @sales_data, thousands: ",", prefix: "$", height: "13rem", colors: ["#ec158f"] %>
+  </div>
+
+  <div class="dashboard__payment--chart--container grid gap-2">
+    <div class="dashboard__payment--chart--invoices dashboard__subsection-container p-2 radius-xl">
+      <%= render 'shared/charts/column', data: @sales_data, options: { hex_color: '#FF1493', gap: 4 } %>
+    </div>
+
+    <div class="dashboard__payment--chart--funds dashboard__subsection-container p-2 radius-xl">
+      <p class="my-3">
+        Funds Chart Here
+      </p>
+    </div>
+  </div>
+
+  <div class="dashboard__revenue-chart--container dashboard__subsection-container p-2 radius-xl">
+    <header class="dashboard__revenue-chart--header mb-1">
+      <h2 class="dashboard__subtitle">Revenue</h2>
+    </header>
+
+    <%= area_chart @revenues_by_day, thousands: ",", prefix: "$", height: "13rem" %>
   </div>
 
   <div class="dashboard__orders--table dashboard__subsection-container p-2 radius-xl">
-    <header class="dashboard__orders--header">
-      <h2 class="dashboard__subtitle mb-1">Orders</h2>
+    <header class="dashboard__orders--header mb-1 flex ai-center jc-between">
+      <h2 class="dashboard__subtitle">Orders</h2>
+
+      <%= link_to "View All", admin_orders_path, class: "dashboard__link" %>
     </header>
 
     <%= render partial: 'shared/table', locals: { headers: @order_headers, list: @orders, actions: @order_actions } %>

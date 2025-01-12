@@ -6,6 +6,7 @@ class AdminController < ApplicationController
   def index
     @admins = Admin.all
     @orders = Order.where(fulfilled: false).order(created_at: :desc).take(5)
+
     @quick_stats = [
       { title: "Sales", icon: "credit-card", value: Order.where(created_at: Time.now.midnight..Time.now).count },
       { title: "Revenue", icon: "currency-dollar", value: Order.where(created_at: Time.now.midnight..Time.now).sum(:total).to_f.round },
@@ -36,6 +37,26 @@ class AdminController < ApplicationController
 
     @order_headers = [ :id, :name, :created_at, :total ]
     @order_actions = [ { path: ->(order) { admin_order_path(order) }, name: "View Order" } ]
+
+    @products_by_price_range = Product.all.group_by { |product| product.price.to_i / 50 }.map do |price_range, products|
+      [ "#{price_range * 50} - #{(price_range + 1) * 50}", products.count ]
+    end
+
+    # Mock sales data
+    @sales_data = [
+      [ "Jan", 5000 ],
+      [ "Feb", 12000 ],
+      [ "Mar", 10000 ],
+      [ "Apr", 4000 ],
+      [ "May", 7000 ],
+      [ "Jun", 6000 ],
+      [ "Jul", 1000 ],
+      [ "Aug", 8000 ],
+      [ "Sep", 9000 ],
+      [ "Oct", 3000 ],
+      [ "Nov", 11000 ],
+      [ "Dec", 2000 ]
+    ]
   end
 
   def show

@@ -7,8 +7,16 @@ class Order < ApplicationRecord
     "##{id_str.rjust(9, '0')}"
   end
 
+  def display_thumb_image
+    "https://placehold.co/30x30/CCC/FFF"
+  end
+
+  def display_customer_name
+    customer_email.split("@").first.titleize
+  end
+
   def display_name
-    "John Doe"
+    customer_email.split("@").first.titleize
   end
 
   def display_fulfilled
@@ -16,7 +24,7 @@ class Order < ApplicationRecord
   end
 
   def display_order_date
-    created_at.strftime("%B %d, %Y")
+    created_at.strftime("%b %d, %Y")
   end
 
   def display_delivery_date
