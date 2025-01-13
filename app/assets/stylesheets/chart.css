@@ -4,8 +4,8 @@
   --bar-gap: 0.5rem;
   --bar-shadow-left: -3px -3px 5px rgba(255, 255, 255, 0.35);
   --bar-shadow-right: 3px 3px 5px rgba(0, 0, 0, 0.05);
+  --point-dimension: 0.5rem;
 
-  border: 1px solid var(--bar-color);
   aspect-ratio: 16 / 9;
   padding: 0 0 2rem var(--padding);
 }
@@ -18,47 +18,8 @@
   gap: var(--bar-gap);
 }
 
-.chart__bar--container {
-  position: relative;
-  height: 100%;
-  box-shadow:
-    inset var(--bar-shadow-left),
-    inset var(--bar-shadow-right);
-}
-
-.chart__bar--container::before,
-.chart__bar--container::after {
-  content: '';
-  position: absolute;
-}
-
-.chart__bar--container::before {
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1px;
-  height: 0.5rem;
-  background-color: var(--grid-color);
-}
-
-.chart__bar--container::after {
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: var(--bar-height);
-  background-color: var(--bar-color);
-  border-radius: inherit;
-  transition: height 0.5s;
-}
-
-.chart__bar--label {
-  margin: 0;
-  position: absolute;
-  top: calc(100% + 0.75rem);
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.75rem;
-  color: var(--heading-clr-1);
+.chart__line {
+  justify-content: space-between;
 }
 
 .chart__grid {
@@ -90,4 +51,79 @@
   transform: translateY(-50%);
   font-size: 0.75rem;
   color: var(--heading-clr-1);
+}
+
+.chart__bar--container,
+.chart__point--container {
+  position: relative;
+  height: 100%;
+}
+
+.chart__bar--container {
+  box-shadow:
+    inset var(--bar-shadow-left),
+    inset var(--bar-shadow-right);
+}
+
+.chart__bar--container::before,
+.chart__bar--container::after,
+.chart__point--container::before,
+.chart__point--container::after {
+  content: '';
+  position: absolute;
+}
+
+.chart__bar--container::before,
+.chart__point--container::before {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 0.5rem;
+  background-color: var(--grid-color);
+}
+
+.chart__bar--container::after {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--bar-height);
+  background-color: var(--bar-color);
+  border-radius: inherit;
+  transition: height 0.5s;
+}
+
+.chart__bar--label,
+.chart__point--label {
+  margin: 0;
+  position: absolute;
+  top: calc(100% + 0.75rem);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  color: var(--heading-clr-1);
+}
+
+.chart__point--container::after {
+  bottom: calc(var(--point-y) - (var(--point-dimension) / 2));
+  left: calc(var(--point-x) - (var(--point-dimension) / 2));
+  width: var(--point-dimension);
+  height: var(--point-dimension);
+  background-color: var(--point-color);
+  border-radius: 50%;
+  transition: background-color 100ms ease-in-out, scale 100ms ease-in-out;
+}
+
+.chart__point--container:hover::after {
+  scale: 1.25;
+  background-color: var(--heading-clr-2);
+  outline: 2px solid var(--bg-clr-4);
+}
+
+.chart__svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }

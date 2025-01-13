@@ -56,7 +56,7 @@ module ChartHelper
     end
 
     rgb_color = hex_color.gsub("#", "").scan(/../).map { |color| color.hex }
-    rgba_color = "rgba(#{rgb_color.join(', ')}, 0.075)" # 50% opacity
+    rgba_color = "rgba(#{rgb_color.join(', ')}, 0.05)"
 
     styles = {
       "--padding" => padding
@@ -84,7 +84,8 @@ module ChartHelper
       style_string: style_string,
       bar_gap: bar_gap,
       denominator: denominator,
-      grid_lines: options[:grid_lines] || false
+      grid_lines: options[:grid_lines] || false,
+      area_chart: options[:area_chart] || false
     }
   end
 end

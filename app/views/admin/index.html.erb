@@ -31,7 +31,7 @@
       </header>
 
       <div>
-        <%= pie_chart @products_by_price_range, legend: "left", donut: true, suffix: " product(s)" , height: "10rem", colors: ["#fff3e0", "#fcd895", "#fcbe4c", "#ffa500"] %>
+        Pie Chart Here
       </div>
     </div>
   </div>
@@ -40,13 +40,13 @@
     <header class="dashboard__sales--chart--header mb-1">
       <h2 class="dashboard__subtitle">Sales</h2>
     </header>
+    <% sales_chart_options = { hex_color: '#FF1493', gap: 4 } %>
 
-    <%= column_chart @sales_data, thousands: ",", prefix: "$", height: "13rem", colors: ["#ec158f"] %>
+    <%= render 'shared/charts/column', data: @sales_data, options: sales_chart_options %>
   </div>
 
   <div class="dashboard__payment--chart--container grid gap-2">
     <div class="dashboard__payment--chart--invoices dashboard__subsection-container p-2 radius-xl">
-      <%= render 'shared/charts/column', data: @sales_data, options: { hex_color: '#FF1493', gap: 4 } %>
     </div>
 
     <div class="dashboard__payment--chart--funds dashboard__subsection-container p-2 radius-xl">
@@ -61,7 +61,9 @@
       <h2 class="dashboard__subtitle">Revenue</h2>
     </header>
 
-    <%= area_chart @revenues_by_day, thousands: ",", prefix: "$", height: "13rem" %>
+    <% revenue_chart_options = { hex_color: '#F1CF2E', gap: 4, area_chart: true } %>
+
+    <%= render 'shared/charts/line', data: @revenues_by_day, options: revenue_chart_options %>
   </div>
 
   <div class="dashboard__orders--table dashboard__subsection-container p-2 radius-xl">
