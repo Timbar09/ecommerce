@@ -61,9 +61,7 @@
       <h2 class="dashboard__subtitle">Revenue</h2>
     </header>
 
-    <% revenue_chart_options = { hex_color: '#F1CF2E', gap: 4, area_chart: true } %>
-
-    <%= render 'shared/charts/line', data: @revenues_by_day, options: revenue_chart_options %>
+    <%= render 'shared/charts/line', data: @revenues_by_day, options: { show_area: true } %>
   </div>
 
   <div class="dashboard__orders--table dashboard__subsection-container p-2 radius-xl">

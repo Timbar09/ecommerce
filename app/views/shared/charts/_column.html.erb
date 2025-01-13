@@ -20,7 +20,7 @@
         "--bar-height" => "#{bar_height}%",
         "--bar-label" => bar[0],
         "--bar-color" => chart_data[:hex_color],
-        "background-color" => chart_data[:rgba_color]
+        "background-color" => chart_data[:bar_bg_color]
       } %>
       <% bar_style_string = bar_styles.map { |key, value| "#{key}: #{value};" }.join(" ") %>
 

@@ -1,12 +1,15 @@
 <% options = local_assigns[:options] || {} %>
 <% chart_data = process_chart_data(data, options) %>
 
-<% path_data = "M" %>
+<%# Calculate SVG Path Data with Curves for Area Chart %>
+<% area_path_data = "M" %>
+<% line_path_data = "M" %>
 <% data.each_with_index do |point, index| %>
   <% x = (index.to_f / (data.size - 1)) * 100 %>
   <% y = 100 - ((point[1].to_f / chart_data[:highest_value_rounded_up]) * 100) %>
   <% if index == 0 %>
-    <% path_data += "#{x},#{y}" %>
+    <% area_path_data += "#{x},#{y}" %>
+    <% line_path_data += "#{x},#{y}" %>
   <% else %>
     <% prev_x = ((index - 1).to_f / (data.size - 1)) * 100 %>
     <% prev_y = 100 - ((data[index - 1][1].to_f / chart_data[:highest_value_rounded_up]) * 100) %>
@@ -14,18 +17,13 @@
     <% control_y1 = prev_y %>
     <% control_x2 = (prev_x + x) / 2 %>
     <% control_y2 = y %>
-    <% path_data += " C #{control_x1},#{control_y1} #{control_x2},#{control_y2} #{x},#{y}" %>
+    <% area_path_data += " C #{control_x1},#{control_y1} #{control_x2},#{control_y2} #{x},#{y}" %>
+    <% line_path_data += " C #{control_x1},#{control_y1} #{control_x2},#{control_y2} #{x},#{y}" %>
   <% end %>
 <% end %>
 
-<%# Set the fill color to none by default %>
-<% fill_color = "none" %>
-
-<%# Close the path to create an area chart and set the fill color %>
-<% if chart_data[:area_chart] %>
-  <% path_data += " L 100,100 L 0,100 Z" %>
-  <% fill_color = chart_data[:rgba_color] %>
-<% end %>
+<%# Close the path to create an area chart %>
+<% area_path_data += " L 100,100 L 0,100 Z" %>
 
 <div class="chart__container" style="<%= chart_data[:style_string] %>">
   <div class="chart chart__line flex">
@@ -38,23 +36,27 @@
       </div>
     <% end %>
 
-    <%# Render the SVG Path %>
+    <%# Render the SVG Paths %>
     <svg class="chart__svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-      <path d="<%= path_data %>" fill="<%= fill_color %>" stroke="<%= chart_data[:hex_color] %>" stroke-width="2" vector-effect="non-scaling-stroke" />
+      <path d="<%= line_path_data %>" fill="none" stroke="<%= chart_data[:hex_color] %>" stroke-width="2" vector-effect="non-scaling-stroke" />
+      
+      <% if chart_data[:show_area] %>
+        <path d="<%= area_path_data %>" fill="<%= chart_data[:rgba_color] %>" />
+      <% end %>
     </svg>
 
-    <%# Generate the lines %>
-    <% data.each do |point| %>
-      <% point_styles = {
+        <%# Generate the lines %>
+        <% data.each do |point| %>
+          <% point_styles = {
         "--point-x" => "#{(point[0].to_f / chart_data[:highest_value_rounded_up]) * 100}%",
         "--point-y" => "#{(point[1].to_f / chart_data[:highest_value_rounded_up]) * 100}%",
-        "--point-color" => chart_data[:hex_color],
+        "--point-color" => chart_data[:hide_points] ? "transparent" : chart_data[:hex_color]
       } %>
-      <% point_style_string = point_styles.map { |key, value| "#{key}: #{value};" }.join(" ") %>
+          <% point_style_string = point_styles.map { |key, value| "#{key}: #{value};" }.join(" ") %>
 
-      <div class="chart__point--container" style="<%= point_style_string %>" title="<%= point[1] %>">
-        <p class="chart__point--label"><%= point[0] %></p>
+          <div class="chart__point--container" style="<%= point_style_string %>" title="<%= point[1] %>">
+            <p class="chart__point--label"><%= point[0] %></p>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
-</div>
+    </div>
