@@ -91,4 +91,33 @@ module ChartHelper
       number.to_s
     end
   end
+
+  def generate_svg_paths(data, chart_data)
+    area_path_data = "M"
+    line_path_data = "M"
+    data.each_with_index do |point, index|
+      x = (index.to_f / (data.size - 1)) * 100
+      y = 100 - ((point[1].to_f / chart_data[:highest_value_rounded_up]) * 100)
+      if index == 0
+        area_path_data += "#{x},#{y}"
+        line_path_data += "#{x},#{y}"
+      else
+        prev_x = ((index - 1).to_f / (data.size - 1)) * 100
+        prev_y = 100 - ((data[index - 1][1].to_f / chart_data[:highest_value_rounded_up]) * 100)
+        control_x1 = (prev_x + x) / 2
+        control_y1 = prev_y
+        control_x2 = (prev_x + x) / 2
+        control_y2 = y
+        area_path_data += " C #{control_x1},#{control_y1} #{control_x2},#{control_y2} #{x},#{y}"
+        line_path_data += " C #{control_x1},#{control_y1} #{control_x2},#{control_y2} #{x},#{y}"
+      end
+    end
+
+    area_path_data += " L 100,100 L 0,100 Z"
+
+    {
+      area_path_data: area_path_data,
+      line_path_data: line_path_data
+    }
+  end
 end
