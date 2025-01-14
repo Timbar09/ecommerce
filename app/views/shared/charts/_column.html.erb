@@ -2,16 +2,9 @@
 
 <% chart_data = process_chart_data(data, options) %>
 
-<div class="chart__container" style="<%= chart_data[:style_string] %>">
+<div class="chart__container">
   <div class="chart flex px-1" style="--bar-gap: <%= chart_data[:bar_gap] %>;">
-    <%# Generate the x-axis grid lines %>
-    <% (0..chart_data[:x_axis_grid_num]).each do |num| %>
-      <div class="chart__grid chart__grid--x" style="bottom: <%= (num.to_f / chart_data[:x_axis_grid_num]) * 100 %>%;" data-grid="<%=chart_data[:grid_lines] %>">
-        <div class="chart__grid--label">
-          <%= num * chart_data[:denominator] %>
-        </div>
-      </div>
-    <% end %>
+    <%= render 'shared/charts/grid_lines', chart_data: chart_data %>
 
     <%# Generate the bars %>
     <% data.each do |bar| %>

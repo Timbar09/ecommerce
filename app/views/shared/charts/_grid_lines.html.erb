@@ -1,0 +1,14 @@
+<% (0..chart_data[:x_axis_grid_num]).each do |num| %>
+  <% prefix = chart_data[:prefix] ? "#{chart_data[:prefix]}" : "" %>
+  <% number = chart_data[:short_numbers] ? shorten_number(num * chart_data[:denominator]) : num * chart_data[:denominator] %>
+  <% grid_label = "#{prefix}#{number}" %>
+
+  <% grid_position = (num.to_f / chart_data[:x_axis_grid_num]) * 100 %>
+  <% show_grid = chart_data[:grid_lines] %>
+
+  <div class="chart__grid chart__grid--x" style="bottom: <%= grid_position %>%;" data-grid="<%= show_grid %>">
+    <div class="chart__grid--label">
+      <%= grid_label %>
+    </div>
+  </div>
+<% end %>

@@ -25,16 +25,9 @@
 <%# Close the path to create an area chart %>
 <% area_path_data += " L 100,100 L 0,100 Z" %>
 
-<div class="chart__container" style="<%= chart_data[:style_string] %>">
+<div class="chart__container">
   <div class="chart chart__line flex">
-    <%# Generate the x-axis grid lines %>
-    <% (0..chart_data[:x_axis_grid_num]).each do |num| %>
-      <div class="chart__grid chart__grid--x" style="bottom: <%= (num.to_f / chart_data[:x_axis_grid_num]) * 100 %>%;" data-value="<%= num * chart_data[:denominator] %>">
-        <div class="chart__grid--label">
-          <%= num * chart_data[:denominator] %>
-        </div>
-      </div>
-    <% end %>
+    <%= render 'shared/charts/grid_lines', chart_data: chart_data %>
 
     <%# Render the SVG Paths %>
     <svg class="chart__svg" viewBox="0 0 100 100" preserveAspectRatio="none">
