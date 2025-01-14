@@ -38,14 +38,6 @@ module ChartHelper
 
     x_axis_grid_num = highest_value_rounded_up / denominator
 
-    padding = case highest_value.to_s.size
-    when 0 then "1rem"
-    when 1..2 then "1.75rem"
-    when 3..4 then "2.25rem"
-    when 5..6 then "3.25rem"
-    else "4rem"
-    end
-
     # Convert hex color to rgba color
     if !options.key?(:hex_color) || options[:hex_color].nil?
       hex_color = "#890f9f"
@@ -58,12 +50,6 @@ module ChartHelper
     rgb_color = hex_color.gsub("#", "").scan(/../).map { |color| color.hex }
     rgba_color = "rgba(#{rgb_color.join(', ')}, 0.1)"
     bar_bg_color = "rgba(#{rgb_color.join(', ')}, 0.05)"
-
-    styles = {
-      "--padding" => padding
-    }
-
-    style_string = styles.map { |key, value| "#{key}: #{value};" }.join(" ")
 
     max_gap_percentage = 100.0 / values.size
 
@@ -79,16 +65,30 @@ module ChartHelper
       values: values,
       highest_value_rounded_up: highest_value_rounded_up,
       x_axis_grid_num: x_axis_grid_num,
-      padding: padding,
       hex_color: hex_color,
       rgba_color: rgba_color,
       bar_bg_color: bar_bg_color,
-      style_string: style_string,
       bar_gap: bar_gap,
       denominator: denominator,
       grid_lines: options[:grid_lines] || false,
       hide_points: options[:hide_points] || false,
-      show_area: options[:show_area] || false
+      show_area: options[:show_area] || false,
+      prefix: options[:prefix] || "",
+      short_numbers: options[:short_numbers] || false
     }
+  end
+
+  def shorten_number(number)
+    if number >= 1_000_000_000_000
+      "#{(number / 1_000_000_000_000.0).round(1)}T"
+    elsif number >= 1_000_000_000
+      "#{(number / 1_000_000_000.0).round(1)}B"
+    elsif number >= 1_000_000
+      "#{(number / 1_000_000.0).round(1)}M"
+    elsif number >= 1_000
+      "#{(number / 1_000.0).round(1)}K"
+    else
+      number.to_s
+    end
   end
 end

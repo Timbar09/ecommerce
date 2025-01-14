@@ -7,7 +7,7 @@
   --point-dimension: 0.5rem;
 
   aspect-ratio: 16 / 9;
-  padding: 0 0 2rem var(--padding);
+  padding: 0 0 2rem 3.5rem;
 }
 
 .chart {
@@ -51,6 +51,7 @@
   transform: translateY(-50%);
   font-size: 0.75rem;
   color: var(--heading-clr-1);
+  width: max-content;
 }
 
 .chart__bar--container,
