@@ -31,7 +31,9 @@
       </header>
 
       <div>
-        Pie Chart Here
+        <% pie_chart_options = { colors: ['#FF1493'] } %>
+
+        <%= render 'shared/charts/pie', data: @users_data, options: pie_chart_options %>
       </div>
     </div>
   </div>

@@ -1,0 +1,29 @@
+<% options = local_assigns[:options] || {} %>
+<% colors = options[:colors] || [] %>
+
+<% paths = generate_pie_chart_paths(data, colors) %>
+
+<div class="chart__container flex gap-2 jc-between" style="--padding: 0;">
+  <div class="chart__legend flex ai-center">
+    <ul class="chart__legend--list flex flex-col gap-1">
+      <% paths[:paths].each do |path| %>
+        <% value = path[:value] %>
+        <% legend_color = path[:color][:code] %>
+        <% legend_title = path[:color][:title] %>
+
+        <li class="chart__legend--item">
+          <p class="chart__legend--title"><%= legend_title %></p>
+
+          <div class="flex ai-center gap-1">
+            <span class="chart__legend--color" style="background-color: <%= legend_color %>;"></span>
+            <span class="chart__legend--value"><%= value %></span>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="chart chart__pie flex">
+    <%= render 'shared/charts/svg_pie', paths: paths %>
+  </div>
+</div>
