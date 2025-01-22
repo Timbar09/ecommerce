@@ -57,6 +57,13 @@ class AdminController < ApplicationController
       [ "Nov", 11000 ],
       [ "Dec", 2000 ]
     ]
+
+    # Mock users data
+    @users_data = [
+      [ "New", 500 ],
+      [ "Returning", 300 ],
+      [ "inactive", 200 ]
+    ]
   end
 
   def show

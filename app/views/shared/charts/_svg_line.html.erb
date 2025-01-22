@@ -1,4 +1,4 @@
-<% paths = generate_svg_paths(data, chart_data) %>
+<% paths = generate_svg_line_paths(data, chart_data) %>
 
 <svg class="chart__svg" viewBox="0 0 100 100" preserveAspectRatio="none">
   <path d="<%= paths[:line_path_data] %>" fill="none" stroke="<%= chart_data[:hex_color] %>" stroke-width="2" vector-effect="non-scaling-stroke" />
