@@ -1,6 +1,5 @@
 module ChartHelper
-  def process_chart_data(data, options) # hex_color = "#890f9f", gap = 1
-    #
+  def process_chart_data(data, options)
     values = data.map { |dataset| dataset[1] }
     highest_value = values.max
 
@@ -38,19 +37,6 @@ module ChartHelper
 
     x_axis_grid_num = highest_value_rounded_up / denominator
 
-    # Convert hex color to rgba color
-    if !options.key?(:hex_color) || options[:hex_color].nil?
-      hex_color = "#890f9f"
-    elsif options[:hex_color].size == 4
-      hex_color = "##{options[:hex_color][1]*2}#{options[:hex_color][2]*2}#{options[:hex_color][3]*2}"
-    else
-      hex_color = options[:hex_color]
-    end
-
-    rgb_color = hex_color.gsub("#", "").scan(/../).map { |color| color.hex }
-    rgba_color = "rgba(#{rgb_color.join(', ')}, 0.1)"
-    bar_bg_color = "rgba(#{rgb_color.join(', ')}, 0.05)"
-
     max_gap_percentage = 100.0 / values.size
 
     bar_gap = case options[:gap]
@@ -65,17 +51,32 @@ module ChartHelper
       values: values,
       highest_value_rounded_up: highest_value_rounded_up,
       x_axis_grid_num: x_axis_grid_num,
-      hex_color: hex_color,
-      rgba_color: rgba_color,
-      bar_bg_color: bar_bg_color,
+      hex_color: options[:hex_color] || "#890f9f",
+      rgba_color: lighten_color(options[:hex_color] || "#890f9f", 10),
+      bar_bg_color: lighten_color(options[:hex_color] || "#890f9f", 5),
       bar_gap: bar_gap,
       denominator: denominator,
       grid_lines: options[:grid_lines] || false,
-      hide_points: options[:hide_points] || false,
+      hide_segments: options[:hide_segments] || false,
       show_area: options[:show_area] || false,
       prefix: options[:prefix] || "",
       short_numbers: options[:short_numbers] || false
     }
+  end
+
+  def lighten_color(hex_color, percentage)
+    rgb = convert_hex_to_rgb(hex_color)
+    "rgba(#{rgb.join(', ')}, #{percentage / 100.0})"
+  end
+
+  def convert_hex_to_rgb(hex_color)
+    hex_color = if hex_color.size == 4
+        "##{hex_color[1]*2}#{hex_color[2]*2}#{hex_color[3]*2}"
+    else
+        hex_color
+    end
+
+    hex_color.gsub("#", "").scan(/../).map { |color| color.hex }
   end
 
   def shorten_number(number)
@@ -92,12 +93,12 @@ module ChartHelper
     end
   end
 
-  def generate_svg_paths(data, chart_data)
+  def generate_svg_line_paths(data, chart_data)
     area_path_data = "M"
     line_path_data = "M"
-    data.each_with_index do |point, index|
+    data.each_with_index do |segment, index|
       x = (index.to_f / (data.size - 1)) * 100
-      y = 100 - ((point[1].to_f / chart_data[:highest_value_rounded_up]) * 100)
+      y = 100 - ((segment[1].to_f / chart_data[:highest_value_rounded_up]) * 100)
       if index == 0
         area_path_data += "#{x},#{y}"
         line_path_data += "#{x},#{y}"
@@ -119,5 +120,45 @@ module ChartHelper
       area_path_data: area_path_data,
       line_path_data: line_path_data
     }
+  end
+
+  def generate_pie_chart_paths(data, colors)
+    total = data.sum { |segment| segment[1] }
+    one_segment = data.find { |segment| segment[1] == total }
+    angle_offset = 0
+    paths = data.map.with_index do |segment, index|
+      value = segment[1]
+      angle = (value.to_f / total) * 360
+      large_arc_flag = angle > 180 ? 1 : 0
+      x = 50 + 50 * Math.cos((angle_offset + angle) * Math::PI / 180)
+      y = 50 + 50 * Math.sin((angle_offset + angle) * Math::PI / 180)
+      path_data = "M 50,50 L #{50 + 50 * Math.cos(angle_offset * Math::PI / 180)},#{50 + 50 * Math.sin(angle_offset * Math::PI / 180)} A 50,50 0 #{large_arc_flag},1 #{x},#{y} Z"
+
+      # Calculate the midpoint angle for the segment
+      mid_angle = angle_offset + angle / 2
+      mid_x = 50 + 35 * Math.cos(mid_angle * Math::PI / 180)
+      mid_y = 50 + 35 * Math.sin(mid_angle * Math::PI / 180)
+
+
+      angle_offset += angle
+
+      # Use provided color if available, otherwise generate a random color
+      code = colors[index] || "#" + (0..5).map { |i| "0123456789ABCDEF"[rand(16)] }.join
+      p colors
+      color = {
+        code: code,
+        light: lighten_color(code, 80),
+        title: segment[0],
+        x: mid_x,
+        y: mid_y
+      }
+
+      { path_data: path_data, color: color, value: value }
+    end
+
+    # Get the color of the segment with the value equal to the total
+    one_segment_color = one_segment ? paths.find { |segment| segment[:color][:title] == one_segment[0] }[:color][:code] : nil
+    one_segment = one_segment ? true : false
+    { paths: paths, one_segment: one_segment, one_segment_color: one_segment_color }
   end
 end
