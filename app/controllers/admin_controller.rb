@@ -60,8 +60,8 @@ class AdminController < ApplicationController
 
     # Mock users data
     @users_data = [
-      [ "New", 500 ],
-      [ "Returning", 300 ],
+      [ "New", 315 ],
+      [ "Returning", 175 ],
       [ "inactive", 200 ]
     ]
   end

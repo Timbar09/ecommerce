@@ -1,7 +1,8 @@
 <% options = local_assigns[:options] || {} %>
 <% colors = options[:colors] || [] %>
+<% doughnut = options[:doughnut] || false %>
 
-<% paths = generate_pie_chart_paths(data, colors) %>
+<% paths = generate_pie_chart_paths(data, colors, doughnut) %>
 
 <div class="chart__container flex gap-2 jc-between" style="--padding: 0;">
   <div class="chart__legend flex ai-center">

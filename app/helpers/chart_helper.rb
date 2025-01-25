@@ -122,29 +122,49 @@ module ChartHelper
     }
   end
 
-  def generate_pie_chart_paths(data, colors)
+  def generate_pie_chart_paths(data, colors, doughnut)
     total = data.sum { |segment| segment[1] }
-    one_segment = data.find { |segment| segment[1] == total }
+    is_one_segment = data.any? { |segment| segment[1] == total }
     angle_offset = 0
+    inner_radius = doughnut ? 25 : 0
     paths = data.map.with_index do |segment, index|
       value = segment[1]
       angle = (value.to_f / total) * 360
       large_arc_flag = angle > 180 ? 1 : 0
-      x = 50 + 50 * Math.cos((angle_offset + angle) * Math::PI / 180)
-      y = 50 + 50 * Math.sin((angle_offset + angle) * Math::PI / 180)
-      path_data = "M 50,50 L #{50 + 50 * Math.cos(angle_offset * Math::PI / 180)},#{50 + 50 * Math.sin(angle_offset * Math::PI / 180)} A 50,50 0 #{large_arc_flag},1 #{x},#{y} Z"
+      outer_x = 50 + 50 * Math.cos((angle_offset + angle) * Math::PI / 180)
+      outer_y = 50 + 50 * Math.sin((angle_offset + angle) * Math::PI / 180)
+      inner_x = 50 + inner_radius * Math.cos((angle_offset + angle) * Math::PI / 180)
+      inner_y = 50 + inner_radius * Math.sin((angle_offset + angle) * Math::PI / 180)
+      path_data = if is_one_segment
+        if doughnut
+          "M 50,50 " \
+          "m -50,0 " \
+          "a 50,50 0 1,1 100,0 " \
+          "a 50,50 0 1,1 -100,0 " \
+          "M 50,50 " \
+          "m -#{inner_radius},0 " \
+          "a #{inner_radius},#{inner_radius} 0 1,0 #{inner_radius * 2},0 " \
+          "a #{inner_radius},#{inner_radius} 0 1,0 -#{inner_radius * 2},0"
+        else
+          "M 50,50 m -50,0 a 50,50 0 1,1 100,0 a 50,50 0 1,1 -100,0"
+        end
+      else
+        "M #{50 + inner_radius * Math.cos(angle_offset * Math::PI / 180)},#{50 + inner_radius * Math.sin(angle_offset * Math::PI / 180)} " \
+        "A #{inner_radius},#{inner_radius} 0 #{large_arc_flag},1 #{inner_x},#{inner_y} " \
+        "L #{outer_x},#{outer_y} " \
+        "A 50,50 0 #{large_arc_flag},0 #{50 + 50 * Math.cos(angle_offset * Math::PI / 180)},#{50 + 50 * Math.sin(angle_offset * Math::PI / 180)} Z"
+      end
 
       # Calculate the midpoint angle for the segment
       mid_angle = angle_offset + angle / 2
       mid_x = 50 + 35 * Math.cos(mid_angle * Math::PI / 180)
       mid_y = 50 + 35 * Math.sin(mid_angle * Math::PI / 180)
 
-
       angle_offset += angle
 
       # Use provided color if available, otherwise generate a random color
       code = colors[index] || "#" + (0..5).map { |i| "0123456789ABCDEF"[rand(16)] }.join
-      p colors
+
       color = {
         code: code,
         light: lighten_color(code, 80),
@@ -156,9 +176,6 @@ module ChartHelper
       { path_data: path_data, color: color, value: value }
     end
 
-    # Get the color of the segment with the value equal to the total
-    one_segment_color = one_segment ? paths.find { |segment| segment[:color][:title] == one_segment[0] }[:color][:code] : nil
-    one_segment = one_segment ? true : false
-    { paths: paths, one_segment: one_segment, one_segment_color: one_segment_color }
+    { paths: paths }
   end
 end
