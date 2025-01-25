@@ -3,7 +3,7 @@
   <% number = chart_data[:short_numbers] ? shorten_number(num * chart_data[:denominator]) : num * chart_data[:denominator] %>
   <% grid_label = "#{prefix}#{number}" %>
 
-  <% grid_position = (num.to_f / chart_data[:x_axis_grid_num]) * 100 %>
+  <% grid_position = chart_data[:x_axis_grid_num] == 0 ? 0 : (num / chart_data[:x_axis_grid_num].to_f) * 100 %>
   <% show_grid = chart_data[:grid_lines] %>
 
   <div class="chart__grid chart__grid--x" style="bottom: <%= grid_position %>%;" data-grid="<%= show_grid %>">
