@@ -55,6 +55,7 @@ module ChartHelper
       rgba_color: lighten_color(options[:hex_color] || "#890f9f", 10),
       bar_bg_color: lighten_color(options[:hex_color] || "#890f9f", 5),
       bar_gap: bar_gap,
+      pie_size: options[:pie_size] || "50%",
       denominator: denominator,
       grid_lines: options[:grid_lines] || false,
       hide_segments: options[:hide_segments] || false,
@@ -126,7 +127,7 @@ module ChartHelper
     total = data.sum { |segment| segment[1] }
     is_one_segment = data.any? { |segment| segment[1] == total }
     angle_offset = 0
-    inner_radius = doughnut ? 25 : 0
+    inner_radius = doughnut ? 30 : 0
     paths = data.map.with_index do |segment, index|
       value = segment[1]
       angle = (value.to_f / total) * 360

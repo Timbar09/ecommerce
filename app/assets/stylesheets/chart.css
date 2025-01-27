@@ -10,6 +10,10 @@
   padding: var(--padding, 0 0 2rem 3.5rem);
 }
 
+.chart__container[data-type='pie'] {
+  aspect-ratio: none;
+}
+
 .chart {
   position: relative;
   border-left: 1px solid var(--grid-color);
@@ -24,6 +28,7 @@
 
 .chart__pie {
   aspect-ratio: 1 / 1;
+  height: var(--pie-size, 75%);
   border: 0;
 }
 
