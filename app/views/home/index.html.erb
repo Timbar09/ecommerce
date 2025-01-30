@@ -1,5 +1,38 @@
-<section class="container p-1 flex flex-col">
-  <h1>Home</h1>
+<%= render "shared/nav" %>
 
-  <p> <%= @message %> <%= render "shared/icon", name: "cart" %> </p>
+<section class="p-1">
+  <div class="container">
+    <h1 class="text-center">Welcome to Ecom</h1>
+    <p class="text-center">Your one stop shop for all things ecommerce</p>
+  </div>
+</section>
+
+<section class="">
+  <div class="container">
+    <h2 class="sr-only">Categories</h2>
+
+    <ul class="flex flex-wrap gap-2">
+      <% @categories.each do |category| %>
+        <li class="">
+          <a href="/categories/<%= category.id %>" class="">
+            <header class="category__header">
+              <h3 class="category__title"><%= category.name %></h3>
+            </header>
+
+            <div class="category__image">
+              <%= image_tag category.display_medium_image, alt: category.name %>
+            </div>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</section>
+
+<section class="grid gap-2 p-2">
+  <h2 class="sr-only">Customer Testimonials</h2>
+
+  <p>
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores unde recusandae libero perferendis perspiciatis modi sunt aut suscipit odit cum dicta reiciendis ullam possimus, error ad, vitae officia at expedita eaque labore tenetur impedit odio? Aliquam asperiores laborum suscipit odit odio dignissimos aspernatur eveniet. Exercitationem repellat magnam officiis minima odio quas quasi officia eius architecto aperiam saepe vitae id, eaque itaque est vel, ratione provident beatae maxime voluptates. Sit, unde repellat? Dolores officiis ipsum, maiores perspiciatis in nesciunt! Assumenda dignissimos ab corrupti unde odit eius repellat dicta id nam excepturi maxime est laboriosam quasi ipsam, reiciendis sint sed. Iure, dolor.
+  </p>
 </section>

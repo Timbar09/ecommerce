@@ -28,4 +28,5 @@ Rails.application.routes.draw do
 
   get "admin" => "admin#index"
   get "admins/:id" => "admin#show", as: :admin_show
+  get "categories/:id" => "categories#show"
 end

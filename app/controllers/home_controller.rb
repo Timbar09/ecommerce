@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @message = "Hello, World!"
+    @categories = Category.all
   end
 end
