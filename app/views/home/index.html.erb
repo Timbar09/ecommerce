@@ -1,25 +1,26 @@
 <%= render "shared/nav" %>
 
-<section class="p-1">
+<header class="home__header py-4">
   <div class="container">
     <h1 class="text-center">Welcome to Ecom</h1>
+
     <p class="text-center">Your one stop shop for all things ecommerce</p>
   </div>
-</section>
+</header>
 
-<section class="">
+<section class="home__category py-4">
   <div class="container">
     <h2 class="sr-only">Categories</h2>
 
-    <ul class="flex flex-wrap gap-2">
+    <ul class="home__category--list flex flex-wrap gap-2">
       <% @categories.each do |category| %>
-        <li class="">
+        <li class="home__category--item p-2 radius-xl">
           <a href="/categories/<%= category.id %>" class="">
-            <header class="category__header">
-              <h3 class="category__title"><%= category.name %></h3>
+            <header class="home__category--item--header">
+              <h3 class="home__category--item--title"><%= category.name %></h3>
             </header>
 
-            <div class="category__image">
+            <div class="home__category--item--image">
               <%= image_tag category.display_medium_image, alt: category.name %>
             </div>
           </a>
@@ -29,10 +30,35 @@
   </div>
 </section>
 
-<section class="grid gap-2 p-2">
-  <h2 class="sr-only">Customer Testimonials</h2>
+<section class="home__testimonial py-4">
+  <div class="container">
+    <h2 class="">Trusted by Customers</h2>
 
-  <p>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores unde recusandae libero perferendis perspiciatis modi sunt aut suscipit odit cum dicta reiciendis ullam possimus, error ad, vitae officia at expedita eaque labore tenetur impedit odio? Aliquam asperiores laborum suscipit odit odio dignissimos aspernatur eveniet. Exercitationem repellat magnam officiis minima odio quas quasi officia eius architecto aperiam saepe vitae id, eaque itaque est vel, ratione provident beatae maxime voluptates. Sit, unde repellat? Dolores officiis ipsum, maiores perspiciatis in nesciunt! Assumenda dignissimos ab corrupti unde odit eius repellat dicta id nam excepturi maxime est laboriosam quasi ipsam, reiciendis sint sed. Iure, dolor.
-  </p>
+    <ul class="home__testimonial--list flex gap-2">
+      <% 0..3.times do %>
+        <li class="p-2 radius-xl">
+          <p class="testimonial__content">
+            "I love shopping on Ecom. They have the best products and the best prices. I would recommend them to anyone looking for a great shopping experience."
+          </p>
+
+          <footer class="testimonial__author">
+            <cite class="testimonial__author--name">- John Doe</cite>
+          </footer>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</section>
+
+<section class="home__newsletter py-4">
+  <div class="container">
+    <h2 class="">Stay in the Loop</h2>
+
+    <p class="home__newsletter--description">Sign up for our newsletter to get the latest updates on new products and promotions.</p>
+
+    <form action="/newsletter" method="post" class="home__newsletter--form flex gap-2">
+      <input type="email" name="email" placeholder="Enter your email address" class="home__newsletter--form--input" required>
+      <button type="submit" class="home__newsletter--form--submit">Subscribe</button>
+    </form>
+  </div>
 </section>
