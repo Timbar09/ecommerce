@@ -7,7 +7,7 @@
   --point-dimension: 0.5rem;
 
   aspect-ratio: 16 / 9;
-  padding: var(--padding, 0 0 2rem 3.5rem);
+  padding: var(--chart-padding, 0 0 2rem 3.5rem);
 }
 
 .chart__container[data-type='pie'] {

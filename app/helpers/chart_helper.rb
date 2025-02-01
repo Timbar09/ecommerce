@@ -47,6 +47,12 @@ module ChartHelper
     else "#{max_gap_percentage * 0.2}%"
     end
 
+    left_padding = case highest_value
+    when 0..9 then "1.25rem"
+    when 10..99 then "2.5rem"
+    else "3.5rem"
+    end
+
     {
       values: values,
       highest_value_rounded_up: highest_value_rounded_up,
@@ -55,6 +61,7 @@ module ChartHelper
       rgba_color: lighten_color(options[:hex_color] || "#890f9f", 10),
       bar_bg_color: lighten_color(options[:hex_color] || "#890f9f", 5),
       bar_gap: bar_gap,
+      left_padding: left_padding,
       pie_size: options[:pie_size] || "50%",
       denominator: denominator,
       grid_lines: options[:grid_lines] || false,

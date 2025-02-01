@@ -1,7 +1,9 @@
 <% options = local_assigns[:options] || {} %>
 <% chart_data = process_chart_data(data, options) %>
 
-<div class="chart__container">
+<% chart_padding = "--chart-padding: 0 0 2rem #{chart_data[:left_padding]};" %>
+
+<div class="chart__container" style="<%= chart_padding %>">
   <div class="chart chart__line flex">
     <%= render 'shared/charts/grid_lines', chart_data: chart_data %>
 

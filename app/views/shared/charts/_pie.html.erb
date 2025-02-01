@@ -5,7 +5,7 @@
 <% paths = generate_pie_chart_paths(data, colors, doughnut) %>
 <% data = process_chart_data(data, options) %>
 
-<div class="chart__container flex gap-2 jc-between ai-center" style="--padding: 0;" data-type="pie">
+<div class="chart__container flex gap-2 jc-between ai-center" style="--chart-padding: 0;" data-type="pie">
   <div class="chart__legend flex ai-center">
     <ul class="chart__legend--list flex flex-col gap-1">
       <% paths[:paths].each do |path| %>
