@@ -1,6 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
 html {
+  --fz-sm: 13px;
+  --fz-md: 14px;
+  --fz-lg: 15px;
+
   box-sizing: border-box;
-  font-size: 100%;
+  font-size: var(--fz-sm);
+
+  @media (min-width: 48em) {
+    font-size: var(--fz-md);
+  }
+
+  @media (min-width: 64em) {
+    font-size: var(--fz-lg);
+  }
 }
 
 *,
@@ -26,7 +40,8 @@ body {
 
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--font-text);
+  font-weight: 500;
   background-color: var(--bg-clr-2);
   color: var(--text-clr-1);
   min-width: 23rem;

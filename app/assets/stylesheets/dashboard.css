@@ -1,28 +1,52 @@
 .dashboard {
   grid-template-areas: 
-    "quick-stats"
-    "user-charts"
-    "sales-chart"
-    "payment-charts"
-    "revenues-chart"
-    "orders-table"
+    "quick-stats user-charts"
+    "quick-stats payment-charts"
+    "sales-chart sales-chart"
+    "revenues-chart revenues-chart"
+    "orders-table orders-table"
     ;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+@container (width > 43.5em) {
+  .dashboard {
+    grid-template-areas: 
+      "quick-stats user-charts"
+      "quick-stats user-charts"
+      "sales-chart sales-chart"
+      "payment-charts payment-charts"
+      "revenues-chart revenues-chart"
+      "orders-table orders-table"
+      ;
+  }
 }
 
 @container (width > 48em) {
   .dashboard {
     grid-template-areas: 
-      "quick-stats user-charts"
-      "quick-stats user-charts"
-      "sales-chart user-charts"
-      "sales-chart payment-charts"
-      "sales-chart payment-charts"
-      "sales-chart orders-table"
-      "revenues-chart orders-table"
-      "revenues-chart orders-table"
-      "revenues-chart orders-table"
+      "quick-stats quick-stats quick-stats user-charts user-charts user-charts"
+      "quick-stats quick-stats quick-stats user-charts user-charts user-charts"
+      "sales-chart sales-chart sales-chart sales-chart payment-charts payment-charts"
+      "sales-chart sales-chart sales-chart sales-chart payment-charts payment-charts"
+      "revenues-chart revenues-chart orders-table orders-table orders-table orders-table"
+      "empty-area empty-area orders-table orders-table orders-table orders-table"
       ;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@container (width > 64em) {
+  .dashboard {
+    grid-template-areas: 
+      "quick-stats quick-stats quick-stats user-charts user-charts user-charts"
+      "quick-stats quick-stats quick-stats user-charts user-charts user-charts"
+      "sales-chart sales-chart sales-chart sales-chart payment-charts payment-charts"
+      "sales-chart sales-chart sales-chart sales-chart payment-charts payment-charts"
+      "revenues-chart revenues-chart revenues-chart orders-table orders-table orders-table"
+      "empty-area empty-area empty-area orders-table orders-table orders-table"
+      ;
+    grid-template-columns: repeat(6, 1fr);
   }
 }
 
@@ -60,12 +84,12 @@
 }
 
 .dashboard__quick-stat--list {
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
 }
 
-@container (width > 50em) {
+@container (width > 20em) {
   .dashboard__quick-stat--list {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -95,11 +119,6 @@
 .dashboard__user--chart--container {
   grid-area: user-charts;
 }
-/* @container (width > 48em) {
-  .dashboard__user--chart--container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-} */
 
 .dashboard__sales--chart--container {
   grid-area: sales-chart;

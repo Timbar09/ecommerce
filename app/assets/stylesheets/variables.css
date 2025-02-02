@@ -1,5 +1,9 @@
 
 :root {
+  /* FONTS */
+  --font-text: "Nunito", serif;
+  --font-heading: 'Exo 2', sans-serif;
+
   /* COLORS */
   --red: rgb(224, 0, 94);
   --light-red: rgb(248, 215, 228);
