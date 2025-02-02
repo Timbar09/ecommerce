@@ -12,10 +12,12 @@
     <%# Generate the lines %>
     <% data.each do |point| %>
       <% max_point = chart_data[:highest_value_rounded_up] %>
+
+      <% point_x = max_point == 0 ? 0 : (point[0].to_f / max_point) * 100 %>
       <% point_y = max_point == 0 ? 0 : (point[1].to_f / max_point) * 100 %>
 
       <% point_styles = {
-        "--point-x" => "#{(point[0].to_f / chart_data[:highest_value_rounded_up]) * 100}%",
+        "--point-x" => "#{point_x}%",
         "--point-y" => "#{point_y}%",
         "--point-color" => chart_data[:hide_points] ? "transparent" : chart_data[:hex_color]
       } %>

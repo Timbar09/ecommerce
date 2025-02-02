@@ -35,9 +35,10 @@
   </div>
 
   <div class="dashboard__sales--chart--container dashboard__subsection-container p-2 radius-xl">
-    <header class="dashboard__sales--chart--header mb-1">
+    <header class="dashboard__sales--chart--header mb-2">
       <h2 class="dashboard__subtitle">Sales</h2>
     </header>
+
     <% sales_chart_options = { hex_color: '#FF1493', gap: 4, short_numbers: true, prefix: "$ " } %>
 
     <%= render 'shared/charts/column', data: @sales_data, options: sales_chart_options %>
@@ -55,9 +56,10 @@
   </div>
 
   <div class="dashboard__revenue-chart--container dashboard__subsection-container p-2 radius-xl">
-    <header class="dashboard__revenue-chart--header mb-1">
+    <header class="dashboard__revenue-chart--header mb-2">
       <h2 class="dashboard__subtitle">Revenue</h2>
     </header>
+
     <% revenue_chart_options = { show_area: true, short_numbers: true, prefix: "$ " } %>
 
     <%= render 'shared/charts/line', data: @revenues_by_day, options: revenue_chart_options %>
