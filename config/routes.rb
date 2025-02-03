@@ -26,7 +26,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "home#index"
 
+  resources :categories, only: [ :show ]
+
   get "admin" => "admin#index"
   get "admins/:id" => "admin#show", as: :admin_show
-  get "categories/:id" => "categories#show"
 end
