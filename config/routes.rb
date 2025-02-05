@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   root "home#index"
 
   resources :categories, only: [ :show ]
+  resources :products, only: [ :show ]
 
   get "admin" => "admin#index"
   get "admins/:id" => "admin#show", as: :admin_show
