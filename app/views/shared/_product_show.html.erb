@@ -1,0 +1,65 @@
+<% is_admin = request.path.include?("admin") %>
+
+<div class="product__show grid place-center p-1">
+  <div class="product__show--container flex-inline flex-col radius-xl">
+    <div class="product__show--image grid">
+      <%= image_tag product.display_large_image, class: "product__show--image" %>
+
+      <% if is_admin %>
+        <ul class="product__show--actions flex gap-1 p-2">
+          <li>
+            <%= link_to edit_admin_product_path(product), class: "btn btn__tertiary", title: "Edit" do %>
+              <%= render "shared/icon", name: "edit" %>
+            <% end %>
+          </li>
+          <li>
+            <%= button_to admin_product_path(product), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn__tertiary", title: "Delete" do %>
+              <%= render "shared/icon", name: "trash" %>
+            <% end %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+
+    <div class="product__show--info p-2 flex gap-2 flex-col">
+      <div class="product__show--info__text">
+        <h1 class="product__show--title"><%= product.name %></h1>
+        <p class="product__show--description"><%= product.description %></p>
+
+        <div class="flex jc-between ai-center gap-1 flex-wrap">
+          <div class="product__show--price__container">
+            <p class="product__show--price"><%= number_to_currency(product.price) %></p>
+            <p class="product__show--stock"><%= product.stocks.count %> in stock</p>
+          </div>
+
+          <% if is_admin %>
+            <%= link_to "Manage Stock", admin_product_stocks_path(product), class: "btn btn__primary" %>
+          <% else %>
+            <%= link_to "Add to Cart", admin_product_stocks_path(product), class: "btn btn__primary" %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="product__show--details__container p-1 radius-lg flex-1">
+        <h3 class="product__show--details--title pb-1">Product Details</h3>
+
+        <ul class="product__show--details__list">
+          <li class="product__show--category">
+            <strong>Category:</strong>
+            <%= link_to product.category.name, admin_category_path(product.category) %>
+          </li>
+
+          <li class="product__show--created-at">
+            <strong>Created At:</strong>
+            <%= product.created_at.strftime("%B %d, %Y") %>
+          </li>
+
+          <li class="product__show--updated-at">
+            <strong>Updated At:</strong>
+            <%= product.updated_at.strftime("%B %d, %Y") %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,3 +1,6 @@
+<% products = category.products %>
+<% is_admin = request.path.include?("admin") %>
+
 <div class="category__show">
   <header class="category__show--header">
     <div class="category__show--header__container flex ai-center">
@@ -37,11 +40,13 @@
         <h2><%= category.name %> Collection</h2>
 
         <% if products.any? %>
-          <ul class="category__show--body__product--list flex gap-2 pt-2">
+          <ul class="category__show--body__product--list flex flex-wrap gap-2 pt-2">
             <% products.each do |product| %>
+              <% path = is_admin ? admin_product_path(product) : product_path(product) %>
+
               <li class="category__show--body__product--item radius-lg">
                 <%= image_tag product.display_small_image, class: "radius-lg" %>
-                <%= link_to path.call(product) do %>
+                <%= link_to path do %>
                   <h3><%= product.name %></h3>
                 <% end %>
               </li>
