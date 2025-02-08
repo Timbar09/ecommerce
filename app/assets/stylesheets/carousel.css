@@ -1,0 +1,75 @@
+.carousel {
+  --dimension: 20rem;
+
+  position: relative;
+  display: inline-block;
+  background-color: var(--green);
+}
+
+.carousel__track--container {
+  position: relative;
+  width: var(--dimension);
+  height: var(--dimension);
+  background-color: var(--orange);
+}
+
+.carousel__slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.carousel__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel__button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  color: var(--white);
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.carousel__button--next {
+  right: 0;
+}
+.carousel__button--next::before {
+  content: '>';
+  font-weight: bold;
+}
+
+.carousel__button--prev {
+  left: 0;
+}
+.carousel__button--prev::before {
+  content: '<';
+  font-weight: bold;
+}
+
+.carousel__nav {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.carousel__indicator {
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--white);
+  border-radius: var(--radius-circle);
+  cursor: pointer;
+}
+
+.carousel__indicator.active {
+  background-color: var(--green);
+}

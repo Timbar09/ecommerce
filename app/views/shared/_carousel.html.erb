@@ -1,0 +1,25 @@
+<div id="carousel" class="carousel slide" data-ride="carousel">
+  <div class="carousel__track--container mx-3">
+    <ul class="carousel__track">
+      <% images.each_with_index do |image, index| %>
+        <li class="carousel__slide <%= 'active' if index == 0 %>">
+          <%= image_tag image, class: "carousel__image" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <button class="carousel__button carousel__button--prev">
+    <span class="sr-only">Prev</span>
+  </button>
+
+  <button class="carousel__button carousel__button--next">
+    <span class="sr-only">Next</span>
+  </button>
+
+  <ul class="carousel__nav flex jc-center gap-2 p-2">
+    <% images.each_with_index do |image, index| %>
+      <li data-target="#carouselIndicators" data-slide-to="<%= index %>" class="carousel__indicator<%= ' active' if index == 0 %>"></li>
+    <% end %>
+  </ul>
+</div>
