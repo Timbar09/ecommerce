@@ -79,6 +79,12 @@
   font-size: 0.925rem;
 }
 
+.product__show--size button:disabled {
+  opacity: 0.5;
+  color: var(--opaque-2);
+  pointer-events: none;
+}
+
 .product__show--category a {
   transition: color 100ms ease-in-out;
 }

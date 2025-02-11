@@ -34,32 +34,48 @@
 
           <% if is_admin %>
             <%= link_to "Manage Stock", admin_product_stocks_path(product), class: "btn btn__primary" %>
-          <% else %>
-            <%= link_to "Add to Cart", admin_product_stocks_path(product), class: "btn btn__primary" %>
           <% end %>
         </div>
       </div>
 
       <div class="product__show--details__container p-1 radius-lg flex-1">
-        <h3 class="product__show--details--title pb-1">Product Details</h3>
+        <h3 class="product__show--details--title pb-1">Size</h3>
 
-        <ul class="product__show--details__list">
-          <li class="product__show--category">
-            <strong>Category:</strong>
-            <%= link_to product.category.name, admin_category_path(product.category) %>
-          </li>
+        <ul class="product__show--details__size mb-2 flex gap-1">
+          <% if product.stocks.empty? %>
+            <li class="product__show--size">
+              <strong>No sizes available</strong>
+            </li>
+          <% else %>
+            <% product.stocks.each do |stock| %>
+              <li class="product__show--size">
+                <button class="btn btn__tertiary" <%= stock.quantity == 0 ? 'disabled' : '' %>>
+                  <%= stock.size %>
+                </button>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
 
-          <li class="product__show--created-at">
-            <strong>Created At:</strong>
-            <%= product.created_at.strftime("%B %d, %Y") %>
-          </li>
+          <h3 class="product__show--details--title pb-1">Product Details</h3>
 
-          <li class="product__show--updated-at">
-            <strong>Updated At:</strong>
-            <%= product.updated_at.strftime("%B %d, %Y") %>
-          </li>
-        </ul>
+          <ul class="product__show--details__list">
+            <li class="product__show--category">
+              <strong>Category:</strong>
+              <%= link_to product.category.name, admin_category_path(product.category) %>
+            </li>
+
+            <li class="product__show--created-at">
+              <strong>Created At:</strong>
+              <%= product.created_at.strftime("%B %d, %Y") %>
+            </li>
+
+            <li class="product__show--updated-at">
+              <strong>Updated At:</strong>
+              <%= product.updated_at.strftime("%B %d, %Y") %>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
-</div>
