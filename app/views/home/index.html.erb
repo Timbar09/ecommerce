@@ -1,8 +1,20 @@
 <header class="home__header py-4">
-  <div class="container">
-    <h1 class="text-center">Welcome to Ecom</h1>
+  <div class="container flex jc-around ai-center">
+    <div class="home__header--text">
+      <h1 class="">Welcome to Ecom</h1>
 
-    <p class="text-center">Your one stop shop for all things ecommerce</p>
+      <p class="">Your one stop shop for all things ecommerce</p>
+    </div>
+
+    <% image_paths = [
+    "https://placehold.co/400x400/CCC/FFF?text=Image+1",
+    "https://placehold.co/400x400/CCC/FFF?text=Image+2",
+    "https://placehold.co/400x400/CCC/FFF?text=Image+3",
+    "https://placehold.co/400x400/CCC/FFF?text=Image+4",
+    "https://placehold.co/400x400/CCC/FFF?text=Image+5"
+] %>
+
+    <%= render "shared/carousel", images: image_paths %>
   </div>
 </header>
 

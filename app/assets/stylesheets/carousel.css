@@ -1,16 +1,12 @@
 .carousel {
-  --dimension: 20rem;
-
   position: relative;
   display: inline-block;
-  background-color: var(--green);
 }
 
 .carousel__track--container {
   position: relative;
-  width: var(--dimension);
-  height: var(--dimension);
-  background-color: var(--orange);
+  width: var(--width);
+  aspect-ratio: var(--aspect-ratio);
 }
 
 .carousel__slide {
@@ -22,6 +18,10 @@
   display: flex;
 }
 
+.carousel__slide.active {
+  z-index: 1;
+}
+
 .carousel__image {
   width: 100%;
   height: 100%;
@@ -29,30 +29,31 @@
 }
 
 .carousel__button {
+  --button-color: var(--opaque-5);
+  --button-hover: var(--heading-clr-3);
+
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   background-color: transparent;
-  color: var(--white);
-  border: none;
-  padding: 0.5rem;
+  color: var(--button-color);
+  border: 0;
+  padding: 0;
   cursor: pointer;
+  transition: color 100ms ease-in-out;
+}
+
+.carousel__button:hover,
+.carousel__button:focus-visible {
+  color: var(--button-hover);
 }
 
 .carousel__button--next {
   right: 0;
 }
-.carousel__button--next::before {
-  content: '>';
-  font-weight: bold;
-}
 
 .carousel__button--prev {
   left: 0;
-}
-.carousel__button--prev::before {
-  content: '<';
-  font-weight: bold;
 }
 
 .carousel__nav {
@@ -60,16 +61,24 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 2;
 }
 
 .carousel__indicator {
-  width: 1rem;
-  height: 1rem;
-  background-color: var(--white);
-  border-radius: var(--radius-circle);
+  --dimension: 2.5em;
+
+  width: var(--dimension);
+  height: var(--dimension);
   cursor: pointer;
 }
 
-.carousel__indicator.active {
-  background-color: var(--green);
+.carousel__indicator--image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 2px solid var(--opaque-1);
+}
+
+.carousel__indicator.active .carousel__indicator--image {
+  border: 2px solid var(--primary);
 }

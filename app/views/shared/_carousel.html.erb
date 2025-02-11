@@ -1,25 +1,43 @@
-<div id="carousel" class="carousel slide" data-ride="carousel">
+<% width ||= "20rem" %>
+<% aspect_ratio = case aspect_ratio
+when "portrait" then "9/16"
+when "landscape" then "16/9"
+else "1/1"
+end %>
+
+<% styles = [ "--aspect-ratio: #{aspect_ratio}", "--width: #{width}" ].join("; ") %>
+
+<div class="carousel" data-controller="carousel" style="<%= styles %>">
   <div class="carousel__track--container mx-3">
     <ul class="carousel__track">
       <% images.each_with_index do |image, index| %>
-        <li class="carousel__slide <%= 'active' if index == 0 %>">
-          <%= image_tag image, class: "carousel__image" %>
+        <li class="carousel__slide <%= 'active' if index == 0 %>" data-carousel-target="slide">
+          <%= image_tag image, class: "carousel__image radius-xl" %>
         </li>
       <% end %>
     </ul>
   </div>
 
-  <button class="carousel__button carousel__button--prev">
+  <button class="carousel__button carousel__button--prev grid place-center" data-action="click->carousel#prev">
+    <%= render "shared/icon", name: "chevron-left", thickness: "thick" %>
     <span class="sr-only">Prev</span>
   </button>
 
-  <button class="carousel__button carousel__button--next">
+  <button class="carousel__button carousel__button--next" data-action="click->carousel#next">
+    <%= render "shared/icon", name: "chevron-right", thickness: "thick" %>
     <span class="sr-only">Next</span>
   </button>
 
   <ul class="carousel__nav flex jc-center gap-2 p-2">
     <% images.each_with_index do |image, index| %>
-      <li data-target="#carouselIndicators" data-slide-to="<%= index %>" class="carousel__indicator<%= ' active' if index == 0 %>"></li>
+      <li
+        class="carousel__indicator<%= ' active' if index == 0 %>"
+        data-slide-to="<%= index %>"
+        data-action="click->carousel#goToSlide"
+        data-carousel-target="indicator"
+        >
+        <%= image_tag image, class: "carousel__indicator--image radius-lg" %>
+      </li>
     <% end %>
   </ul>
 </div>
