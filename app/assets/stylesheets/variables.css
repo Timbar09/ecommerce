@@ -26,6 +26,16 @@
   --light-2: rgb(245, 245, 245);
   --light-3: rgb(240, 240, 240);
 
+  --opaque-1: rgba(0, 0, 0, 0.1);
+  --opaque-2: rgba(0, 0, 0, 0.2);
+  --opaque-3: rgba(0, 0, 0, 0.3);
+  --opaque-4: rgba(0, 0, 0, 0.4);
+  --opaque-5: rgba(0, 0, 0, 0.5);
+  --opaque-6: rgba(0, 0, 0, 0.6);
+  --opaque-7: rgba(0, 0, 0, 0.7);
+  --opaque-8: rgba(0, 0, 0, 0.8);
+  --opaque-9: rgba(0, 0, 0, 0.9);
+
   --primary: var(--dark-1);
   --primary-light: var(--grey-3);
 
