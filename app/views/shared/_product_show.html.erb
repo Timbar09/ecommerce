@@ -21,7 +21,11 @@
       <% end %>
     </div>
 
-    <div class="product__show--info p-2 flex gap-2 flex-col">
+    <div
+      data-controller="products"
+      data-products-product-value="<%= @product.to_json %>"
+      class="product__show--info p-2 flex gap-2 flex-col"
+    >
       <div class="product__show--info__text">
         <h1 class="product__show--title"><%= product.name %></h1>
         <p class="product__show--description"><%= product.description %></p>
@@ -34,6 +38,10 @@
 
           <% if is_admin %>
             <%= link_to "Manage Stock", admin_product_stocks_path(product), class: "btn btn__primary" %>
+          <% else %>
+            <button class="btn btn__primary" data-action="click->products#addToCart">
+              Add to Cart
+            </button>
           <% end %>
         </div>
       </div>
@@ -49,14 +57,19 @@
           <% else %>
             <% product.stocks.each do |stock| %>
               <li class="product__show--size">
-                <button class="btn btn__tertiary" <%= stock.quantity == 0 ? 'disabled' : '' %>>
+                <button
+                  class="btn btn__tertiary" <%= stock.quantity == 0 ? 'disabled' : '' %>
+                  data-action="click->products#selectSize"
+                  value="<%= stock.size %>"
+                  >
                   <%= stock.size %>
                 </button>
-                </li>
-              <% end %>
+              </li>
             <% end %>
-          </ul>
+          <% end %>
+        </ul>
 
+        <% if is_admin %>
           <h3 class="product__show--details--title pb-1">Product Details</h3>
 
           <ul class="product__show--details__list">
@@ -75,7 +88,12 @@
               <%= product.updated_at.strftime("%B %d, %Y") %>
             </li>
           </ul>
-        </div>
+        <% else %>
+          <div class="product__show--selected-size__container">
+            <span class="product__show--selected-size__value">No size selected</span>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
+</div>
