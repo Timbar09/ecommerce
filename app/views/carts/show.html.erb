@@ -1,1 +1,12 @@
-<h1>Cart Show Page</h1>
+<section class="cart">
+  <div class="container">
+    <h1>Cart</h1>
+
+    <div data-controller="cart">
+      <div class="cart__total" id="cart-total"></div>
+
+      <button data-action="click->cart#checkout" class="btn">Checkout</button>
+      <button data-action="click->cart#clearCart" class="btn">Clear Cart</button>
+    </div>
+  </div>
+</section>
