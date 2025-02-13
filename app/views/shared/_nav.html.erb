@@ -17,7 +17,11 @@
       </li>
       <li><a href="/login">Login</a></li>
       <li><a href="/wishlist"><%= render "shared/icon", name: "heart" %></a></li>
-      <li><a href="/cart"><%= render "shared/icon", name: "cart" %></a></li>
+      <li>
+        <%= link_to cart_path do %>
+          <%= render "shared/icon", name: "cart" %>
+        <% end %>
+      </li>
       <li><a href="/user"><%= render "shared/icon", name: "user" %></a></li>
     </ul>
   </div>
