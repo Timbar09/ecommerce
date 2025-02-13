@@ -15,7 +15,7 @@ export default class extends Controller {
         cartArray[productIndex].quantity += 1
       } else {
         cartArray.push({
-          id: this.productValue.id,
+          id: `${this.productValue.id}-${this.sizeValue}`,
           name: this.productValue.name,
           price: this.productValue.price,
           size: this.sizeValue,
@@ -27,7 +27,7 @@ export default class extends Controller {
     } else {
       const cartArray = []
       cartArray.push({
-        id: this.productValue.id,
+        id: `${this.productValue.id}-${this.sizeValue}`,
         name: this.productValue.name,
         price: this.productValue.price,
         size: this.sizeValue,
