@@ -53,6 +53,29 @@ export default class extends Controller {
   }
 
   checkout() {
-    alert('Checkout')
+    const cart = JSON.parse(localStorage.getItem('cart'))
+    const payload = { authenticity_token: "", cart: cart }
+
+    const csrfToken = document.querySelector('[name="csrf-token"]').content
+
+    fetch('/checkout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken
+      },
+      body: JSON.stringify(payload)
+    }).then(response => {
+      if (response.ok) {
+        location.href = body.url
+      } else {
+        let errorContainer = document.getElementById('cart-errors')
+        const errorElement = document.createElement('div')
+        errorElement.innerText = `There was an error processing your order. Please try again. Error: ${body.error}`
+
+        errorContainer.appendChild(errorElement)
+      }
+    })
+
   }
 }
