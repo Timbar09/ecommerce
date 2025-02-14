@@ -6,11 +6,18 @@ export default class extends Controller {
 
   addToCart() {
     const cart = localStorage.getItem('cart')
-    
+
+    if (this.sizeValue.length === 0) {
+      alert('Please select a size')
+      return
+    }
+
     if (cart) {
       const cartArray = JSON.parse(cart)
-      const productIndex = cartArray.findIndex(product => product.id === this.productValue.id && product.size === this.sizeValue)
-      
+      const productIndex = cartArray.findIndex(
+        product => product.id === `${this.productValue.id}-${this.sizeValue}` && product.size === this.sizeValue
+      )
+
       if (productIndex !== -1) {
         cartArray[productIndex].quantity += 1
       } else {
@@ -22,7 +29,6 @@ export default class extends Controller {
           quantity: 1
         })
       }
-      console.log('Cart:', cartArray)
       localStorage.setItem('cart', JSON.stringify(cartArray))
     } else {
       const cartArray = []
@@ -35,6 +41,9 @@ export default class extends Controller {
       })
       localStorage.setItem('cart', JSON.stringify(cartArray))
     }
+
+    console.log("cart: ", JSON.parse(localStorage.getItem('cart')))
+    alert(`Successfully added size, ${this.letterSizeToWordSize(this.sizeValue)}, of ${this.productValue.name} to cart`)
   }
 
   selectSize(e) {
