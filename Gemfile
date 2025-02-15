@@ -70,3 +70,5 @@ gem "chartkick", "~> 5.1"
 
 # Use faker for seeding [h ttps://github.com/faker-ruby/faker]
 gem "faker"
+
+gem "stripe", "~> 13.4"
