@@ -32,4 +32,5 @@ Rails.application.routes.draw do
   get "admin" => "admin#index"
   get "admins/:id" => "admin#show", as: :admin_show
   get "cart" => "carts#show"
+  post "checkout" => "checkouts#create"
 end
