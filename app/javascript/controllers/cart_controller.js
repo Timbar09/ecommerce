@@ -12,9 +12,9 @@ export default class extends Controller {
     let total = 0
 
     cart.forEach(item => {
-      const div = document.createElement('div')
-      div.classList.add('cart__list--item')
-      div.innerHTML = `Item: ${item.name} - ${item.price/100.0} - Size: ${item.size} - Quantity: ${item.quantity}`
+      const cartItemContainer = document.createElement('div')
+      cartItemContainer.classList.add('cart__list--item')
+      cartItemContainer.innerHTML = `Item: ${item.name} - ${item.price/100.0} - Size: ${item.size} - Quantity: ${item.quantity}`
 
       const deleteButton = document.createElement('button')
       deleteButton.innerHTML = 'Remove'
@@ -26,8 +26,8 @@ export default class extends Controller {
       
       total += item.price * item.quantity
       
-      div.appendChild(deleteButton)
-      this.element.prepend(div)
+      cartItemContainer.appendChild(deleteButton)
+      this.element.prepend(cartItemContainer)
     })
 
     let totalElementContainer = document.getElementById("cart-total")
@@ -67,13 +67,17 @@ export default class extends Controller {
       body: JSON.stringify(payload)
     }).then(response => {
       if (response.ok) {
-        location.href = body.url
+        response.json().then(body => {
+          location.href = body.url
+        })
       } else {
-        let errorContainer = document.getElementById('cart-errors')
-        const errorElement = document.createElement('div')
-        errorElement.innerText = `There was an error processing your order. Please try again. Error: ${body.error}`
+        response.json().then(body => {
+          let errorContainer = document.getElementById('cart-errors')
+          const errorElement = document.createElement('div')
+          errorElement.innerText = `There was an error processing your order. Please try again. Error: ${body.error}`
 
-        errorContainer.appendChild(errorElement)
+          errorContainer.appendChild(errorElement)
+        })
       }
     })
 
