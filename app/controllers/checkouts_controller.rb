@@ -43,4 +43,12 @@ class CheckoutsController < ApplicationController
   rescue => e
       render json: { error: e.message }, status: 500
   end
+
+  def success
+    render :success
+  end
+
+  def cancel
+    render :cancel
+  end
 end
