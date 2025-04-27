@@ -1,8 +1,5 @@
 class CheckoutsController < ApplicationController
   def create
-    stripe_secret_key = Rails.application.credentials.dig(:stripe, :secret_key)
-    Stripe.api_key = stripe_secret_key
-
     cart = params[:cart]
     line_items = cart.map do |item|
       puts "item ID: #{item["id"]}"
