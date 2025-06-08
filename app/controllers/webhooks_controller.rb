@@ -60,7 +60,7 @@ class WebhooksController < ApplicationController
         quantity: item["quantity"],
         size: product["metadata"]["size"]
       )
-      Stock.find(product["metadata"]["product_stock_id"].to_i).decrement!(:amount, item["quantity"])
+      Stock.find(product["metadata"]["product_stock_id"].to_i).decrement!(:quantity, item["quantity"])
     end
   end
 end

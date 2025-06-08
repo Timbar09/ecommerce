@@ -12,7 +12,11 @@ class Order < ApplicationRecord
   end
 
   def display_customer_name
-    customer_email.split("@").first.titleize
+    if customer_email.present?
+      customer_email.split("@").first.titleize
+    else
+      "Unknown Customer"
+    end
   end
 
   def display_name

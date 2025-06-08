@@ -35,7 +35,7 @@ module TableHelper
         span_html = content_tag(:span, class: "flex flex-col") do
           content_tag(:span, item.display_customer_name, class: "table__text--name") +
             if current_page?(admin_orders_path)
-              content_tag(:span, item.customer_email.truncate(20), class: "table__text--email")
+              content_tag(:span, item.customer_email ? item.customer_email.truncate(20) : "Unknown Customer", class: "table__text--email")
             else
               content_tag(:span, "#{item.fulfilled ? 'FULFILLED' : 'PENDING'}", class: "table__text--id ml-1", style: "--status-color: #{item.fulfilled ? 'var(--green)' : 'var(--orange)'}")
             end
