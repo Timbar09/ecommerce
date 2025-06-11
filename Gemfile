@@ -72,3 +72,5 @@ gem "chartkick", "~> 5.1"
 gem "faker"
 
 gem "stripe", "~> 13.4"
+
+gem "ransack", "~> 4.3"
