@@ -305,23 +305,39 @@
   border: 2px solid var(--bg-clr-4);
 }
 
+/* Pagy Nav */
+.pagy.nav,
 .table__footer--container {
   background-color: var(--bg-clr-1);
   border-radius: 0 0 1rem 1rem;
+  padding: 1rem;
+  text-align: center;
 }
 
+.pagy.nav a:first-child,
+.pagy.nav a:last-child,
 .table__footer--nav__button,
 .table__footer--page__button {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
   color: inherit;
   background-color: transparent;
   border: 0;
+  border-radius: var(--radius-md);
   cursor: pointer;
   transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
 }
 
+.pagy.nav a:first-child:hover,
+.pagy.nav a:last-child:hover,
 .table__footer--nav__button:hover {
   color: var(--heading-clr-4);
   background-color: var(--bg-clr-4);
+}
+
+.pagy.nav a.current {
+  color: var(--bg-clr-2);
+  background-color: var(--primary);
 }
 
 .table__footer--nav__button svg {
@@ -329,11 +345,15 @@
   stroke-width: 2;
 }
 
+.pagy.nav a:not(:first-child),
+.pagy.nav a:not(:last-child),
 .table__footer--page__button {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
+  padding: 0.15rem .5rem;
+  border-radius: var(--radius-md);
 }
 
+.pagy.nav a:not(:first-child):hover,
+.pagy.nav a:not(:last-child):hover,
 .table__footer--page__button:hover {
   color: var(--heading-clr-4);
   background-color: var(--bg-clr-4);
