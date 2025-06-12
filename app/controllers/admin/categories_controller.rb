@@ -3,7 +3,7 @@ class Admin::CategoriesController < AdminController
 
   # GET /admin/categories or /admin/categories.json
   def index
-    @admin_categories = Category.all
+    @admin_categories_pagy, @admin_categories = pagy(Category.all)
 
     @table_headers = [ :image, :name, :description, :actions ]
     @table_actions = [

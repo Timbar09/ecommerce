@@ -3,7 +3,7 @@ class Admin::ProductsController < AdminController
 
   # GET /admin/products or /admin/products.json
   def index
-    @admin_products = Product.all
+    @admin_products_pagy, @admin_products = pagy(Product.all)
 
     @table_headers = [ :image, :name, :description, :price, :actions ]
     @table_actions = [
