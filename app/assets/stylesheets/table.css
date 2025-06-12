@@ -306,8 +306,7 @@
 }
 
 /* Pagy Nav */
-.pagy.nav,
-.table__footer--container {
+.pagy.navr {
   background-color: var(--bg-clr-1);
   border-radius: 0 0 1rem 1rem;
   padding: 1rem;
@@ -315,9 +314,7 @@
 }
 
 .pagy.nav a:first-child,
-.pagy.nav a:last-child,
-.table__footer--nav__button,
-.table__footer--page__button {
+.pagy.nav a:last-child {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
   color: inherit;
@@ -329,8 +326,7 @@
 }
 
 .pagy.nav a:first-child:hover,
-.pagy.nav a:last-child:hover,
-.table__footer--nav__button:hover {
+.pagy.nav a:last-child:hover {
   color: var(--heading-clr-4);
   background-color: var(--bg-clr-4);
 }
@@ -338,6 +334,7 @@
 .pagy.nav a.current {
   color: var(--bg-clr-2);
   background-color: var(--primary);
+  pointer-events: none;
 }
 
 .table__footer--nav__button svg {
