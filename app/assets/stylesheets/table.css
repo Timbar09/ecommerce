@@ -306,27 +306,41 @@
 }
 
 /* Pagy Nav */
-.pagy.navr {
+.pagy.nav {
+  position: relative;
   background-color: var(--bg-clr-1);
   border-radius: 0 0 1rem 1rem;
   padding: 1rem;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
 }
 
-.pagy.nav a:first-child,
-.pagy.nav a:last-child {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
+.pagy__nav--next-button,
+.pagy__nav--previous-button {
+  position: absolute;
+  top: 50%;
+  translate: 0 -50% ;
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
   color: inherit;
-  background-color: transparent;
+  background-color: var(--bg-clr-3);
   border: 0;
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
 }
 
-.pagy.nav a:first-child:hover,
-.pagy.nav a:last-child:hover {
+.pagy__nav--next-button {
+  left: 0;
+}
+
+.pagy__nav--previous-button {
+  right: 0;
+}
+
+.pagy__nav--next-button:hover,
+.pagy__nav--previous-button:hover {
   color: var(--heading-clr-4);
   background-color: var(--bg-clr-4);
 }
@@ -342,16 +356,12 @@
   stroke-width: 2;
 }
 
-.pagy.nav a:not(:first-child),
-.pagy.nav a:not(:last-child),
-.table__footer--page__button {
+.pagy__nav--page-button {
   padding: 0.15rem .5rem;
   border-radius: var(--radius-md);
 }
 
-.pagy.nav a:not(:first-child):hover,
-.pagy.nav a:not(:last-child):hover,
-.table__footer--page__button:hover {
+.pagy__nav--page-button:hover {
   color: var(--heading-clr-4);
   background-color: var(--bg-clr-4);
 }
