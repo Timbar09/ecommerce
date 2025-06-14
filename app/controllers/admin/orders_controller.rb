@@ -1,9 +1,12 @@
 class Admin::OrdersController < AdminController
   before_action :set_admin_order, only: %i[ show edit update destroy ]
 
+  include RansackSearchable
+
   # GET /admin/orders or /admin/orders.json
   def index
-    @orders_pagy, @orders = pagy(Order.all.order(created_at: :asc))
+    ransack_query(Order)
+    @orders_pagy, @orders = pagy(@q.result(distinct: true).order(created_at: :asc))
 
     @table_headers = [ :id, :name, :created_at, :fulfilled, :total, :actions ]
     @table_actions = [

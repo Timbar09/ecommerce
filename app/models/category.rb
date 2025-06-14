@@ -21,4 +21,12 @@ class Category < ApplicationRecord
       "https://via.placeholder.com/250"
     end
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    [ "created_at", "description", "id", "name", "updated_at" ]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    [ "image_attachment", "image_blob", "products" ]
+  end
 end

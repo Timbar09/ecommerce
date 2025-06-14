@@ -35,4 +35,12 @@ class Order < ApplicationRecord
     date = created_at + 2.weeks
     date.strftime("%B %d, %Y")
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    [ "address", "created_at", "customer_email", "fulfilled", "id", "total", "updated_at" ]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    [ "order_products", "products" ]
+  end
 end

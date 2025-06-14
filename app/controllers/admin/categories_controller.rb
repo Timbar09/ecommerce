@@ -1,9 +1,12 @@
 class Admin::CategoriesController < AdminController
   before_action :set_admin_category, only: %i[ show edit update destroy ]
 
+  include RansackSearchable
+
   # GET /admin/categories or /admin/categories.json
   def index
-    @admin_categories_pagy, @admin_categories = pagy(Category.all)
+    ransack_query(Category)
+    @admin_categories_pagy, @admin_categories = pagy(@q.result(distinct: true))
 
     @table_headers = [ :image, :name, :description, :actions ]
     @table_actions = [
