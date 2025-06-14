@@ -7,6 +7,10 @@ export default class extends Controller {
     this.previousButton = document.querySelector('.pagy.nav a:first-child')
     this.pageButtons = document.querySelectorAll('.pagy.nav a')
 
+    if (!this.nextButton || !this.previousButton || !this.pageButtons) {
+      return
+    }
+
     this.nextButton.classList.add('pagy__nav--next-button')
     this.previousButton.classList.add('pagy__nav--previous-button')
 
