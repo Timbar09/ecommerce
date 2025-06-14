@@ -2,9 +2,12 @@ class Admin::StocksController < AdminController
   before_action :set_admin_stock, only: %i[ show edit update destroy ]
   before_action :set_product, except: %i[ destroy ]
 
+  include RansackSearchable
+
   # GET /admin/stocks or /admin/stocks.json
   def index
-    @admin_stocks = Stock.where(product_id: @product)
+    ransack_query(Stock)
+    @admin_stocks = @q.result(distinct: true).where(product_id: @product.id)
 
     @table_headers = [ :id, :size, :quantity, :product_name, :actions ]
     @table_actions = [

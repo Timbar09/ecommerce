@@ -16,6 +16,14 @@ class Stock < ApplicationRecord
     "#sk#{id_str.rjust(6, '0')}#{product.id}"
   end
 
+  def self.ransackable_attributes(auth_object = nil)
+    [ "created_at", "id", "product_id", "quantity", "size", "updated_at" ]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    [ "product" ]
+  end
+
   private
 
   def size_must_be_string_or_number
