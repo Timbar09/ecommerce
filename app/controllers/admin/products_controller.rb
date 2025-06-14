@@ -1,9 +1,12 @@
 class Admin::ProductsController < AdminController
+  include RansackSearchable
+
   before_action :set_admin_product, only: %i[ show edit update destroy ]
 
   # GET /admin/products or /admin/products.json
   def index
-    @admin_products_pagy, @admin_products = pagy(Product.all)
+    ransack_query(Product)
+    @admin_products_pagy, @admin_products = pagy(@q.result(distinct: true))
 
     @table_headers = [ :image, :name, :description, :price, :actions ]
     @table_actions = [

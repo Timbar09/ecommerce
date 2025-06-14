@@ -38,4 +38,12 @@ class Product < ApplicationRecord
       "https://via.placeholder.com/500"
     end
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    [ "active", "category_id", "created_at", "description", "id", "name", "price", "updated_at" ]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    [ "category", "images_attachments", "images_blobs", "order_products", "orders", "stocks" ]
+  end
 end
