@@ -1,9 +1,11 @@
 <% content_for :title, "Products" %>
 
 <section class="admin__content flex flex-col pb-2">
-  <%= render 'admin/page_header', path: new_admin_product_path, title: "Add New Product" %>
+  <%= render 'admin/page_header', path: new_admin_product_path, title: "Add New Product", ransack: { q: @q, url: admin_products_path, searchables: :name_or_description_cont } %>
 
-  <div class="section__table--container full-height px-2">
-    <%= render partial: 'shared/table', locals: { headers: @table_headers, list: @admin_products, pagy: @admin_products_pagy, actions: @table_actions, class_names: "full-height px-2" } %>
-  </div>
+  <%= turbo_frame_tag :results do %>
+    <div class="section__table--container full-height px-2">
+      <%= render partial: 'shared/table', locals: { headers: @table_headers, list: @admin_products, pagy: @admin_products_pagy, actions: @table_actions, class_names: "full-height px-2" } %>
+    </div>
+  <% end %>
 </section>

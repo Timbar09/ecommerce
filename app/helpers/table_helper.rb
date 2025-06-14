@@ -13,10 +13,10 @@ module TableHelper
     show_action = actions.find { |action| action[:name].include?("View") } if actions.any?
 
     {
-      image: ->(item) { link_to image_tag(item.display_thumb_image, class: "table__image radius-lg"), show_action[:path].call(item) },
+      image: ->(item) { link_to image_tag(item.display_thumb_image, class: "table__image radius-lg"), show_action[:path].call(item), data: { turbo_frame: "_top" } },
       product_name: ->(item) { item.display_product_name },
       size: ->(item) { item.size.upcase },
-      id: ->(item) { link_to item.display_id, show_action ? show_action[:path].call(item) : "#", class: "link link__primary" },
+      id: ->(item) { link_to item.display_id, show_action ? show_action[:path].call(item) : "#", class: "link link__primary", data: { turbo_frame: "_top" } },
       price: ->(item) { number_to_currency(item.price) },
       created_at: ->(item) { item.display_order_date },
       total: ->(item) { number_to_currency(item.total) },
@@ -54,9 +54,9 @@ module TableHelper
               actions.map do |action|
                 content_tag(:li, class: "modal__list--item") do
                   if action[:method] == :delete
-                    button_to action[:name], action[:path].call(item), method: :delete, class: "modal__list--link radius-md", data_action: "click->options-modal#close"
+                    button_to action[:name], action[:path].call(item), method: :delete, class: "modal__list--link radius-md", data_action: "click->options-modal#close", data: { turbo_frame: "_top" }
                   else
-                    link_to action[:name], action[:path].call(item), method: action[:method], class: "modal__list--link radius-md", data_action: "click->options-modal#close"
+                    link_to action[:name], action[:path].call(item), method: action[:method], class: "modal__list--link radius-md", data_action: "click->options-modal#close", data: { turbo_frame: "_top" }
                   end
                 end
               end.join.html_safe
