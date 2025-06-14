@@ -66,3 +66,57 @@
   border-radius: inherit;
   background-color: var(--primary);
 }
+
+/* RANSACK */
+@media (max-width: 34em) {
+.search__form {
+    display: none;
+  }
+}
+
+.ransack__form--open {
+  display: block;
+}
+
+.search__form--icon {
+  display: none;
+  padding: 0.25rem;
+  border: 1px solid var(--bg-clr-4);
+  color: var(--text-clr-1);
+  background-color: var(--bg-clr-1);
+}
+
+@media (max-width: 34em) {
+.search__form--icon {
+    display: grid;
+  }
+}.ransack__form--icon__hide {
+  display: none;
+}
+
+.ransack__form--open .search__form--icon {
+  display: none;
+}
+
+.search__form--icon:hover {
+  color: var(--heading-clr-4);
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+.search__form--input {
+  width: 2.57rem;
+  padding: 0.5rem;
+  border: 1px solid var(--bg-clr-4);
+  background-color: var(--bg-clr-1);
+  font-family: inherit;
+  animation: grow-width 0.25s ease forwards;
+}
+
+@keyframes grow-width {
+  from {
+    width: 2.57rem;
+  }
+  to {
+    width: 12rem;
+  }
+}

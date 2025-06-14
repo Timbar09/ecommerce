@@ -1,0 +1,15 @@
+<div class="search__form--container flex ai-center gap-2" data-controller="ransack">
+  <button 
+        class="search__form--icon p-1 radius-lg"
+        type="button"
+        data-ransack-target="button"
+        aria-label="Search products"
+        >
+    <%= render "shared/icon", name: "search" %>
+  </button>
+
+  <%= search_form_for q, url: url, class: "search__form", data: { turbo_frame: "results", ransack_target: "form" } do |f| %>
+    <%= f.label searchables, class: "sr-only", value: "Search" %>
+    <%= f.search_field searchables, oninput: 'this.form.requestSubmit()', class: "search__form--input radius-lg", placeholder: "Search...", autocomplete: "off", aria: { label: "Search" }, data: { ransack_target: "input" } %>
+  <% end %>
+</div>
