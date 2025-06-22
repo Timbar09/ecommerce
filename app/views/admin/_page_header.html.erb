@@ -32,9 +32,8 @@
       <%= render "shared/search_form", q: ransack[:q], url: ransack[:url], searchables: ransack[:searchables] %>
     <% end %>
 
-    <%= link_to path, class: "btn btn__primary flex ai-center", aria: { label: title } do %>
-      <%= render "shared/icon", name: "plus" %>
-      <span><%= title %></span>
+    <% if local_assigns[:new] %>
+      <%= render "shared/button", element: "a", path: new[:path], title: new[:title], icon: "plus" %>
     <% end %>
   </div>
 </header>

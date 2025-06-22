@@ -1,5 +1,22 @@
-<% if tag == 'a' %>
-  <a href="<%= path %>" class="btn btn__<%= type %> radius-lg"><%= text %></a>
+<% element = local_assigns[:element] || 'button' %>
+<% button_type = local_assigns[:type] || 'primary' %>
+<% go_to = local_assigns[:path] || '#' %>
+<% data = local_assigns[:data] || {} %>
+<% button_shape = local_assigns[:shape] == 'square' ? 'sr-only' : '' %>
+<% even_padding = local_assigns[:shape] == 'square' ? 'btn__shape--square' : '' %>
+
+<% if element == 'a' %>
+  <%= tag.a href: go_to, class: "btn #{'btn__' + button_type} #{even_padding} flex ai-center radius-lg", data: data do %>
+    <% if local_assigns[:icon] %>
+      <%= render "shared/icon", name: icon %>
+    <% end %>
+    <span class="<%= button_shape %>"><%= title %></span>
+  <% end %>
 <% else %>
-  <button class="btn btn__<%= type %> radius-lg"><%= text %></button>
+  <%= tag.button type: "button", class: "btn #{'btn__' + button_type} #{even_padding} flex ai-center radius-lg", data: data do %>
+    <% if local_assigns[:icon] %>
+      <%= render "shared/icon", name: icon %>
+    <% end %>
+    <span class="<%= button_shape %>"><%= title %></span>
+  <% end %>
 <% end %>

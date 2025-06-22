@@ -45,9 +45,7 @@ module TableHelper
       end : item.respond_to?(:display_name) ? item.display_name : item.name },
       actions: ->(item) {
         content_tag(:span, class: "table__actions--button", data: { controller: "modal" }) do
-          button_html = content_tag(:button, class: "modal__button radius-lg", data: { action: "click->modal#toggle" }) do
-            render "shared/icon", name: "ellipsis"
-          end
+          button_html = render "shared/button", title: "More Actions", shape: "square", icon: "ellipsis", type: "clear", data: { action: "click->modal#toggle" }
 
           modal_html = render "shared/modal" do
             content_tag(:ul, class: "modal__list p-1 radius-lg") do
