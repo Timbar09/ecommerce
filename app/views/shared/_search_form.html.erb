@@ -8,8 +8,12 @@
     <%= render "shared/icon", name: "search" %>
   </button>
 
-  <%= search_form_for q, url: url, class: "search__form", data: { turbo_frame: "results", ransack_target: "form" } do |f| %>
+  <%= search_form_for q, url: url, class: "search__form radius-lg", data: { turbo_frame: "results", ransack_target: "form" } do |f| %>
     <%= f.label searchables, class: "sr-only", value: "Search" %>
-    <%= f.search_field searchables, oninput: 'this.form.requestSubmit()', class: "search__form--input radius-lg", placeholder: "Search...", autocomplete: "off", aria: { label: "Search" }, data: { ransack_target: "input" } %>
+    <%= f.search_field searchables, oninput: 'this.form.requestSubmit()', class: "search__form--input radius-lg btn", placeholder: "Search...", autocomplete: "off", aria: { label: "Search" }, data: { ransack_target: "input" } %>
+
+    <div class="search__form--input__icon grid place-center pr-1">
+      <%= render "shared/icon", name: "search" %>
+    </div>
   <% end %>
 </div>

@@ -6,6 +6,7 @@
   font-family: inherit;
   color: inherit;
   background-color: var(--bg-clr-1);
+  border-color: var(--bg-clr-1);
 }
 
 .filter__form--button:hover {
@@ -68,6 +69,11 @@
 }
 
 /* RANSACK */
+.search__form {
+  position: relative;
+  background-color: var(--bg-clr-1);
+}
+
 @media (max-width: 34em) {
 .search__form {
     display: none;
@@ -104,12 +110,16 @@
 }
 
 .search__form--input {
-  width: 2.57rem;
-  padding: 0.5rem;
-  border: 1px solid var(--bg-clr-4);
-  background-color: var(--bg-clr-1);
+  position: relative;
   font-family: inherit;
+  width: 2.57rem;
+  text-align: left;
+  border-color: var(--bg-clr-4);
+  background-color: transparent;
+  cursor: text;
   animation: grow-width 0.25s ease forwards;
+  transition: width 0.25s ease;
+  z-index: 1;
 }
 
 @keyframes grow-width {
@@ -119,4 +129,16 @@
   to {
     width: 12rem;
   }
+}
+
+.search__form--input__icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.search__form--input:focus + .search__form--input__icon {
+  display: none;
 }

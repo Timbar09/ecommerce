@@ -6,7 +6,16 @@ export default class extends Controller {
 
   connect() {
     this.buttonTarget.addEventListener("click", this.handleOpenSearch.bind(this))
-    this.inputTarget.addEventListener("blur", this.handleCloseSearch.bind(this))
+    this.inputTarget.addEventListener("blur", () => {
+      setTimeout(() => {
+        this.handleCloseSearch()
+      }, 250)
+    })
+    this.inputTarget.addEventListener("input", () => {
+      if (this.inputTarget.value.trim() === "") {
+        this.handleCloseSearch()
+      }
+    })
   }
 
   handleOpenSearch() {

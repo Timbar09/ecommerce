@@ -49,6 +49,7 @@
         <% end %>
       </tbody>
     </table>
+
     <% if local_assigns[:pagy] %>
       <div data-controller="pagy">
         <%== pagy_nav(pagy) if pagy.pages > 1 %>
