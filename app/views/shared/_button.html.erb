@@ -1,19 +1,25 @@
 <% element = local_assigns[:element] || 'button' %>
-<% button_type = local_assigns[:type] || 'primary' %>
+<% type = local_assigns[:type] || 'button' %>
+<% variant = local_assigns[:variant] ? local_assigns[:variant] : '' %>
 <% go_to = local_assigns[:path] || '#' %>
 <% data = local_assigns[:data] || {} %>
 <% button_shape = local_assigns[:shape] == 'square' ? 'sr-only' : '' %>
 <% even_padding = local_assigns[:shape] == 'square' ? 'btn__shape--square' : '' %>
+<% class_name = local_assigns[:class_name] || '' %>
 
 <% if element == 'a' %>
-  <%= tag.a href: go_to, class: "btn #{'btn__' + button_type} #{even_padding} flex ai-center radius-lg", data: data do %>
+  <%= tag.a href: go_to, 
+    class: "btn #{'btn__' + variant} #{even_padding} flex ai-center radius-lg #{class_name}", 
+    data: data do %>
     <% if local_assigns[:icon] %>
       <%= render "shared/icon", name: icon %>
     <% end %>
     <span class="<%= button_shape %>"><%= title %></span>
   <% end %>
 <% else %>
-  <%= tag.button type: "button", class: "btn #{'btn__' + button_type} #{even_padding} flex ai-center radius-lg", data: data do %>
+  <%= tag.button type: type, 
+    class: "btn #{'btn__' + variant} #{even_padding} flex ai-center radius-lg #{class_name}", 
+    data: data do %>
     <% if local_assigns[:icon] %>
       <%= render "shared/icon", name: icon %>
     <% end %>
