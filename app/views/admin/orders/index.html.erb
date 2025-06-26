@@ -1,11 +1,29 @@
 <% content_for :title, "Orders" %>
 
 <section class="admin__content flex flex-col pb-2">
-  <%= render 'admin/page_header', new: { path: new_admin_order_path, title: "Add New Order" }, ransack: { q: @q, url: admin_orders_path, searchables: :customer_email_or_address_cont } %>
+  <%= render 'admin/page_header', 
+    new: { path: new_admin_order_path, 
+    title: "Add New Order" }, 
+    ransack: { 
+      q: @q, 
+      url: admin_orders_path, 
+      search_box: { searchables: :customer_email_or_address_cont },
+      filter: [ { value: true, label: "Fulfilled" }, { value: false, label: "Unfulfilled" } ]
+    }
+  %>
 
   <% if @orders.any? %>
     <div class="section__table--container full-height px-2">
-      <%= render partial: 'shared/table', locals: { headers: @table_headers, list: @orders, pagy: @orders_pagy, actions: @table_actions, class_names: "px-2", id: "orders-table" } %>
+      <%= render partial: 'shared/table', 
+        locals: { 
+          headers: @table_headers, 
+          list: @orders, 
+          pagy: @orders_pagy, 
+          actions: @table_actions, 
+          class_names: "px-2", 
+          id: "orders-table" 
+        } 
+      %>
     </div>
   <% else %>
     <%= turbo_frame_tag :results, class: "p-2" do %>

@@ -1,19 +1,65 @@
-<div class="search__form--container flex ai-center gap-2" data-controller="ransack">
-  <button 
-        class="search__form--icon p-1 radius-lg"
-        type="button"
-        data-ransack-target="button"
-        aria-label="Search products"
-        >
-    <%= render "shared/icon", name: "search" %>
-  </button>
+<% q = ransack[:q] %>
+<% url = ransack[:url] %>
+<% searchables = ransack[:search_box][:searchables] if ransack[:search_box].present? %>
+<% filter = ransack[:filter] if ransack[:filter].present? %>
 
-  <%= search_form_for q, url: url, class: "search__form radius-lg", data: { turbo_frame: "results", ransack_target: "form" } do |f| %>
-    <%= f.label searchables, class: "sr-only", value: "Search" %>
-    <%= f.search_field searchables, oninput: 'this.form.requestSubmit()', class: "search__form--input radius-lg btn", placeholder: "Search...", autocomplete: "off", aria: { label: "Search" }, data: { ransack_target: "input" } %>
+<div class="ransack__form--container flex ai-center gap-2" data-controller="ransack modal">
+  <%= render "shared/button", 
+    variant: "light", 
+    class_name: "ransack__search--button",
+    data: { ransack_target: "searchButton" },
+    title: "Search", 
+    icon: "search" 
+  %>
 
-    <div class="search__form--input__icon grid place-center pr-1">
-      <%= render "shared/icon", name: "search" %>
+  <%= search_form_for q, url: url, class: "ransack__form radius-lg flex gap-1", data: { turbo_frame: "results" } do |f| %>
+    <div class="ransack__search radius-lg gap-1" data-ransack-target="search">
+      <%= f.label searchables, class: "sr-only", value: "Search" %>
+      <%= f.search_field searchables, 
+        oninput: 'this.form.requestSubmit()', 
+        class: "ransack__search--input radius-lg btn", 
+        placeholder: "Search...", 
+        autocomplete: "off", 
+        aria: { label: "Search" }, 
+        data: { ransack_target: "input" }
+      %>
+
+      <div class="ransack__search--input__icon grid place-center pr-1">
+        <%= render "shared/icon", name: "search" %>
+      </div>
     </div>
+
+    <% if filter.present? %>
+      <div class="ransack__filter-container">
+        <%= render "shared/button", 
+          element: "button", 
+          variant: "light", 
+          class: "ransack__filter--button radius-lg", 
+          data: { action: "click->modal#toggle" }, 
+          title: "Filter", 
+          icon: "filter" 
+        %>
+
+        <%= render "shared/modal", type: "options" do %>
+          <div class="ransack__filter modal__list radius-lg p-1 flex flex-col gap-1">
+            <%= f.label :fulfilled_in, "Filter by Fulfillment", class: "sr-only" %>
+
+            <% filter.each do |option| %>
+              <%= f.label "fulfilled_in_#{option[:value]}", 
+                option[:label], 
+                class: "ransack__filter--field modal__list--link" do %>
+                <%= f.check_box :fulfilled_in, 
+                  { multiple: true, 
+                    onchange: "this.form.requestSubmit()", 
+                    data: { ransack_target: "checkbox" } 
+                  }, 
+                  option[:value], nil %>
+                <%= option[:label] %>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   <% end %>
 </div>

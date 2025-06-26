@@ -8,32 +8,13 @@
   </h2>
 
   <div class="flex ai-center gap-2">
-    <% if current_page?(admin_orders_path) %>
-      <div class="filter__form" data-controller="filter">
-        <%= button_tag "Filter", class: "filter__form--button btn flex ai-center gap-1", data: { action: "click->filter#toggleFilter", filter_target: "button" }, aria: { label: "Filter" } do %>
-          <%= render "shared/icon", name: "filter" %>
-          <span>Filter</span>
-        <% end %>
-
-        <ul class="filter__form--group p-1 radius-lg hidden">
-          <li class="filter__form--checkbox flex ai-center py-1">
-            <%= check_box_tag 'filters[]', 'fulfilled', false, id: 'filters_fulfilled', class: "filter__form--checkbox__input", data: { filter_target: "checkbox" } %>
-            <%= label_tag 'filters_fulfilled', 'Fulfilled', class: "filter__form--checkbox__label pl-1" %>
-          </li>
-          <li class="filter__form--checkbox flex ai-center py-1">
-            <%= check_box_tag 'filters[]', 'unfulfilled', false, id: 'filters_unfulfilled', class: "filter__form--checkbox__input", data: { filter_target: "checkbox" } %>
-            <%= label_tag 'filters_unfulfilled', 'Unulfilled', class: "filter__form--checkbox__label pl-1" %>
-          </li>
-        </ul>
-      </div>
-    <% end %>
-
     <% if local_assigns[:ransack] %>
-      <%= render "shared/search_form", q: ransack[:q], url: ransack[:url], searchables: ransack[:searchables] %>
+      <%= render "shared/search_form", ransack: ransack %>
     <% end %>
 
     <% if local_assigns[:new] %>
-      <%= render "shared/button", element: "a", path: new[:path], title: new[:title], icon: "plus" %>
+      <%= render "shared/button", element: "a", path: new[:path], title: new[:title], icon: "plus",
+        variant: "primary" %>
     <% end %>
   </div>
 </header>

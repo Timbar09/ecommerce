@@ -2,10 +2,12 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="ransack"
 export default class extends Controller {
-  static targets = ["form", "button", "input"]
+  static targets = ["search", "searchButton", "input", "checkbox"]
 
   connect() {
-    this.buttonTarget.addEventListener("click", this.handleOpenSearch.bind(this))
+    // On every page reload, uncheck all checkboxes
+    this.uncheckAll()
+    this.searchButtonTarget.addEventListener("click", this.handleOpenSearch.bind(this))
     this.inputTarget.addEventListener("blur", () => {
       setTimeout(() => {
         this.handleCloseSearch()
@@ -19,21 +21,27 @@ export default class extends Controller {
   }
 
   handleOpenSearch() {
-    const form = this.formTarget
-    const button = this.buttonTarget
+    const search = this.searchTarget
+    const button = this.searchButtonTarget
 
-    form.classList.add("ransack__form--open")
-    button.classList.add("ransack__form--icon__hide")
+    search.classList.add("ransack__search--open")
+    button.classList.add("ransack__search--button__hide")
     this.inputTarget.focus()
   }
 
   handleCloseSearch() {
-    const form = this.formTarget
-    const button = this.buttonTarget
+    const search = this.searchTarget
+    const button = this.searchButtonTarget
 
     if (this.inputTarget.value.trim() === "") {
-      form.classList.remove("ransack__form--open")
-      button.classList.remove("ransack__form--icon__hide")
+      search.classList.remove("ransack__search--open")
+      button.classList.remove("ransack__search--button__hide")
     }
+  }
+
+  uncheckAll() {
+    this.checkboxTargets.forEach(checkbox => {
+      checkbox.checked = false
+    })
   }
 }
