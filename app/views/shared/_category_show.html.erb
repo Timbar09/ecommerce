@@ -63,7 +63,7 @@
 
               <li class="category__show--body__product--item radius-lg">
                 <%= image_tag product.display_small_image, class: "radius-lg" %>
-                <%= link_to path do %>
+                <%= link_to path, data: { turbo_frame: "_top" } do %>
                   <h3><%= product.name %></h3>
                 <% end %>
                 <span class="category__show--body__product--item__price">

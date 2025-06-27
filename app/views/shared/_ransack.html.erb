@@ -15,7 +15,7 @@
   <%= search_form_for q, url: url, class: "ransack__form radius-lg flex gap-1", data: { turbo_frame: "results" } do |f| %>
     <div class="ransack__search--container flex flex-col gap-1">
       <% ransack[:search_box].each do | box | %>
-        <% is_number = box[:searchables].is_a?(Symbol) && box[:searchables].to_s.end_with?("_gteq") %>
+        <% is_number = box[:searchables].to_s.include?("_gteq") || box[:searchables].to_s.include?("_lteq") %>
         <% placeholder = box[:placeholder] || "Search..." %>
         <% search_icon = box[:icon] || "search" %>
 
@@ -27,8 +27,7 @@
           placeholder: placeholder,
           autocomplete: "off", 
           aria: { label: "Search" }, 
-          data: { ransack_target: "input", ransack_value_type: is_number ? "number" : "text" }
-        %>
+          data: { ransack_target: "input", ransack_value_type: is_number ? "number" : "text" } %>
 
           <div class="ransack__search--input__icon grid place-center pr-1">
             <%= render "shared/icon", name: search_icon %>
