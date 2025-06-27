@@ -61,7 +61,14 @@
     <h2 class="admin__nav--title p-2">OTHER</h2>
 
     <ul class="admin__nav--other pt-1 pb-2 px-2 flex-1">
-      <%= button_to destroy_admin_session_path, method: :delete, class: "admin__nav--link flex gap-1 ai-center radius-lg" do %>
+      <%= link_to root_path, class: "admin__nav--link flex gap-1 ai-center radius-lg" do %>
+        <%= render 'shared/icon', name: 'home' %>
+        <span class="admin__nav--link__text">Shop</span>
+      <% end %>
+
+      <%= button_to destroy_admin_session_path, 
+      method: :delete, 
+      class: "admin__nav--link flex gap-1 ai-center radius-lg" do %>
         <%= render 'shared/icon', name: 'sign-out' %>
         <span class="admin__nav--link__text">Sign out</span>
       <% end %>
