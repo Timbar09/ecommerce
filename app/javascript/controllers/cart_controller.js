@@ -20,7 +20,7 @@ export default class extends Controller {
       deleteButton.innerHTML = 'Remove'
       deleteButton.classList.add('cart__list--item__delete', 'btn')
 
-      deleteButton.value = item.id
+      deleteButton.value = JSON.stringify({ id: item.id, size: item.size })
       deleteButton.addEventListener('click', this.removeFromCart)
 
       
@@ -43,9 +43,10 @@ export default class extends Controller {
 
   removeFromCart(event) {
     const cart = JSON.parse(localStorage.getItem('cart'))
-    const id = event.target.value
+    const values = JSON.parse(event.target.value)
+    const { id, size } = values
+    const index = cart.findIndex(item => item.id === id && item.size === size)
 
-    const index = cart.findIndex(item => item.id === id)
     cart.splice(index, 1)
     localStorage.setItem('cart', JSON.stringify(cart))
 

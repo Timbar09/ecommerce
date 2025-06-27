@@ -1,4 +1,3 @@
-<% products = category.products %>
 <% is_admin = request.path.include?("admin") %>
 
 <div class="category__show">
@@ -33,15 +32,33 @@
       <div class="category__show--header__image">
         <%= image_tag category.display_medium_image, class: "radius-lg" %>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <div class="category__show--body p-2">
-      <div class="category__show--body__container p-2 radius-lg">
-        <h2><%= category.name %> Collection</h2>
+  <div class="category__show--body p-2">
+    <h2><%= category.name %> Collection</h2>
 
-        <% if products.any? %>
-          <ul class="category__show--body__product--list flex flex-wrap gap-2 pt-2">
-            <% products.each do |product| %>
+    <div class="category__show--body__container flex gap-2">
+      <div class="category__show--filter">
+        <h3 class="mb-2">Filter Products</h3>
+
+        <%= render "shared/ransack", 
+          ransack: {
+            q: @q,
+            url: category_path(category),
+            search_box: [
+              { searchables: :price_gteq, placeholder: "Min Price", icon: "currency-dollar" }, 
+              { searchables: :price_lteq, placeholder: "Max Price", icon: "currency-dollar" }
+            ],
+          } 
+        %>
+      </div>
+
+      <%= turbo_frame_tag :results, 
+      class: "category__show--body__product--list__container  px-2 pb-2 radius-lg" do %>
+        <% if @products.any? %>
+          <ul class="category__show--body__product--list flex flex-wrap gap-2">
+            <% @products.each do |product| %>
               <% path = is_admin ? admin_product_path(product) : product_path(product) %>
 
               <li class="category__show--body__product--item radius-lg">
@@ -49,13 +66,16 @@
                 <%= link_to path do %>
                   <h3><%= product.name %></h3>
                 <% end %>
+                <span class="category__show--body__product--item__price">
+                  <%= number_to_currency(product.price) %>
+                </span>
               </li>
             <% end %>
           </ul>
         <% else %>
           <p>No products found.</p>
         <% end %>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>

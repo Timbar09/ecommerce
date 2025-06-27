@@ -1,5 +1,5 @@
 .category__show {
-  --max-width: 40rem;
+  --max-width: 60rem;
 }
 
 .category__show--header {
@@ -140,6 +140,11 @@
   font-size: .65rem;
   font-weight: 700;
   cursor: pointer;
+}
+
+.category__show--body h2 {
+  margin: 1rem auto 3rem;
+  text-align: center;
 }
 
 .category__show--body__container {
