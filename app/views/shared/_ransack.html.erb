@@ -1,9 +1,9 @@
 <% q = ransack[:q] %>
 <% url = ransack[:url] %>
-<% searchables = ransack[:search_box][:searchables] if ransack[:search_box].present? %>
 <% filter = ransack[:filter] if ransack[:filter].present? %>
 
-<div class="ransack__form--container flex ai-center gap-2" data-controller="ransack modal">
+<%= tag.div class: "ransack__form--container flex ai-center gap-2", 
+  data: { controller: "ransack #{filter.present? ? 'modal' : ''}" } do %>
   <%= render "shared/button", 
     variant: "light", 
     class_name: "ransack__search--button",
@@ -13,20 +13,28 @@
   %>
 
   <%= search_form_for q, url: url, class: "ransack__form radius-lg flex gap-1", data: { turbo_frame: "results" } do |f| %>
-    <div class="ransack__search radius-lg gap-1" data-ransack-target="search">
-      <%= f.label searchables, class: "sr-only", value: "Search" %>
-      <%= f.search_field searchables, 
-        oninput: 'this.form.requestSubmit()', 
-        class: "ransack__search--input radius-lg btn", 
-        placeholder: "Search...", 
-        autocomplete: "off", 
-        aria: { label: "Search" }, 
-        data: { ransack_target: "input" }
-      %>
+    <div class="ransack__search--container flex flex-col gap-1">
+      <% ransack[:search_box].each do | box | %>
+        <% is_number = box[:searchables].is_a?(Symbol) && box[:searchables].to_s.end_with?("_gteq") %>
+        <% placeholder = box[:placeholder] || "Search..." %>
+        <% search_icon = box[:icon] || "search" %>
 
-      <div class="ransack__search--input__icon grid place-center pr-1">
-        <%= render "shared/icon", name: "search" %>
-      </div>
+        <div class="ransack__search radius-lg gap-1" data-ransack-target="search">
+          <%= f.label box[:searchables], class: "sr-only", value: "Search" %>
+          <%= f.search_field box[:searchables], 
+          oninput: 'this.form.requestSubmit()', 
+          class: "ransack__search--input radius-lg btn", 
+          placeholder: placeholder,
+          autocomplete: "off", 
+          aria: { label: "Search" }, 
+          data: { ransack_target: "input", ransack_value_type: is_number ? "number" : "text" }
+        %>
+
+          <div class="ransack__search--input__icon grid place-center pr-1">
+            <%= render "shared/icon", name: search_icon %>
+          </div>
+        </div>
+      <% end %>
     </div>
 
     <% if filter.present? %>
@@ -45,10 +53,10 @@
             <%= f.label :fulfilled_in, "Filter by Fulfillment", class: "sr-only" %>
 
             <% filter.each do |option| %>
-              <%= f.label "fulfilled_in_#{option[:value]}", 
+              <%= f.label "#{option[:predicate]}_#{option[:value]}", 
                 option[:label], 
                 class: "ransack__filter--field modal__list--link" do %>
-                <%= f.check_box :fulfilled_in, 
+                <%= f.check_box option[:predicate], 
                   { multiple: true, 
                     onchange: "this.form.requestSubmit()", 
                     data: { ransack_target: "checkbox" } 
@@ -62,4 +70,4 @@
       </div>
     <% end %>
   <% end %>
-</div>
+<% end %>
