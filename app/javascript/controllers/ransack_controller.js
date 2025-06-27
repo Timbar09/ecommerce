@@ -8,6 +8,13 @@ export default class extends Controller {
     // On every page reload, uncheck all checkboxes
     this.uncheckAll()
     this.searchButtonTarget.addEventListener("click", this.handleOpenSearch.bind(this))
+    // When the input ransack data-value-type is number, handle the input accordingly
+    if (this.inputTarget.dataset.ransackValueType === "number") {
+      this.inputTarget.addEventListener("input", (event) => {
+        const value = event.target.value.replace(/[^0-9.]/g, "")
+        event.target.value = value
+      })
+    }
     this.inputTarget.addEventListener("blur", () => {
       setTimeout(() => {
         this.handleCloseSearch()

@@ -9,7 +9,7 @@
 
   <div class="flex ai-center gap-2">
     <% if local_assigns[:ransack] %>
-      <%= render "shared/search_form", ransack: ransack %>
+      <%= render "shared/ransack", ransack: ransack %>
     <% end %>
 
     <% if local_assigns[:new] %>
