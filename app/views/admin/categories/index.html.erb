@@ -1,11 +1,26 @@
 <% content_for :title, "Categories" %>
 
 <section class="admin__content flex flex-col pb-2">
-  <%= render 'admin/page_header', new: { path: new_admin_category_path, title: "Add New Category" }, ransack: { q: @q, url: admin_categories_path, searchables: :name_or_description_cont } %>
+  <%= render 'admin/page_header', 
+    new: { path: new_admin_category_path, title: "Add New Category" }, 
+    ransack: { 
+      q: @q, 
+      url: admin_categories_path, 
+      search_box: [ { searchables: :name_or_description_cont } ] 
+    } 
+  %>
 
   <div class="section__table--container full-height px-2">
     <% if @admin_categories.any? %>
-      <%= render partial: 'shared/table', locals: { headers: @table_headers, list: @admin_categories, pagy: @admin_categories_pagy, actions: @table_actions, class_names: "px-2" } %>
+      <%= render partial: 'shared/table', 
+        locals: { 
+          headers: @table_headers, 
+          list: @admin_categories, 
+          pagy: @admin_categories_pagy, 
+          actions: @table_actions, 
+          class_names: "px-2" 
+        } 
+      %>
     <% else %>
       <%= turbo_frame_tag :results, class: "p-2" do %>
         <% if params[:q].present? %>

@@ -2,13 +2,15 @@
 
 <section class="admin__content flex flex-col pb-2">
   <%= render 'admin/page_header', 
-    new: { path: new_admin_order_path, 
-    title: "Add New Order" }, 
+    new: { path: new_admin_order_path, title: "Add New Order" }, 
     ransack: { 
       q: @q, 
       url: admin_orders_path, 
-      search_box: { searchables: :customer_email_or_address_cont },
-      filter: [ { value: true, label: "Fulfilled" }, { value: false, label: "Unfulfilled" } ]
+      search_box: [ { searchables: :customer_email_or_address_cont } ],
+      filter: [ 
+        { predicate: :fulfilled_in, value: true, label: "Fulfilled" }, 
+        { predicate: :fulfilled_in, value: false, label: "Unfulfilled" } 
+      ]
     }
   %>
 
