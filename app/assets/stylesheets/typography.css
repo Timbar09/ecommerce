@@ -34,8 +34,20 @@ ul {
 }
 
 .container {
+  padding-right: var(--p-1);
+  padding-left: var(--p-1);
   max-width: 75rem;
   margin: 0 auto;
+
+  @media (min-width: 40em) {
+    padding-right: var(--p-2);
+    padding-left: var(--p-2);
+  }
+
+  @media (min-width: 64em) {
+    padding-right: var(--p-3);
+    padding-left: var(--p-3);
+  }
 }
 
 .section__table--container {
