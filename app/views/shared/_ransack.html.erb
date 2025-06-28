@@ -1,8 +1,9 @@
 <% q = ransack[:q] %>
 <% url = ransack[:url] %>
 <% filter = ransack[:filter] if ransack[:filter].present? %>
+<% class_name = ransack[:class_name] || '' %>
 
-<%= tag.div class: "ransack__form--container flex ai-center gap-2", 
+<%= tag.div class: "ransack__form--container flex ai-center gap-2 #{class_name}", 
   data: { controller: "ransack #{filter.present? ? 'modal' : ''}" } do %>
   <%= render "shared/button", 
     variant: "light", 
