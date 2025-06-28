@@ -1,30 +1,48 @@
-<nav>
-  <div class="container px-1 py-2 flex ai-center jc-between">
-    <a><strong>Ecom</strong></a>
+<nav class="shop__nav">
+  <div class="container py-2 flex ai-center gap-2">
+    <div class="shop__nav--left"><a><strong>Ecom</strong></a></div>
 
-    <ul class="flex gap-2">
-      <li><a href="/">Home</a></li>
-      <li><a href="/Categories">Categories</a></li>
-      <li><a href="/deals">Deals</a></li>
-      <li><a href="/whats-new">What's New</a></li>
-      <li><a href="/delivery">Delivery</a></li>
-    </ul>
+    <div class="shop__nav--middle flex ai-center gap-2">
+      <%= render "shared/ransack", 
+        ransack: { 
+          q: @q, 
+          url: root_path, 
+          class_name: "shop__nav--search", 
+          search_box: [ { searchables: :name_cont } ] 
+        } 
+      %>
 
-    <ul class="flex gap-2 ai-center">
-      <li class="flex ai-center gap-1">
-        <input type="search" placeholder="Search" class="search" />
-        <%= render "shared/icon", name: "search" %>
-      </li>
-      <li><a href="/login">Login</a></li>
-      <li><a href="/wishlist"><%= render "shared/icon", name: "heart" %></a></li>
-      <li>
-        <%= link_to cart_path do %>
-          <%= render "shared/icon", name: "cart" %>
-        <% end %>
-      </li>
+      <%= render "shared/button", 
+        variant: "light", 
+        shape: "square",
+        class_name: "shop__nav--hamburger radius-lg", 
+        data: { action: "click->modal#toggle" }, 
+        title: "Menu", 
+        icon: "hamburger-3" 
+      %>
 
-      <%# Takes us to the admin dashboard for now %>
-      <li><a href="/admin"><%= render "shared/icon", name: "user" %></a></li>
-    </ul>
+      <%# <ul class="flex gap-2"> %>
+      <%# <li><a href="/">Shop</a></li> %>
+      <%# <li><a href="/Categories">Categories</a></li> %>
+      <%# <li><a href="/deals">Deals</a></li> %>
+      <%# <li><a href="/whats-new">What's New</a></li> %>
+      <%# <li><a href="/delivery">Delivery</a></li> %>
+      <%# </ul> %>
+    </div>
+
+    <div class="shop__nav--right">
+      <ul class="flex jc-end gap-2 ai-center">
+        <li><a href="/login">Login</a></li>
+        <li><a href="/wishlist"><%= render "shared/icon", name: "heart" %></a></li>
+        <li>
+          <%= link_to cart_path do %>
+            <%= render "shared/icon", name: "cart" %>
+          <% end %>
+        </li>
+
+        <%# Takes us to the admin dashboard for now %>
+        <li><a href="/admin"><%= render "shared/icon", name: "user" %></a></li>
+      </ul>
+    </div>
   </div>
 </nav>

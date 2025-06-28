@@ -1,0 +1,53 @@
+.shop__nav {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.shop__nav--left {
+  flex: .2;
+}
+
+.shop__nav--middle {
+  flex: .5;
+}
+
+.shop__nav--right {
+  flex: .3;
+}
+
+.shop__nav--search {
+  flex: 1;
+}
+.shop__nav--search .ransack__form,
+.shop__nav--search .ransack__search--container,
+.shop__nav--search .ransack__search--input {
+  width: 100%;
+  flex: 1;
+}
+
+/* Remove the ransack search-button and search-box's default responsiveness */
+.shop__nav--search .ransack__search {
+  display: flex;
+}
+.shop__nav--search .ransack__search--button {
+  display: none;
+}
+
+.shop__nav--search .ransack__search--input {
+  padding: 0.75rem 1rem;
+}
+
+.shop__nav--search .ransack__search--input__icon {
+  padding-right: 0.75rem;
+}
+
+.shop__nav--hamburger {
+  padding: 0.5rem;
+  background-color: var(--bg-clr-1);
+}
+
+.shop__nav--hamburger:hover {
+  border-color: var(--bg-clr-4);
+  background-color: var(--bg-clr-1);
+  box-shadow: none;
+}
