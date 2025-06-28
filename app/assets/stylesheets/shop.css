@@ -15,6 +15,21 @@
   flex: .3;
 }
 
+.shop__nav--logo__image {
+  height: 2rem;
+  width: auto;
+}
+
+.shop__nav--logo__text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--heading-clr-2);
+
+  @media (max-width: 40em) {
+    display: none; /* Hide text on smaller screens */
+  }
+}
+
 .shop__nav--search {
   flex: 1;
 }
