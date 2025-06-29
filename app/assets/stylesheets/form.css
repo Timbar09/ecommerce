@@ -12,7 +12,32 @@
 }
 
 .form {
+  position: relative;
   max-width: 30em;
+  overflow: hidden;
+}
+
+.form__step {
+  transition: left 500ms ease, opacity 200ms ease;
+}
+
+.form__step__one {
+  position: relative;
+  left: -100%;
+  opacity: 0;
+}
+
+.form__step__one.step__active,
+.form__step__two.step__active {
+  left: 0;
+  opacity: 1;
+}
+
+.form__step__two {
+  position: absolute;
+  width: 100%;
+  left: 120%;
+  opacity: 0;
 }
 
 .form__title {

@@ -3,35 +3,68 @@
     <h2 class="form__title">Create New Admin Account<span>.</span></h2>
 
     <%- if controller_name != 'sessions' %>
-      <p>Already have an account? <%= link_to "Log in", new_session_path(resource_name), class: "form__link--primary" %></p>
+      <p>Already have an account? <%= link_to "Log in", new_session_path(resource_name), class: "form__link--primary" %>.</p>
     <% end %>
 
-    <%= form_with(model: resource, as: resource_name, url: registration_path(resource_name), html: { class: "form flex flex-col gap-1" }) do |f| %>
+    <%= form_with(
+      model: resource, 
+      as: resource_name, 
+      url: registration_path(resource_name), 
+      html: { class: "form flex flex-col gap-1 pb-2" },
+      data: { controller: "form" }
+    ) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
-      <div class="form__field p-1 radius-lg">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email address" %>
-      </div>
+      <% is_user = devise_mapping.name == :user && resource.new_record? %>
 
-      <div class="form__field p-1 radius-lg">
-        <%= f.label :password do %>
-          Password 
-          <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <%# If it is a new user, show the user fields %>
+      <% if is_user %>
+        <%= render "devise/shared/user_fields", f: f %>
+      <% end %>
+
+      <%= tag.div class: "form__step form__step__two flex flex-col gap-1 pr-2", data: { form_target: "stepTwo" } do %>
+        <%# If this is a users devise page as opposed to an admin devise page, show the phone field %>
+        <% if is_user %>
+          <div class="form__field p-1 radius-lg">
+            <%= f.label :phone, "Phone Number <em>(Include Country Code)</em>".html_safe %><br />
+            <%= f.telephone_field :phone, placeholder: "Phone Number", required: true %>
+          </div>
+        <% end %>
+
+        <div class="form__field p-1 radius-lg">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: !is_user, autocomplete: "email", placeholder: "Email address" %>
+        </div>
+
+        <div class="form__field p-1 radius-lg">
+          <%= f.label :password do %>
+            Password 
+            <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password" %>
+        </div>
+
+        <div class="form__field p-1 radius-lg">
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm password" %>
+        </div>
+
+        <%= tag.div class: "form__actions flex jc-#{ is_user ? 'between' : 'end' }" do %>
+          <% if is_user %>
+            <%= render "shared/button", 
+              variant: "tertiary", 
+              class_name: "form__next-step", 
+              title: "Previous Step",
+              icon: "arrow-left",
+              data: { form_target: "prev" }
+            %>
           <% end %>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password" %>
-      </div>
 
-      <div class="form__field p-1 radius-lg">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm password" %>
-      </div>
-
-      <div class="form__actions flex jc-end">
-        <%= f.submit "Sign up", class: "btn btn__primary" %>
-      </div>
+          <%= f.submit "Sign up", class: "btn btn__primary" %>
+        <% end %>
+      <% end %>
     <% end %>
   </div>
 </section>

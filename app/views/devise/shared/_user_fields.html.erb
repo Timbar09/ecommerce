@@ -1,0 +1,30 @@
+<div class="form__step form__step__one flex flex-col gap-1 step__active" data-form-target="stepOne">
+  <div class="form__field p-1 radius-lg">
+    <%= f.label :first_name, "First Name" %>
+    <%= f.text_field :first_name, placeholder: "First Name", required: true, autofocus: true %>
+  </div>
+
+  <div class="form__field p-1 radius-lg">
+    <%= f.label :last_name, "Last Name" %>
+    <%= f.text_field :last_name, placeholder: "Last Name", required: true %>
+  </div>
+
+  <div class="form__field p-1 radius-lg">
+    <%= f.label :username, "Username" %>
+    <%= f.text_field :username, placeholder: "Username", required: true %>
+  </div>
+
+  <div class="form__field p-1 radius-lg">
+    <%= f.label :avatar, "Profile Picture" %>
+    <%= f.file_field :avatar, accept: "image/*" %>
+  </div>
+
+  <div class="flex jc-end">
+    <%= render "shared/button", 
+      variant: "tertiary", 
+      class_name: "form__next-step", 
+      title: "Next Step",
+      icon: "arrow-right",
+      data: { form_target: "next" } %>
+  </div>
+</div>

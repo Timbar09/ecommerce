@@ -10,7 +10,7 @@
     <div class="shop__nav--middle flex ai-center gap-2">
       <%= render "shared/ransack", 
         ransack: { 
-          q: @q, 
+          q: Ransack::Search.new(Product, params: { q: { name_cont: "" } }),
           url: root_path, 
           class_name: "shop__nav--search", 
           search_box: [ { searchables: :name_cont } ] 
@@ -37,7 +37,14 @@
 
     <div class="shop__nav--right">
       <ul class="flex jc-end gap-2 ai-center">
-        <li><a href="/login">Login</a></li>
+        <li>
+          <%= render "shared/button", 
+            element: "a",
+            path: new_user_session_path,
+            variant: "primary", 
+            class_name: "shop__nav--login", 
+            title: "Log In" %>
+        </li>
         <li><a href="/wishlist"><%= render "shared/icon", name: "heart" %></a></li>
         <li>
           <%= link_to cart_path do %>
