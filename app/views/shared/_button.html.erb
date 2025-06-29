@@ -9,7 +9,7 @@
 
 <% if element == 'a' %>
   <%= tag.a href: go_to, 
-    class: "btn #{'btn__' + variant} #{even_padding} flex ai-center radius-lg #{class_name}", 
+    class: "btn #{'btn__' + variant} #{even_padding} flex ai-center radius-lg gap-1 #{class_name}", 
     data: data do %>
     <% if local_assigns[:icon] %>
       <%= render "shared/icon", name: icon %>
@@ -18,7 +18,7 @@
   <% end %>
 <% else %>
   <%= tag.button type: type, 
-    class: "btn #{'btn__' + variant} #{even_padding} flex ai-center radius-lg #{class_name}", 
+    class: "btn #{'btn__' + variant} #{even_padding} flex ai-center radius-lg gap-1 #{class_name}", 
     data: data do %>
     <% if local_assigns[:icon] %>
       <%= render "shared/icon", name: icon %>

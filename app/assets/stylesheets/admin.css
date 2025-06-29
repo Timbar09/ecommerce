@@ -252,10 +252,6 @@
   z-index: 10;
 }
 
-.admin__content--header .btn {
-  gap: 0.5rem;
-}
-
 @media (max-width: 34em) {
 .admin__content--header .btn span {
     display: none;
