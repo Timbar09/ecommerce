@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
   devise_for :users
-  devise_for :admins
 
-  authenticated :admin_user do
-    root to: "admin#index", as: :admin_root
-  end
+  resources :orders, only: [ :index, :show ]
+  resources :products, only: [ :index, :show ]
+  resources :categories, only: [ :index, :show ]
+
+  get "admin" => "admin#index", as: :admin_dashboard
+  get "user/:id" => "admin#show", as: :admin_user
+
+  # authenticated :admin_user do
+  #   root to: "admin#index", as: :admin_root
+  # end
 
   namespace :admin do
     resources :orders
@@ -27,11 +33,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "home#index"
 
-  resources :categories, only: [ :show ]
-  resources :products, only: [ :show ]
+  # resources :categories, only: [ :show ]
+  # resources :products, only: [ :show ]
 
-  get "admin" => "admin#index"
-  get "admins/:id" => "admin#show", as: :admin_show
   get "cart" => "carts#show"
   post "checkout" => "checkouts#create"
   get "success" => "checkouts#success"
