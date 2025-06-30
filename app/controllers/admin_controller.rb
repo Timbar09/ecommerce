@@ -1,10 +1,11 @@
 class AdminController < ApplicationController
-  layout "admin"
-  before_action :authenticate_admin!
+  # layout "admin"
+  # before_action :require_admin
+  # before_action :authenticate_user!
   before_action :set_admin, only: %i[ show ]
 
   def index
-    @admins = Admin.all
+    @admins = User.where(role: "admin").order(created_at: :desc).take(5)
     @orders = Order.where(fulfilled: false).order(created_at: :desc).take(5)
 
     @quick_stats = [
@@ -36,7 +37,7 @@ class AdminController < ApplicationController
     end
 
     @order_headers = [ :id, :name, :created_at, :total ]
-    @order_actions = [ { path: ->(order) { admin_order_path(order) }, name: "View Order" } ]
+    @order_actions = [ { path: ->(order) { order_path(order) }, name: "View Order" } ]
 
     @products_by_price_range = Product.all.group_by { |product| product.price.to_i / 50 }.map do |price_range, products|
       [ "#{price_range * 50} - #{(price_range + 1) * 50}", products.count ]
@@ -72,6 +73,15 @@ class AdminController < ApplicationController
   private
 
   def set_admin
-    @admin = Admin.find(current_admin.id)
+    @admin = User.find(params[:id])
+    # unless @admin.role == "admin"
+    #   redirect_to admin_dashboard_path, alert: "You are not authorized to view this page."
+    # end
+  end
+
+  def require_admin
+    unless current_user&.role == "admin"
+      redirect_to root_path, alert: "You are not authorized to access this page."
+    end
   end
 end
