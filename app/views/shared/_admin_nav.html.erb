@@ -1,7 +1,7 @@
 <nav class="admin__nav flex" data-controller="nav-expand" data-nav-expand-target="nav">
   <div class="admin__nav--top jc-between ai-center gap-1 px-2 pt-2 pb-3">
     <div class="admin__nav--logo ai-center gap-1">
-      <a href="<%= admin_path %>" class="grid">
+      <a href="<%= admin_dashboard_path %>" class="grid">
         <img src="https://images.unsplash.com/photo-1615915468538-0fbd857888ca?q=80&w=1968&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Ecom logo" class="admin__nav--logo__image radius-circle">
       </a>
 
@@ -23,11 +23,11 @@
   <span class="admin__nav--separator"></span>
 
   <% nav_items = [
-    { path: admin_path, icon: 'squares', text: 'Dashboard' },
+    { path: admin_dashboard_path, icon: 'squares', text: 'Dashboard' },
     { path: admin_products_path, icon: 'cube', text: 'Products' },
     { path: admin_categories_path, icon: 'list', text: 'Categories' },
     { path: admin_orders_path, icon: 'truck', text: 'Orders' },
-    { path: admin_show_path(current_admin), icon: 'user', text: 'Profile' }
+    { path: admin_user_path(current_user), icon: 'user', text: 'Profile' }
   ] %>
 
   <div class="admin__nav--list__container">
@@ -66,7 +66,7 @@
         <span class="admin__nav--link__text">Shop</span>
       <% end %>
 
-      <%= button_to destroy_admin_session_path, 
+      <%= button_to destroy_user_session_path, 
       method: :delete, 
       class: "admin__nav--link flex gap-1 ai-center radius-lg" do %>
         <%= render 'shared/icon', name: 'sign-out' %>

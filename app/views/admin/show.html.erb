@@ -15,7 +15,7 @@
 
   <div class="admin__content--profile__actions flex gap-1">
     <li>
-      <%= link_to edit_admin_registration_path, class: "btn btn__tertiary", title: "Edit" do %>
+      <%= link_to edit_user_registration_path(@admin), class: "btn btn__tertiary", title: "Edit" do %>
         <%= render "shared/icon", name: "edit" %>
       <% end %>
     </li>

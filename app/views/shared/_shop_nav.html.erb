@@ -53,7 +53,9 @@
         </li>
 
         <%# Takes us to the admin dashboard for now %>
-        <li><a href="/admin"><%= render "shared/icon", name: "user" %></a></li>
+        <li><%= link_to admin_dashboard_path do %>
+            <%= render "shared/icon", name: "user" %>
+          <% end %></li>
       </ul>
     </div>
   </div>
