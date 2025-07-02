@@ -68,12 +68,13 @@ class AdminController < ApplicationController
   end
 
   def show
+    @users = User.order(created_at: :desc)
   end
 
   private
 
   def set_admin
-    @admin = User.find(params[:id])
+    @admin = current_user if current_user&.role == "admin" || current_user&.role == "super_admin"
     # unless @admin.role == "admin"
     #   redirect_to admin_dashboard_path, alert: "You are not authorized to view this page."
     # end

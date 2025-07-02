@@ -5,19 +5,27 @@
 
   <div class="admin__content--profile flex gap-1">
     <div class="admin__content--profile__image">
-      <%= image_tag "https://via.placeholder.com/250", class: "admin__content--profile__image" %>
+      <%= image_tag @admin.display_thumb_image, class: "admin__content--profile__image" %>
     </div>
 
     <div class="admin__content--profile__info">
-      <p class="admin__content--profile__email"><%= @admin.email %></p>
+      <p class="admin__content--profile__email"><%= @admin.role %></p>
     </div>
   </div>
 
   <div class="admin__content--profile__actions flex gap-1">
     <li>
-      <%= link_to edit_user_registration_path(@admin), class: "btn btn__tertiary", title: "Edit" do %>
+      <%= link_to edit_user_registration_path, class: "btn btn__tertiary", title: "Edit" do %>
         <%= render "shared/icon", name: "edit" %>
       <% end %>
     </li>
   </div>
+
+  <ul class="">
+    <% @users.each do |user| %>
+      <li>
+        <strong>Name:</strong> <%= user.first_name %>
+      </li>
+    <% end %>
+  </ul>
 </section>
