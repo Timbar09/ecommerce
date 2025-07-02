@@ -52,10 +52,14 @@
           <% end %>
         </li>
 
-        <%# Takes us to the admin dashboard for now %>
-        <li><%= link_to admin_dashboard_path do %>
-            <%= render "shared/icon", name: "user" %>
-          <% end %></li>
+        <%# Takes us to the admin dashboard if the user is signed in as an admin %>
+        <% if user_signed_in? && (current_user.role == "admin" || current_user.role == "super_admin") %>
+          <li>
+            <%= link_to admin_dashboard_path do %>
+              <%= render "shared/icon", name: "user" %>
+            <% end %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>
