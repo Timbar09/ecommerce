@@ -1,0 +1,39 @@
+<%= tag.div class: "form__step form__step__two flex flex-col gap-1 pr-2", 
+  data: { form_target: "stepTwo" } do %>
+  <div class="form__field p-1 radius-lg">
+    <%= f.label :phone, "Phone Number <em>(Include Country Code)</em>".html_safe %><br />
+    <%= f.telephone_field :phone, placeholder: "Phone Number", required: true %>
+  </div>
+
+  <div class="form__field p-1 radius-lg">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autocomplete: "email", placeholder: "Email address" %>
+  </div>
+
+  <div class="form__field p-1 radius-lg">
+    <%= f.label :password do %>
+      Password 
+      <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password" %>
+  </div>
+
+  <div class="form__field p-1 radius-lg">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm password" %>
+  </div>
+
+  <%= tag.div class: "form__actions flex jc-between" do %>
+    <%= render "shared/button", 
+      variant: "tertiary", 
+      class_name: "form__next-step", 
+      title: "Previous Step",
+      icon: "arrow-left",
+      data: { form_target: "prev" }
+    %>
+
+    <%= f.submit "Sign up", class: "btn btn__primary" %>
+  <% end %>
+<% end %>
