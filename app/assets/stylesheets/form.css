@@ -17,6 +17,10 @@
   overflow: hidden;
 }
 
+.form__user--edit {
+  max-width: 100%;
+}
+
 .form__step {
   transition: left 500ms ease, opacity 200ms ease;
 }

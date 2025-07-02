@@ -1,17 +1,76 @@
 <section>
   <div class="container form__container flex flex-col jc-center p-2">
-    <h2 class="form__title">Edit <%= resource_name.to_s.humanize %> Account<span>.</span></h2>
+    <h2 class="form__title">
+      Edit <%= resource_name.to_s.humanize %> Account
+      <span>.</span> <%# Remember to change this to the correct resource name (either user or admin) %>
+    </h2>
 
-    <%= form_with(method: resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "form flex flex-col gap-1" }) do |f| %>
+    <%= form_with(
+      model: resource, 
+      as: resource_name, 
+      url: registration_path(resource_name), 
+      html: { method: :put, class: "form form__user--edit flex flex-col gap-2" },
+    ) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
-      <div class="form__field p-1 radius-lg">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email address" %>
-      </div>
+      <%= tag.div class: "form__user--edit__image flex flex-col gap-1" do %>
+        <%= tag.div class: "form__field p-2 radius-lg flex ai-start gap-2" do %>
+          <%= image_tag resource.display_medium_image, class: "form__user--edit__image radius-circle" %>
 
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <div class="file__container flex ai-center gap-1 flex-1">
+            <label for="user_image" class="btn btn__tertiary" tabindex="0">
+              Upload New Photo
+            </label>
+            <%= f.file_field :images, id: "user_image" %>
+          </div>
+        <% end %>
+      <% end %>
+
+      <%# ----------------------------------------------------------------------- %>
+
+      <%= tag.div class: "flex gap-2" do %>
+        <%= tag.div class: "flex flex-col gap-1 flex-1" do %>
+          <div class="form__field p-1 radius-lg">
+            <%= f.label :first_name, "First Name" %>
+            <%= f.text_field :first_name, placeholder: "First Name", required: true, autofocus: true %>
+          </div>
+
+          <div class="form__field p-1 radius-lg">
+            <%= f.label :last_name, "Last Name" %>
+            <%= f.text_field :last_name, placeholder: "Last Name", required: true %>
+          </div>
+
+          <div class="form__field p-1 radius-lg">
+            <%= f.label :username, "Username" %>
+            <%= f.text_field :username, placeholder: "Username", required: true %>
+          </div>
+        <% end %>
+
+        <%# ----------------------------------------------------------------------- %>
+
+        <%= tag.div class: "flex flex-col gap-1 flex-1" do %>
+          <div class="form__field p-1 radius-lg">
+            <%= f.label :phone, "Phone Number <em>(Include Country Code)</em>".html_safe %><br />
+            <%= f.telephone_field :phone, placeholder: "Phone Number" %>
+          </div>
+
+          <div class="form__field p-1 radius-lg">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email address" %>
+          </div>
+
+          <%# Can Can should be applied to restrict access to this field to admins only %>
+          <div class="form__field p-1 radius-lg">
+            <% roles = ["admin", "user"] %>
+
+            <%= f.label :role %><br />
+            <%= f.select :role, options_for_select(roles, resource.role), {}, { class: "form__select" } %>
+          </div>
+
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
+        <% end %>
       <% end %>
 
       <div class="form__field p-1 radius-lg">
@@ -35,14 +94,14 @@
         <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "Current password" %>
       </div>
 
-      <div class="form__actions flex jc-end">
+      <%= tag.div class: "form__actions flex jc-end" do %>
         <%= f.submit "Update", class: "btn btn__primary" %>
-      </div>
-    <% end %>
+      <% end %>
 
-    <h3 class="form__cancel-account p-1 flex ai-center gap-1">
-      Unhappy with your account? 
-      <%= button_to "Cancel account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "form__link--primary" %>
-    </h3>
+      <h3 class="form__cancel-account p-1 flex ai-center gap-1">
+        Unhappy with your account? 
+        <%= button_to "Cancel account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "form__link--primary" %>
+      </h3>
+    <% end %>
   </div>
 </section>
