@@ -2,6 +2,7 @@ class Product < ApplicationRecord
   has_many_attached :images do |attachable|
     attachable.variant :thumb, resize_to_limit: [ 50, 50 ]
     attachable.variant :small, resize_to_limit: [ 100, 100 ]
+    attachable.variant :medium, resize_to_limit: [ 250, 250 ]
     attachable.variant :large, resize_to_limit: [ 500, 500 ]
   end
 
@@ -21,6 +22,12 @@ class Product < ApplicationRecord
     else
       "https://via.placeholder.com/50"
     end
+  end
+
+  def display_medium_image
+    respond_to?(:images) && images.any? ?
+      images.first.variant(:medium) :
+      "https://via.placeholder.com/300"
   end
 
   def display_small_image

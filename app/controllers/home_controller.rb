@@ -5,5 +5,8 @@ class HomeController < ApplicationController
     ransack_query(Product)
     @products = @q.result(distinct: true)
     @categories = Category.all
+
+    @hero_product = Product.find_by(id: 8) || Product.first
+    @hero_product_category = @hero_product.category
   end
 end

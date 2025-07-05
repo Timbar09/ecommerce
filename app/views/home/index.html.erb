@@ -1,20 +1,34 @@
-<header class="home__header py-4">
-  <div class="container flex jc-around ai-center">
-    <div class="home__header--text">
-      <h1 class="">Welcome to Ecom</h1>
+<header class="shop__home--header">
+  <div class="shop__home--header__container container flex gap-3">
+    <div class="shop__home--header__hero radius-xl p-3">
+      <div class="shop__home--header__hero--text-and-image flex gap-2">
+        <div class="shop__home--header__hero--text flex-1 pr-2">
+          <h1 class="shop__home--header__hero--title">BIG SALE!</h1>
 
-      <p class="">Your one stop shop for all things ecommerce</p>
+          <p class="shop__home--header__hero--description">
+            <%= @hero_product.description %>
+          </p>
+        </div>
+
+        <div class="shop__home--header__hero--image">
+          <%= image_tag @hero_product.display_large_image, alt: @hero_product.name %>
+        </div>
+      </div>
+
+      <div class="shop__home--header__hero--cta flex">
+        <%= render "shared/button", 
+        element: "a",
+        path: category_path(@hero_product_category),
+        variant: "primary",
+        title: @hero_product_category.name
+      %>
+      </div>
     </div>
 
-    <% image_paths = [
-    "https://placehold.co/400x400/CCC/FFF?text=Image+1",
-    "https://placehold.co/400x400/CCC/FFF?text=Image+2",
-    "https://placehold.co/400x400/CCC/FFF?text=Image+3",
-    "https://placehold.co/400x400/CCC/FFF?text=Image+4",
-    "https://placehold.co/400x400/CCC/FFF?text=Image+5"
-] %>
-
-    <%= render "shared/carousel", images: image_paths %>
+    <div class="shop__home--header__side flex flex-col gap-3">
+      <div class="shop__home--header__side--one p-2 radius-xl">Side One</div>
+      <div class="shop__home--header__side--two p-2 radius-xl">Side Two</div>
+    </div>
   </div>
 </header>
 
