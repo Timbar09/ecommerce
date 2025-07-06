@@ -41,4 +41,7 @@ Rails.application.routes.draw do
   get "success" => "checkouts#success"
   get "cancel" => "checkouts#cancel"
   post "webhooks" => "webhooks#stripe"
+
+  # Remove the following line if you don't want to use the icons page
+  get "icons" => "icons#index", as: :icons
 end
