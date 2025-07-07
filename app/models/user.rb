@@ -14,7 +14,15 @@ class User < ApplicationRecord
     avatar.attached? ? avatar.variant(:thumb) : "https://via.placeholder.com/50"
   end
 
+  def display_small_image
+    avatar.attached? ? avatar.variant(:thumb) : "https://via.placeholder.com/100"
+  end
+
   def display_medium_image
-    avatar.attached? ? avatar.variant(:medium) : "https://via.placeholder.com/150"
+    avatar.attached? ? avatar.variant(:medium) : "https://via.placeholder.com/250"
+  end
+
+  def display_full_name
+    "#{first_name} #{last_name}".strip
   end
 end
