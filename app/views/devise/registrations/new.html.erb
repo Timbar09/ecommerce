@@ -3,7 +3,7 @@
     <h2 class="form__title">Create New Admin Account<span>.</span></h2>
 
     <%- if controller_name != 'sessions' %>
-      <p>Already have an account? <%= link_to "Log in", new_session_path(resource_name), class: "form__link--primary" %>.</p>
+      <p>Already have an account? <%= link_to "Sign in", new_session_path(resource_name), class: "form__link--primary" %>.</p>
     <% end %>
 
     <%= form_with(

@@ -21,7 +21,7 @@
             <label for="user_image" class="btn btn__tertiary" tabindex="0">
               Upload New Photo
             </label>
-            <%= f.file_field :images, id: "user_image" %>
+            <%= f.file_field :avatar, id: "user_image" %>
           </div>
         <% end %>
       <% end %>
@@ -61,10 +61,12 @@
 
           <%# Can Can should be applied to restrict access to this field to admins only %>
           <div class="form__field p-1 radius-lg">
-            <% roles = ["admin", "user"] %>
-
             <%= f.label :role %><br />
-            <%= f.select :role, options_for_select(roles, resource.role), {}, { class: "form__select" } %>
+            <%= f.select :role, 
+              User::ROLES.map { |role| [role.humanize, role] }, 
+              {}, 
+              { class: "form__select" } 
+            %>
           </div>
 
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -75,7 +77,7 @@
 
       <div class="form__field p-1 radius-lg">
         <%= f.label :password do %>
-          password <em>(leave blank if you don't want to change it)</em>
+          Password <em>(leave blank if you don't want to change it)</em>
         <% end %><br />
         <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password" %>
         <% if @minimum_password_length %>
