@@ -5,7 +5,7 @@
 
   <div class="admin__content--profile flex gap-1">
     <div class="admin__content--profile__image">
-      <%= image_tag @admin.display_thumb_image, class: "admin__content--profile__image" %>
+      <%= image_tag @admin.display_medium_image, class: "admin__content--profile__image" %>
     </div>
 
     <div class="admin__content--profile__info">
@@ -22,9 +22,18 @@
   </div>
 
   <ul class="">
+    <li class="admin__content--admin__list--header flex gap-1">
+      <strong class="flex-1">Profile Picture</strong>
+      <strong class="flex-1">Name</strong>
+      <strong class="flex-1">Role</strong>
+    </li>
     <% @users.each do |user| %>
-      <li>
-        <strong>Name:</strong> <%= user.first_name %>
+      <li class="flex gap-1">
+        <div class="flex-1">
+          <%= image_tag user.display_thumb_image, style: "max-width: 50px; max-height: 50px;" %>
+        </div>
+        <span class="flex-1"><%= user.first_name %></span>
+        <span class="flex-1"><%= user.role.humanize %></span>
       </li>
     <% end %>
   </ul>
