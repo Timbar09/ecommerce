@@ -54,6 +54,11 @@ export default class extends Controller {
   }
 
   checkout() {
+    if (!this.cartAuthenticated) {
+      window.location.href = "/users/sign_in";
+      return;
+    }
+    
     const cart = JSON.parse(localStorage.getItem('cart'))
     const payload = { authenticity_token: "", cart: cart }
 

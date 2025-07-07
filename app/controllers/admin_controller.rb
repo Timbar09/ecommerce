@@ -1,7 +1,7 @@
 class AdminController < ApplicationController
   # layout "admin"
-  # before_action :require_admin
-  # before_action :authenticate_user!
+  before_action :require_admin
+  before_action :authenticate_user!
   before_action :set_admin, only: %i[ show ]
 
   def index
