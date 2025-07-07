@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   background-color: #f8f9fa6e;
-  border-bottom: 1px solid #dee2e6;
+  backdrop-filter: blur(10px);
   z-index: 1000;
 }
 
@@ -70,4 +70,65 @@
   border-color: var(--bg-clr-4);
   background-color: var(--bg-clr-1);
   box-shadow: none;
+}
+
+.shop__nav--profile {
+  position: relative;
+}
+
+.shop__nav--profile__button {
+  --dimension: 2.5rem;
+
+  padding: 0;
+  border: none;
+  width: var(--dimension);
+  height: var(--dimension);
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.shop__nav--profile__menu {
+  width: max-content;
+}
+
+.shop__nav--profile__menu--item {
+  transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
+}
+.shop__nav--profile__menu--item:hover {
+  background-color: var(--bg-clr-3);
+  color: var(--heading-clr-4);
+}
+
+.shop__nav--profile__menu--item svg {
+  width: 1.25rem;
+}
+
+.shop__nav--profile__menu--header {
+  border-bottom: 1px solid var(--bg-clr-4);
+}
+
+.shop__nav--profile__menu--name {
+  font-size: 1.275rem;
+  font-weight: 600;
+  color: var(--heading-clr-2);
+}
+
+.shop__nav--profile__menu--role {
+  font-size: 0.925rem;
+}
+
+.shop__nav--profile__button--image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  outline: 2px solid var(--bg-clr-4);
+}
+
+.shop__nav--profile__menu--image img {
+  --dimension: 4rem;
+
+  width: var(--dimension);
+  height: var(--dimension);
+  object-fit: cover;
+  border: 2px solid var(--bg-clr-4);
 }

@@ -37,14 +37,17 @@
 
     <div class="shop__nav--right">
       <ul class="flex jc-end gap-2 ai-center">
-        <li>
-          <%= render "shared/button", 
+        <% if !user_signed_in? %>
+          <li>
+            <%= render "shared/button", 
             element: "a",
             path: new_user_session_path,
             variant: "primary", 
             class_name: "shop__nav--login", 
-            title: "Log In" %>
-        </li>
+            title: "Sign In" %>
+          </li>
+        <% end %>
+
         <li><a href="/wishlist"><%= render "shared/icon", name: "heart" %></a></li>
         <li>
           <%= link_to cart_path do %>
@@ -52,11 +55,69 @@
           <% end %>
         </li>
 
-        <%# Takes us to the admin dashboard if the user is signed in as an admin %>
-        <% if user_signed_in? && (current_user.role == "admin" || current_user.role == "super_admin") %>
-          <li>
-            <%= link_to admin_dashboard_path do %>
-              <%= render "shared/icon", name: "user" %>
+        <% if user_signed_in? %>
+          <li class="shop__nav--profile" data-controller="modal">
+            <%= tag.button class: "shop__nav--profile__button radius-circle", 
+              data: { action: "click->modal#toggle" }, 
+              title: "Profile" do %>
+              <%= image_tag current_user.display_medium_image, 
+                alt: "User Avatar", 
+                class: "shop__nav--profile__button--image radius-circle" %>
+              <span class="sr-only">Profile</span>
+            <% end %>
+
+            <%= render "shared/modal" do %>
+              <div class="shop__nav--profile__menu modal__list flex flex-col gap-2 p-1 radius-xl">
+                <header class="shop__nav--profile__menu--header flex gap-2 pb-2">
+                  <div class="shop__nav--profile__menu--image grid">
+                    <%= image_tag current_user.display_medium_image, 
+                    alt: "User Avatar", 
+                    class: "shop__nav--profile__menu--image radius-lg" %>
+                  </div>
+
+                  <div class="shop__nav--profile__menu--info flex flex-col">
+                    <span class="shop__nav--profile__menu--name">
+                      <%= current_user.first_name %>
+                    </span>
+                    <span class="shop__nav--profile__menu--role">
+                      <%= is_admins? ? current_user.role.humanize : current_user.email %>
+                    </span>
+                  </div>
+                </header>
+
+                <% profile_list = [
+                  { name: is_admins? ? "Dashboard" : "Profile", 
+                    path: is_admins? ? admin_dashboard_path : root_path, 
+                    icon: is_admins? ? "layout" : "user" 
+                  },
+                  { name: "Edit Profile", path: edit_user_registration_path, icon: "edit" },
+                  { name: "Settings", path: '#', icon: "gear-6" }
+                ] %>
+                <%# TODO: Implement the Settings functionality %>
+
+                <ul class="shop__nav--profile__menu--list">
+                  <% profile_list.each do |item| %>
+                    <li class="shop__nav--profile__menu--item radius-lg">
+                      <%= tag.a href: item[:path], 
+                        class: "flex ai-center gap-1 py-1 px-1", 
+                        data: { action: "click->modal#toggle" } do %>
+                        <%= render "shared/icon", name: item[:icon] %>
+                        <span><%= item[:name] %></span>
+                      <% end %>
+                    </li>
+                  <% end %>
+                </ul>
+
+                <footer class="shop__nav--profile__menu--footer flex ai-center gap-2">
+                  <%= button_to destroy_user_session_path, 
+                    method: :delete, 
+                    class: "btn btn__primary radius-lg flex ai-center gap-1",
+                    data: { confirm: "Are you sure you want to log out?" } do %>
+                    <%= render "shared/icon", name: "sign-out" %>
+                    <span>Sign Out</span>
+                  <% end %>
+                </footer>
+              </div>
             <% end %>
           </li>
         <% end %>
