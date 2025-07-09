@@ -81,8 +81,8 @@ class AdminController < ApplicationController
   end
 
   def require_admin
-    unless current_user&.role == "admin"
-      redirect_to root_path, alert: "You are not authorized to access this page."
+    unless current_user&.role == "admin" || current_user&.role == "super_admin"
+      redirect_to root_path, alert: "You must be an admin to access this section."
     end
   end
 end
