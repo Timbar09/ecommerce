@@ -1,9 +1,7 @@
 <% content_for :title, "New New Category" %>
 
-<%= render "admin/form_header", page: "Categories" %>
-
-<div class="form__container flex flex-col jc-center p-2">
-  <h2 class="form__title">Add New Category<span>.</span></h2>
+<div class="form__page">
+  <%= render "admin/form_page_header", page: "Categories" %>
 
   <%= render "form", admin_category: @admin_category %>
 </div>

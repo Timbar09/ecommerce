@@ -1,8 +1,17 @@
-<section>
-  <div class="container form__container flex flex-col jc-center p-2">
+ <%= content_for :title, "Resend Unlock Instructions" %>
+
+<section class="form__page">
+  <%= render "admin/form_page_header" %>
+
+  <div class="form__container flex flex-col jc-center p-2">
     <h2 class="form__title">Resend unlock instructions<span>.</span></h2>
 
-    <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
+    <%= form_for(
+      resource, 
+      as: resource_name, 
+      url: unlock_path(resource_name), 
+      html: { method: :post }
+    ) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="field">

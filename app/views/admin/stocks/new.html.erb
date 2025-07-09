@@ -1,9 +1,7 @@
 <% content_for :title, "Add New Stock" %>
 
-<%= render "admin/form_header", page: "stocks" %>
-
-<div class="form__container flex flex-col jc-center p-2">
-  <h2 class="form__title">Add New Stock<span>.</span></h2>
+<div class="form__page">
+  <%= render "admin/form_page_header", page: "stocks" %>
 
   <%= render "form", admin_stock: @admin_stock %>
 </div>

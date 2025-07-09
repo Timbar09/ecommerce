@@ -1,48 +1,54 @@
-<%= form_with(model: [:admin, @admin_category], class: "form flex flex-col gap-1", data: { controller: "image-preview" }) do |form| %>
-  <% if admin_category.errors.any? %>
-    <div class="form__errors">
-      <h2><%= pluralize(admin_category.errors.count, "error") %> prohibited this admin_category from being saved:</h2>
+<% form_title = @admin_category.new_record? ? "Add New Category" : "Edit Category" %>
 
-      <ul>
-        <% admin_category.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="form__container flex flex-col jc-center p-2">
+  <h2 class="form__title"><%= form_title %><span>.</span></h2>
 
-  <div class="form__field p-1 radius-lg">
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name, autofocus: true, required: true, placeholder: "Category name" %>
-  </div>
+  <%= form_with(model: [:admin, @admin_category], class: "form flex flex-col gap-1", data: { controller: "image-preview" }) do |form| %>
+    <% if admin_category.errors.any? %>
+      <div class="form__errors">
+        <h2><%= pluralize(admin_category.errors.count, "error") %> prohibited this admin_category from being saved:</h2>
 
-  <div class="form__field p-1 radius-lg">
-    <%= form.label :description, style: "display: block" %>
-    <%= form.textarea :description, required: true, placeholder: "Category description" %>
-  </div>
-
-  <div class="form__field p-1 radius-lg">
-    <div class="file__container flex ai-center gap-1">
-      <label for="category_image" class="btn btn__secondary" tabindex="0">
-        <%= @admin_category.image.attached? ? "Change Image" : "Upload Image" %>
-      </label>
-      <%= form.file_field :image, id: "category_image", data: { image_preview_target: "input" } %>
-
-      <div id="uploaded-images" class="image__list flex ai-center" data-image-preview-target="preview">
-        No image uploaded
-      </div>
-    </div>
-
-    <% if @admin_category.image.attached? %>
-      <div class="image__list">
-        <div class="image__container">
-          <%= image_tag @admin_category.display_thumb_image, class: "radius-lg" %>
-        </div>
+        <ul>
+          <% admin_category.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
       </div>
     <% end %>
-  </div>
 
-  <div class="form__actions flex jc-end">
-    <%= form.submit(admin_category.new_record? ? "Create Category" : "Update Category", class: "btn btn__primary") %>
-  </div>
-<% end %>
+    <div class="form__field p-1 radius-lg">
+      <%= form.label :name, style: "display: block" %>
+      <%= form.text_field :name, autofocus: true, required: true, placeholder: "Category name" %>
+    </div>
+
+    <div class="form__field p-1 radius-lg">
+      <%= form.label :description, style: "display: block" %>
+      <%= form.textarea :description, required: true, placeholder: "Category description" %>
+    </div>
+
+    <div class="form__field p-1 radius-lg">
+      <div class="file__container flex ai-center gap-1">
+        <label for="category_image" class="btn btn__secondary" tabindex="0">
+          <%= @admin_category.image.attached? ? "Change Image" : "Upload Image" %>
+        </label>
+        <%= form.file_field :image, id: "category_image", data: { image_preview_target: "input" } %>
+
+        <div id="uploaded-images" class="image__list flex ai-center" data-image-preview-target="preview">
+          No image uploaded
+        </div>
+      </div>
+
+      <% if @admin_category.image.attached? %>
+        <div class="image__list">
+          <div class="image__container">
+            <%= image_tag @admin_category.display_thumb_image, class: "radius-lg" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="form__actions flex jc-end">
+      <%= form.submit(admin_category.new_record? ? "Create Category" : "Update Category", class: "btn btn__primary") %>
+    </div>
+  <% end %>
+</div>

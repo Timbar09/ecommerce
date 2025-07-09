@@ -1,4 +1,4 @@
-<%= tag.div class: "form__step form__step__one flex flex-col gap-1 step__active", 
+<%= tag.div class: "form__step form__step__one flex flex-col gap-1 p-2 step__active", 
   data: { form_target: "stepOne" } do %>
   <div class="form__field p-1 radius-lg">
     <%= f.label :first_name, "First Name" %>
@@ -20,12 +20,7 @@
     <%= f.file_field :avatar, accept: "image/*" %>
   </div>
 
-  <%# For now, the role is hardcoded to 'user' and the field is hidden %>
-  <% f.hidden_field :role, value: "user" %>
-  <%# <div class="form__field p-1 radius-lg"> %>
-  <%# f.label :role %>
-  <%# f.select :role, User::ROLES.map { |r| [r.titleize, r] }, {}, { class: "form__select" } %>
-  <%# </div> %>
+  <%= f.hidden_field :role, value: "user" %>
 
   <div class="flex jc-end">
     <%= render "shared/button", 

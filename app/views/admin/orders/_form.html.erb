@@ -1,37 +1,43 @@
-<%= form_with(model: [:admin, @admin_order]) do |form| %>
-  <% if admin_order.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(admin_order.errors.count, "error") %> prohibited this admin_order from being saved:</h2>
+<% form_title = @admin_order.new_record? ? "Add New Order" : "Edit Order" %>
 
-      <ul>
-        <% admin_order.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<div class="form__container flex flex-col jc-center p-2">
+  <h2 class="form__title"><%= form_title %><span>.</span></h2>
+
+  <%= form_with(model: [:admin, @admin_order], class: "form flex flex-col gap-1") do |form| %>
+    <% if admin_order.errors.any? %>
+      <div class="form__errors">
+        <h2><%= pluralize(admin_order.errors.count, "error") %> prohibited this admin_order from being saved:</h2>
+
+        <ul>
+          <% admin_order.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form__field p-1 radius-lg">
+      <%= form.label :customer_email, style: "display: block" %>
+      <%= form.text_field :customer_email, autofocus: true, placeholder: "Customer email" %>
+    </div>
+
+    <div class="form__field p-1 radius-lg">
+      <%= form.label :total, style: "display: block" %>
+      <%= form.number_field :total, placeholder: "Total amount" %>
+    </div>
+
+    <div class="form__field p-1 radius-lg">
+      <%= form.label :address, style: "display: block" %>
+      <%= form.text_field :address, placeholder: "Shipping address" %>
+    </div>
+
+    <div class="form__checkbox p-1 flex ai-center gap-1">
+      <%= form.checkbox :fulfilled %>
+      <%= form.label :fulfilled, style: "display: block" %>
+    </div>
+
+    <div class="form__actions flex jc-end">
+      <%= form.submit(admin_order.new_record? ? "Create Order" : "Update Order", class: "btn btn__primary") %>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :customer_email, style: "display: block" %>
-    <%= form.text_field :customer_email %>
-  </div>
-
-  <div>
-    <%= form.label :fulfilled, style: "display: block" %>
-    <%= form.checkbox :fulfilled %>
-  </div>
-
-  <div>
-    <%= form.label :total, style: "display: block" %>
-    <%= form.number_field :total %>
-  </div>
-
-  <div>
-    <%= form.label :address, style: "display: block" %>
-    <%= form.text_field :address %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

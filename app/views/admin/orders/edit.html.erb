@@ -1,12 +1,7 @@
 <% content_for :title, "Editing order" %>
 
-<h1>Editing order</h1>
+<div class="form__page">
+  <%= render "admin/form_page_header", page: "Orders" %>
 
-<%= render "form", admin_order: @admin_order %>
-
-<br>
-
-<div>
-  <%= link_to "Show this order", admin_order_path(@admin_order) %> |
-  <%= link_to "Back to orders", admin_orders_path %>
+  <%= render "form", admin_order: @admin_order %>
 </div>

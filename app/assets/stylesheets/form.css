@@ -6,15 +6,22 @@
   transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
 }
 
-.form__header a:hover {
-  color: var(--color-heading);
-  background-color: var(--light-2);
+.form__page--header a:hover {
+  color: var(--heading-clr-2);
+  background-color: var(--bg-clr-2);
+}
+
+.form__container {
+  position: relative;
+  width: 100%;
+  max-width: 35em;
+  margin: 0 auto;
 }
 
 .form {
-  position: relative;
-  max-width: 30em;
   overflow: hidden;
+  border: solid 2px var(--bg-clr-4);
+  border-radius: var(--radius-lg);
 }
 
 .form__user--edit {
@@ -45,6 +52,7 @@
 }
 
 .form__title {
+  font-size: 2.5rem;
   margin-bottom: 1rem;
 }
 
@@ -59,8 +67,8 @@
 }
 
 .form__field {
-  background-color: var(--light-1);
-  border: 2px solid var(--light-2);
+  background-color: var(--bg-clr-1);
+  border: 2px solid var(--bg-clr-3);
   transition: border-color 100ms ease-in-out;
 }
 
@@ -136,6 +144,10 @@
   height: 4em;
 }
 
+.form__field select {
+  font-family: inherit;
+}
+
 .form__field select:invalid {
   color: var(--grey-3);
 }
@@ -156,6 +168,11 @@
   border: 2px solid var(--grey-3);
   border-radius: 50%;
   rotate: 45deg;
+  transition: scale 100ms ease-in-out;
+}
+
+.form__checkbox input:hover {
+  scale: 1.25;
 }
 
 .form__checkbox input:checked {

@@ -1,5 +1,9 @@
-<section>
-  <div class="container form__container flex flex-col jc-center p-2">
+<% content_for :title, "Change Password" %>
+
+<section class="form__page">
+  <%= render "admin/form_page_header" %>
+
+  <div class="form__container flex flex-col jc-center p-2">
     <h2 class="form__title">Change your password<span>.</span></h2>
 
     <%= form_with(model: resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "form flex flex-col gap-1" }) do |f| %>

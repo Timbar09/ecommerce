@@ -1,76 +1,82 @@
-<%= form_with(model: [:admin, @admin_product], class: "form flex flex-col gap-1", data: { controller: "image-preview" }) do |form| %>
-  <% if admin_product.errors.any? %>
-    <div class="form__errors">
-      <h2><%= pluralize(admin_product.errors.count, "error") %> prohibited this admin_product from being saved:</h2>
+<% form_title = @admin_product.new_record? ? "Add New Product" : "Edit Product" %>
 
-      <ul>
-        <% admin_product.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<div class="form__container flex flex-col jc-center p-2">
+  <h2 class="form__title"><%= form_title %><span>.</span></h2>
+
+  <%= form_with(model: [:admin, @admin_product], class: "form flex flex-col gap-1", data: { controller: "image-preview" }) do |form| %>
+    <% if admin_product.errors.any? %>
+      <div class="form__errors">
+        <h2><%= pluralize(admin_product.errors.count, "error") %> prohibited this admin_product from being saved:</h2>
+
+        <ul>
+          <% admin_product.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form__flex flex gap-1">
+      <div class="form__field p-1 radius-lg flex-1">
+        <%= form.label :name, style: "display: block" %>
+        <%= form.text_field :name, autofocus: true, required: true, placeholder: "Product name" %>
+      </div>
+
+      <div class="form__field p-1 radius-lg flex-1">
+        <%= form.label :category_id, style: "display: block" %>
+        <%= form.collection_select :category_id, Category.order(:name), :id, :name, { include_blank: "Select a category" }, { required: true } %>
+      </div>
+    </div>
+
+    <div class="form__field p-1 radius-lg">
+      <%= form.label :description, style: "display: block" %>
+      <%= form.textarea :description, required: true, placeholder: "Product description" %>
+    </div>
+
+    <div class="form__field px-1 py-1 radius-lg">
+      <div class="file__container flex ai-center gap-1">
+        <label for="product_images" class="btn btn__tertiary" tabindex="0">
+          <%= @admin_product.images.attached? ? "Change Image(s)" : "Upload Image(s)" %>
+        </label>
+        <%= form.file_field :images, multiple: true, id: "product_images", data: { image_preview_target: "input" } %>
+
+        <div id="uploaded-images" class="image__list flex ai-center" data-image-preview-target="preview">
+          No images uploaded
+        </div>
+      </div>
+
+      <% if @admin_product.images.attached? %>
+        <div class="image__list flex">
+          <% @admin_product.images.each_with_index do |image, index| %>
+            <div class="image__container">
+              <%= label_tag "image_#{index}", tabindex: 0 do %>
+                <%= check_box_tag "product[remove_images][]", image.id, false, id: "image_#{index}" %>
+                <%= image_tag image.variant(:thumb), class: "radius-lg" %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="form__field p-1 radius-lg flex-1">
+      <%= form.label :price, style: "display: block" %>
+      <%= form.number_field :price, required: true, placeholder: "Product price" %>
+    </div>
+
+    <div class="form__checkbox p-1 flex ai-center gap-1">
+      <%= form.checkbox :active %>
+      <%= form.label :active, style: "display: block" %>
+    </div>
+
+    <div class="form__actions flex jc-end ai-center gap-1 flex-wrap">
+      <% if @admin_product.persisted? %>
+        <div class="p-1">
+          <%= link_to "Manage Stock", admin_product_stock_path(@admin_product), class: "btn btn__secondary" %>
+        </div>
+      <% end %>
+
+      <%= form.submit(@admin_product.new_record? ? "Create Product" : "Update Product", class: "btn btn__primary") %>
     </div>
   <% end %>
-
-  <div class="form__flex flex gap-1">
-    <div class="form__field p-1 radius-lg flex-1">
-      <%= form.label :name, style: "display: block" %>
-      <%= form.text_field :name, autofocus: true, required: true, placeholder: "Product name" %>
-    </div>
-
-    <div class="form__field p-1 radius-lg flex-1">
-      <%= form.label :category_id, style: "display: block" %>
-      <%= form.collection_select :category_id, Category.order(:name), :id, :name, { include_blank: "Select a category" }, { required: true } %>
-    </div>
-  </div>
-
-  <div class="form__field p-1 radius-lg">
-    <%= form.label :description, style: "display: block" %>
-    <%= form.textarea :description, required: true, placeholder: "Product description" %>
-  </div>
-
-  <div class="form__field px-1 py-1 radius-lg">
-    <div class="file__container flex ai-center gap-1">
-      <label for="product_images" class="btn btn__tertiary" tabindex="0">
-        <%= @admin_product.images.attached? ? "Change Image(s)" : "Upload Image(s)" %>
-      </label>
-      <%= form.file_field :images, multiple: true, id: "product_images", data: { image_preview_target: "input" } %>
-
-      <div id="uploaded-images" class="image__list flex ai-center" data-image-preview-target="preview">
-        No images uploaded
-      </div>
-    </div>
-
-    <% if @admin_product.images.attached? %>
-      <div class="image__list flex">
-        <% @admin_product.images.each_with_index do |image, index| %>
-          <div class="image__container">
-            <%= label_tag "image_#{index}", tabindex: 0 do %>
-              <%= check_box_tag "product[remove_images][]", image.id, false, id: "image_#{index}" %>
-              <%= image_tag image.variant(:thumb), class: "radius-lg" %>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-
-  <div class="form__field p-1 radius-lg flex-1">
-    <%= form.label :price, style: "display: block" %>
-    <%= form.number_field :price, required: true, placeholder: "Product price" %>
-  </div>
-
-  <div class="form__checkbox p-1 flex ai-center gap-1">
-    <%= form.checkbox :active %>
-    <%= form.label :active, style: "display: block" %>
-  </div>
-
-  <div class="form__actions flex jc-end ai-center gap-1 flex-wrap">
-    <% if @admin_product.persisted? %>
-      <div class="p-1">
-        <%= link_to "Manage Stock", admin_product_stock_path(@admin_product), class: "btn btn__secondary" %>
-      </div>
-    <% end %>
-
-    <%= form.submit(@admin_product.new_record? ? "Create Product" : "Update Product", class: "btn btn__primary") %>
-  </div>
-<% end %>
+</div>

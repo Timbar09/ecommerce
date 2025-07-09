@@ -1,27 +1,33 @@
-<%= form_with(model: [:admin, @product, admin_stock], class: "form flex flex-col gap-1") do |form| %>
-  <% if admin_stock.errors.any? %>
-    <div class="form__errors">
-      <h2><%= pluralize(admin_stock.errors.count, "error") %> prohibited this admin_stock from being saved:</h2>
+<% form_title = @admin_stock.new_record? ? "Add New Stock for #{@product.name}" : "Edit Stock for #{@product.name}" %>
 
-      <ul>
-        <% admin_stock.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<div class="form__container flex flex-col jc-center p-2">
+  <h2 class="form__title"><%= form_title %><span>.</span></h2>
+
+  <%= form_with(model: [:admin, @product, admin_stock], class: "form flex flex-col gap-1") do |form| %>
+    <% if admin_stock.errors.any? %>
+      <div class="form__errors">
+        <h2><%= pluralize(admin_stock.errors.count, "error") %> prohibited this admin_stock from being saved:</h2>
+
+        <ul>
+          <% admin_stock.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form__field p-1 radius-lg flex-1">
+      <%= form.label :size, style: "display: block" %>
+      <%= form.text_field :size, required: true, placeholder: "Stock size" %>
+    </div>
+
+    <div class="form__field p-1 radius-lg flex-1">
+      <%= form.label :quantity, style: "display: block" %>
+      <%= form.number_field :quantity, required: true, placeholder: "Stock quantity" %>
+    </div>
+
+    <div class="form__actions flex jc-end">
+      <%= form.submit(@admin_stock.new_record? ? "Create Stock" : "Update Stock", class: "btn btn__primary") %>
     </div>
   <% end %>
-
-  <div class="form__field p-1 radius-lg flex-1">
-    <%= form.label :size, style: "display: block" %>
-    <%= form.text_field :size, required: true, placeholder: "Stock size" %>
-  </div>
-
-  <div class="form__field p-1 radius-lg flex-1">
-    <%= form.label :quantity, style: "display: block" %>
-    <%= form.number_field :quantity, required: true, placeholder: "Stock quantity" %>
-  </div>
-
-  <div class="form__actions flex jc-end">
-    <%= form.submit(@admin_stock.new_record? ? "Create Stock" : "Update Stock", class: "btn btn__primary") %>
-  </div>
-<% end %>
+</div>

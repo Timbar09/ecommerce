@@ -1,8 +1,11 @@
-<section>
-  <div class="container form__container flex flex-col jc-center p-2">
+<%= content_for :title, "Edit Account" %>
+
+<section class="form__page">
+  <%= render "admin/form_page_header" %>
+
+  <div class="form__container flex flex-col jc-center p-2">
     <h2 class="form__title">
-      Edit <%= resource_name.to_s.humanize %> Account
-      <span>.</span> <%# Remember to change this to the correct resource name (either user or admin) %>
+      Edit Account<span>.</span>
     </h2>
 
     <%= form_with(
