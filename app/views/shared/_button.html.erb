@@ -6,10 +6,11 @@
 <% button_shape = local_assigns[:shape] == 'square' ? 'sr-only' : '' %>
 <% even_padding = local_assigns[:shape] == 'square' ? 'btn__shape--square' : '' %>
 <% class_name = local_assigns[:class_name] || '' %>
+<% icon_position = local_assigns[:icon_position] == 'right' ? ' flex-row-reverse' : '' %>
 
 <% if element == 'a' %>
   <%= tag.a href: go_to, 
-    class: "btn #{'btn__' + variant} #{even_padding} flex ai-center radius-lg gap-1 #{class_name}", 
+    class: "btn #{'btn__' + variant} #{even_padding} flex ai-center radius-lg gap-1 #{class_name} #{icon_position}", 
     data: data do %>
     <% if local_assigns[:icon] %>
       <%= render "shared/icon", name: icon %>
