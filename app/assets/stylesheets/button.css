@@ -53,6 +53,7 @@
 }
 .btn__secondary:hover,
 .btn__secondary:focus {
+  border-color: var(--primary);
   background-color: var(--primary);
   color: var(--bg-clr-4);
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
