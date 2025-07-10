@@ -1,13 +1,17 @@
+.shop__main {
+  padding-top: 5rem;
+}
+
 .shop__home--header__container {
   flex-direction: column;
-
+  
   @media (min-width: 50em) {
     flex-direction: row;
   }
 }
 
 .shop__home--header {
-  padding-top: 9rem;
+  padding-top: 4rem;
   min-height: 100vh;
 }
 
@@ -58,11 +62,25 @@
 
 .shop__home--header__side {
   flex: 0.575;
+  flex-direction: column;
+
+  @media (min-width: 32em) {
+    flex-direction: row;
+  }
+
+  @media (min-width: 50em) {
+    flex-direction: column;
+  }
 }
 
 .shop__home--header__side--one {
   flex: 1;
   background-color: #9d7b7b;
+  text-align: center;
+}
+
+.shop__home--header__side--one span {
+  color: var(--primary);
 }
 
 .shop__home--header__side--two {
