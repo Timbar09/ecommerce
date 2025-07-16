@@ -1,0 +1,54 @@
+<header class="shop__home--header">
+  <div class="shop__home--header__container container flex gap-3">
+    <div class="shop__home--header__hero radius-xl p-3">
+      <div class="shop__home--header__hero--text-and-image flex gap-2">
+        <div class="shop__home--header__hero--text flex-1 pr-2">
+          <h1 class="shop__home--header__hero--title">BIG SALE!</h1>
+
+          <p class="shop__home--header__hero--description">
+            <%= @hero_product.description %>
+          </p>
+        </div>
+
+        <div class="shop__home--header__hero--image">
+          <%= image_tag @hero_product.display_large_image, alt: @hero_product.name %>
+        </div>
+      </div>
+
+      <div class="shop__home--header__hero--cta flex">
+        <%= render "shared/button", 
+        element: "a",
+        path: category_path(@hero_product_category),
+        variant: "primary",
+        title: @hero_product_category.name
+      %>
+      </div>
+    </div>
+
+    <div class="shop__home--header__side flex gap-3">
+      <div class="shop__home--header__side--one p-3 grid place-center radius-xl">
+        <h2>
+          Get up to <span>50%</span><br/>
+          off on selected items!
+        </h2>
+      </div>
+
+      <div class="shop__home--header__side--two flex jc-center gap-2 p-3 radius-xl">
+        <div class="flex flex-col jc-between ai-start">
+          <h2><%= @side_product.name %></h2>
+
+          <%= render "shared/button",
+            element: "a",
+            path: product_path(@side_product),
+            variant: "secondary",
+            title: "Shop Now"
+          %>
+        </div>
+
+        <div class="shop__home--header__side--two__image grid place-center">
+          <%= image_tag @side_product.display_small_image, alt: @side_product.name, class: "radius-xl" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

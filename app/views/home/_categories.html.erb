@@ -1,0 +1,33 @@
+<section class="shop__home--category__section py-3">
+  <div class="container">
+    <header class="shop__home--category__header flex jc-between ai-center">
+      <h2 class="shop__home--category__title">Explore popular categories</h2>
+
+      <%= render "shared/button",
+        element: "a",
+        path: categories_path,
+        variant: "tertiary",
+        title: "See all",
+        icon: "arrow-right",
+        icon_position: "right"
+      %>
+    </header>
+
+    <ul class="shop__home--category__list grid gap-2 py-2">
+      <% @popular_categories.each do |category| %>
+        <li class="shop__home--category__item">
+          <a href="/categories/<%= category.id %>" class="p-2 radius-xl">
+            <header class="shop__home--category__item--header">
+            </header>
+
+            <div class="shop__home--category__item--image">
+              <%= image_tag category.display_medium_image, alt: category.name, class: "radius-xl" %>
+            </div>
+
+            <h3 class="shop__home--category__item--title pt-1"><%= category.name %></h3>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</section>

@@ -1,79 +1,20 @@
-<header class="shop__home--header">
-  <div class="shop__home--header__container container flex gap-3">
-    <div class="shop__home--header__hero radius-xl p-3">
-      <div class="shop__home--header__hero--text-and-image flex gap-2">
-        <div class="shop__home--header__hero--text flex-1 pr-2">
-          <h1 class="shop__home--header__hero--title">BIG SALE!</h1>
+<%= render "header" %>
 
-          <p class="shop__home--header__hero--description">
-            <%= @hero_product.description %>
-          </p>
-        </div>
+<%= render "categories" %>
 
-        <div class="shop__home--header__hero--image">
-          <%= image_tag @hero_product.display_large_image, alt: @hero_product.name %>
-        </div>
-      </div>
+<%# Fast Delivery (1-3 days), Money-back guarantee (Within 10 days), Pro Quality Support (24/7 live support) and secure payment (SSL) %>
 
-      <div class="shop__home--header__hero--cta flex">
-        <%= render "shared/button", 
-        element: "a",
-        path: category_path(@hero_product_category),
-        variant: "primary",
-        title: @hero_product_category.name
-      %>
-      </div>
-    </div>
+<%# Featured Product / Summer sale %>
 
-    <div class="shop__home--header__side flex gap-3">
-      <div class="shop__home--header__side--one p-3 grid place-center radius-xl">
-        <h2>
-          Get up to <span>50%</span><br/>
-          off on selected items!
-        </h2>
-      </div>
+<%# Explore our products %>
 
-      <div class="shop__home--header__side--two flex jc-center gap-2 p-3 radius-xl">
-        <div class="flex flex-col jc-between ai-start">
-          <h2><%= @side_product.name %></h2>
+<%# Featured Product / Summer sale %>
 
-          <%= render "shared/button",
-            element: "a",
-            path: product_path(@side_product),
-            variant: "secondary",
-            title: "Shop Now"
-          %>
-        </div>
+<%# Newsletter (Get weekly updates on new products and promotions) %>
 
-        <div class="shop__home--header__side--two__image grid place-center">
-          <%= image_tag @side_product.display_small_image, alt: @side_product.name, class: "radius-xl" %>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
+<%# Testimonials %>
 
-<section class="home__category py-4">
-  <div class="container">
-    <h2 class="sr-only">Categories</h2>
-
-    <ul class="home__category--list flex flex-wrap gap-2">
-      <% @categories.each do |category| %>
-        <li class="home__category--item p-2 radius-xl">
-          <a href="/categories/<%= category.id %>" class="">
-            <header class="home__category--item--header">
-              <h3 class="home__category--item--title"><%= category.name %></h3>
-            </header>
-
-            <div class="home__category--item--image">
-              <%= image_tag category.display_medium_image, alt: category.name %>
-            </div>
-          </a>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-</section>
+<%# Footer %>
 
 <section class="home__testimonial py-4">
   <div class="container">
