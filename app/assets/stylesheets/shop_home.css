@@ -12,7 +12,6 @@
 
 .shop__home--header {
   padding-top: 4rem;
-  min-height: 100vh;
 }
 
 .shop__home--header__hero {
@@ -86,4 +85,31 @@
 .shop__home--header__side--two {
   flex: 1;
   background-color: #b7d3d3;
+}
+
+.shop__home--category__header a span {
+  display: none;
+
+  @media (min-width: 50em) {
+    display: inline;
+  }
+}
+
+.shop__home--category__list {
+  grid-template-columns: repeat(auto-fit, minmax(7.25rem, 1fr));
+}
+
+.shop__home--category__item a {
+  display: block;
+  border: solid 2px var(--bg-clr-3);
+  background-color: var(--bg-clr-2);
+}
+
+.shop__home--category__item--image img {
+  width: 100%;
+  height: auto;
+}
+
+.shop__home--category__item--title {
+  text-align: center;
 }
