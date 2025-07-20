@@ -1,0 +1,19 @@
+<section class="shop__home--feature__section">
+  <div class="container">
+    <h2 class="shop__home--feature__title mb-2">Why Shop With Us?</h2>
+
+    <ul class="shop__home--feature__list gap-2 py-4 grid">
+      <% @features.each do |feature| %>
+        <li class="shop__home--feature__item p-2 radius-lg flex gap-1">
+          <span class="shop__home--feature__icon">
+            <%= render "shared/icon", name: feature[:icon] %>
+          </span>
+          <div class="shop__home--feature__text">
+            <h3><%= feature[:title] %></h3>
+            <p><%= feature[:description] %></p>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</section>
