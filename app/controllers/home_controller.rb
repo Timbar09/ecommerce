@@ -11,5 +11,12 @@ class HomeController < ApplicationController
     @side_product = Product.find_by(id: 5) || Product.last
 
     @popular_categories = Category.limit(4)
+
+    @features = [
+      { title: "Fast Delivery", description: "1-3 days.", icon: "truck" },
+      { title: "Money-back guarantee", description: "Within 10 days.", icon: "banknotes" },
+      { title: "Pro Quality Support", description: "24/7 live support.", icon: "phone" },
+      { title: "Secure payment", description: "SSL.", icon: "shield-check" }
+    ]
   end
 end
