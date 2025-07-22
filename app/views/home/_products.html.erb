@@ -1,0 +1,22 @@
+<section class="shop__home--product__section py-3">
+  <div class="container">
+    <header class="shop__home--product__header flex jc-between ai-center">
+      <h2 class="shop__home--product__title">Explore our Products</h2>
+
+      <%= render "shared/button",
+        element: "a",
+        path: products_path,
+        variant: "tertiary",
+        title: "See all",
+        icon: "arrow-right",
+        icon_position: "right"
+      %>
+    </header>
+
+    <ul class="shop__home--product__list grid gap-2 py-2">
+      <% @select_products.each do |product| %>
+        <%= render "shared/card", item: product, container_el: "li", link_to: product_path(product) %>
+      <% end %>
+    </ul>
+  </div>
+</section>
