@@ -8,7 +8,7 @@
 
 <%# Featured Product / Summer sale %>
 
-<%# Newsletter (Get weekly updates on new products and promotions) %>
+<%= render "newsletter" %>
 
 <%# Testimonials %>
 
@@ -31,19 +31,6 @@
         </li>
       <% end %>
     </ul>
-  </div>
-</section>
-
-<section class="home__newsletter py-4">
-  <div class="container">
-    <h2 class="">Stay in the Loop</h2>
-
-    <p class="home__newsletter--description">Sign up for our newsletter to get the latest updates on new products and promotions.</p>
-
-    <form action="/newsletter" method="post" class="home__newsletter--form flex gap-2">
-      <input type="email" name="email" placeholder="Enter your email address" class="home__newsletter--form--input" required>
-      <button type="submit" class="home__newsletter--form--submit">Subscribe</button>
-    </form>
   </div>
 </section>
 

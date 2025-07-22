@@ -167,3 +167,39 @@
     grid-template-columns: repeat(auto-fit, minmax(15.25rem, 1fr));
   }
 }
+
+.shop__home--newsletter__section .container {
+  color: var(--grey-3);
+  background-color: var(--primary);
+}
+
+.shop__home--newsletter__title {
+  color: var(--light-2);
+}
+
+.shop__home--newsletter__content {
+  flex-direction: column;
+
+  @media (min-width: 50em) {
+    flex-direction: row;
+  }
+}
+
+.shop__home--newsletter__form--content,
+.shop__home--newsletter__description {
+  max-width: 32rem;
+}
+
+.shop__home--newsletter__form--content p {
+  font-size: 0.875rem;
+}
+
+.shop__home--newsletter__form--content p a {
+  text-decoration: underline;
+  color: #2196f3;
+  transition: color 100ms ease-in-out;
+}
+
+.shop__home--newsletter__form--content p a:hover {
+  color: #1976d2;
+}

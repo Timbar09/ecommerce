@@ -1,0 +1,36 @@
+<section class="shop__home--newsletter__section py-3 px-2">
+  <div class="container py-3 px-2 radius-xl">
+    <header class="shop__home--newsletter__header">
+      <h2 class="shop__home--newsletter__title">Subscribe to our Newsletter</h2>
+    </header>
+
+    <div class="shop__home--newsletter__content mt-3 radius-xl flex gap-3">
+      <p class="shop__home--newsletter__description m-0 flex-1">
+        Subscribe to our newsletter to get the latest updates, exclusive offers, and more. Don't miss out on our special promotions and new product launches!
+      </p>
+
+      <div class="shop__home--newsletter__form--content flex-1">
+        <form action="/newsletter" method="post" class="shop__home--newsletter__form flex gap-2 mb-2">
+          <div class="form__field p-1 radius-lg flex-1">
+            <input type="email" name="email" placeholder="Enter your email" class="shop__home--newsletter__form--input" required>
+          </div>
+
+          <%= render "shared/button",
+            element: "button",
+            variant: "light",
+            type: "submit",
+            title: "Subscribe"
+          %>
+        </form>
+
+        <p class="shop__home--newsletter__form--privacy m-0">
+          We respect your privacy. Unsubscribe at any time.
+        </p>
+
+        <p class="shop__home--newsletter__form--policy m-0">
+          By subscribing, you agree to our <a href="#" class="text-primary">Privacy Policy</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
