@@ -1,0 +1,36 @@
+<% tag_name = local_assigns[:container_el] || 'div' %>
+<% has_link = local_assigns[:link_to].present? %>
+<% container = if has_link then 'a' else 'div' end %>
+<% container_href = local_assigns[:link_to] || '#' %>
+<% is_product = local_assigns[:item].is_a?(Product) %>
+
+<%= content_tag tag_name, class: "card" do %>
+  <%= content_tag container, 
+    class: "p-2 radius-xl", 
+    href: container_href, 
+    class: "card__container radius-xl p-2",
+    data: { controller: "products" } do %>
+    <header class="card__header p-2">
+    </header>
+
+    <div class="card__image">
+      <%= image_tag item.display_medium_image, alt: item.name, class: "radius-xl" %>
+    </div>
+
+    <footer class="card__footer flex flex-col gap-1">
+      <h3 class="card__title pt-1"><%= item.name %></h3>
+
+      <% if is_product %>
+        <div class="card__info">
+          <div class="card__price">
+            <h4 class="card__price--title">Price</h4>
+
+            <span class="card__price--value">
+              <%= number_to_currency(item.price) %>
+            </span>
+          </div>
+        </div>
+      <% end %>
+    </footer>
+  <% end %>
+<% end %>
