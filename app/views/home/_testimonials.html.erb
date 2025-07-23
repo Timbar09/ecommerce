@@ -1,0 +1,26 @@
+<section class="shop__home--testimonial__section py-3">
+  <div class="container">
+    <h2 class="shop__home--testimonial__title pb-3">What Our Customers Say</h2>
+
+    <ul class="shop__home--testimonial__list grid gap-2">
+      <% @testimonials.each do |testimonial| %>
+        <li class="shop__home--testimonial__item">
+          <p class="shop__home--testimonial__content px-2 pt-2 mb-3">
+            "<%= testimonial[:content] %>"
+          </p>
+
+          <footer class="shop__home--testimonial__author flex flex-col ai-center gap-1">
+            <div class="shop__home--testimonial__author--image radius-circle grid p-1">
+              <img src="<%= testimonial[:image] %>" alt="<%= testimonial[:author] %>'s image" class="p-1" />
+            </div>
+
+            <div class="shop__home--testimonial__author--citation flex flex-col ai-center">
+              <cite class="shop__home--testimonial__author--name">- <%= testimonial[:author] %></cite>
+              <span class="shop__home--testimonial__author--title"><%= testimonial[:title] %></span>
+            </div>
+          </footer>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</section>

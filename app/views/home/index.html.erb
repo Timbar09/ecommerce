@@ -6,32 +6,10 @@
 
 <%= render "products" %>
 
+<%= render "testimonials" %>
+
 <%# Featured Product / Summer sale %>
 
 <%= render "newsletter" %>
-
-<%# Testimonials %>
-
-<%# Footer %>
-
-<section class="home__testimonial py-4">
-  <div class="container">
-    <h2 class="">Trusted by Customers</h2>
-
-    <ul class="home__testimonial--list flex gap-2">
-      <% 0..3.times do %>
-        <li class="p-2 radius-xl">
-          <p class="testimonial__content">
-            "I love shopping on Ecom. They have the best products and the best prices. I would recommend them to anyone looking for a great shopping experience."
-          </p>
-
-          <footer class="testimonial__author">
-            <cite class="testimonial__author--name">- John Doe</cite>
-          </footer>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-</section>
 
 <%= render "shared/footer" %>

@@ -203,3 +203,37 @@
 .shop__home--newsletter__form--content p a:hover {
   color: #1976d2;
 }
+
+.shop__home--testimonial__content {
+  padding-bottom: 3rem;
+  background-color: var(--bg-clr-1);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 var(--radius-xl);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.shop__home--testimonial__list {
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.shop__home--testimonial__author {
+  position: relative;
+  top: -20%;
+}
+
+.shop__home--testimonial__author--image {
+  width: 6rem;
+  background-color: var(--bg-clr-1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.shop__home--testimonial__author--image img {
+  width: 100%;
+  height: auto;
+  border-radius: inherit;
+  border: 2px dashed var(--text-clr-3);
+}
+
+.shop__home--testimonial__author--title {
+  font-size: 0.875rem;
+  color: var(--primary);
+}
