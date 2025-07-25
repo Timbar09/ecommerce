@@ -1,0 +1,33 @@
+<footer class="footer shop__home--section">
+  <div class="container">
+    <%= render "shared/footer/top" %>
+
+    <div class="footer__bottom flex gap-2 ai-center jc-between py-2">
+      <div class="footer__logo">
+        <%= render "shared/logo" %>
+      </div>
+
+      <div class="footer__payment">
+        <h3 class="sr-only">Payment Methods</h3>
+
+        <p class="sr-only">
+          We accept various payment methods for your convenience.
+        </p>
+
+        <ul class="footer__payment--list flex gap-1">
+          <% @footer_links['payment'].each do |payment| %>
+            <li class="footer__payment--item">
+              <%= image_tag asset_path(payment[:image_file]), alt: payment[:name], class: "grid radius-lg" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__copyright">
+      <p class="footer__copyright--text">
+        <%= "© #{Time.current.year} Ecom. All rights reserved." %>
+      </p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,65 @@
+<div class="footer__top flex jc-between gap-2 py-2">
+  <div class="footer__app">
+    <h3 class="footer__subtitle">Download Our App</h3>
+
+    <p class="footer__app--description mt-2">
+      Get the best shopping experience with our mobile app. Available on iOS and Android.
+    </p>
+
+    <ul class="footer__app__list flex gap-1">
+      <% @footer_links['app'].each do |link| %>
+        <li class="footer__app--item">
+          <%= link_to link[:path], class: "flex ai-center gap-2", title: link[:title] do %>
+            <img src="<%= asset_path(link[:image_file]) %>" alt="<%= link[:title] %>" class="radius-lg"/>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="footer__customer">
+    <h3 class="footer__subtitle">Customer Support</h3>
+
+    <ul class="footer__customer__list footer__top--list flex mt-2">
+      <% @footer_links['customer'].each do |link| %>
+        <li class="footer__customer--item">
+          <a href="<%= link[:path] %>" class="footer__link"><%= link[:name] %></a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="footer__company">
+    <h3 class="footer__subtitle">Company</h3>
+
+    <ul class="footer__company__list footer__top--list flex mt-2">
+      <% @footer_links['company'].each do |link| %>
+        <li class="footer__company--item">
+          <a href="<%= link[:path] %>" class="footer__link"><%= link[:name] %></a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="footer__social">
+    <h3 class="footer__subtitle">Follow Us</h3>
+
+    <ul class="footer__social--list footer__top--list flex mt-2">
+      <% @footer_links['social'].each do |social| %>
+        <li class="footer__social--item">
+          <a 
+            href="<%= social[:path] %>" 
+            class="footer__social--link flex ai-center gap-1" 
+            title="Visit our <%= social[:name] %> page" 
+            target="_blank"
+          >
+            <span class="footer__social--icon">
+              <%= image_tag asset_path("icons/#{social[:icon]}.svg"), alt: social[:name], class: "grid" %>
+            </span>
+            <span class="footer__social--handle"><%= social[:handle] %></span>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
