@@ -1,10 +1,7 @@
 <nav class="shop__nav">
   <div class="container py-2 flex ai-center gap-2">
     <div class="shop__nav--left shop__nav--logo">
-      <%= link_to root_path, class: "flex ai-center gap-2", title: "Ecom Logo" do %>
-        <img src="<%= asset_path('logo.png') %>" alt="Ecom Logo" class="shop__nav--logo__image" />
-        <span class="shop__nav--logo__text">Ecom</span>
-      <% end %>
+      <%= render "shared/logo" %>
     </div>
 
     <div class="shop__nav--middle flex ai-center gap-2">

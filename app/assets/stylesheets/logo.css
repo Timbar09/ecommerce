@@ -1,0 +1,15 @@
+
+.logo__image {
+  height: 2rem;
+  width: auto;
+}
+
+.logo__text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--heading-clr-2);
+
+  @media (max-width: 40em) {
+    display: none;
+  }
+}
