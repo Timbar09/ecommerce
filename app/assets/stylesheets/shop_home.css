@@ -2,6 +2,10 @@
   padding-top: 5rem;
 }
 
+.shop__home--section {
+  padding: 2rem 0;
+}
+
 .shop__home--header__container {
   flex-direction: column;
   
@@ -217,7 +221,7 @@
 
 .shop__home--testimonial__author {
   position: relative;
-  top: -20%;
+  margin-top: -5rem;
 }
 
 .shop__home--testimonial__author--image {

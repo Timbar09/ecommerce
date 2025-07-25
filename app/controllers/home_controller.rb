@@ -47,5 +47,48 @@ class HomeController < ApplicationController
         title: "Loyal Customer"
       }
     ].shuffle
+
+    @footer_links = {
+      "app" => [
+        {
+          image_file: "apple-store-logo.png",
+          title: "Apple Store Logo",
+          path: "https://apps.apple.com/app/ecom/id123456789"
+        },
+        {
+          image_file: "google-play-logo.png",
+          title: "Google Play Logo",
+          path: "https://play.google.com/store/apps/details?id=com.ecom"
+        }
+      ],
+      "customer" => [
+        { name: "Account", path: "#" },
+        { name: "Help Center", path: "#" },
+        { name: "Delivery Information", path: "#" },
+        { name: "Terms of Service", path: "#" },
+        { name: "Privacy Policy", path: "#" }
+      ],
+      "company" => [
+        { name: "About Us", path: "#" },
+        { name: "Contact Us", path: "#" },
+        { name: "Frequently Asked Questions", path: "#" },
+        { name: "Careers", path: "#" },
+        { name: "Blog", path: "#" }
+      ],
+      "social" => [
+        { name: "Facebook", path: "#", icon: "icons8-facebook", handle: "@ecom_superstore" },
+        { name: "x", path: "#", icon: "icons8-x", handle: "@ecom_on_x" },
+        { name: "Instagram", path: "#", icon: "icons8-instagram", handle: "@ecom_insta" },
+        { name: "LinkedIn", path: "#", icon: "icons8-linkedin", handle: "@ecom_linkedin" },
+        { name: "YouTube", path: "#", icon: "icons8-youtube", handle: "@ecom_youtube" }
+      ],
+      "payment" => [
+        { name: "Visa", image_file: "pay-visa-img.png" },
+        { name: "MasterCard", image_file: "pay-mastercard-img.png" },
+        { name: "PayPal", image_file: "pay-paypal-img.png" },
+        { name: "Apple Pay", image_file: "pay-applepay-img.png" },
+        { name: "Google Pay", image_file: "pay-googlepay-img.png" }
+      ]
+    }
   end
 end
