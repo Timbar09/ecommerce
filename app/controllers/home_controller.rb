@@ -90,5 +90,15 @@ class HomeController < ApplicationController
         { name: "Google Pay", image_file: "pay-googlepay-img.png" }
       ]
     }
+
+    # Mock promotion data for the home page
+    @promotion = {
+      name: "Summer Sale",
+      description: "Get ready for summer with our exclusive featured product. Limited time offer!",
+      discount_rate: 20,
+      start_date: Date.today,
+      end_date: Date.today + 30.days,
+      product: @hero_product
+    }
   end
 end

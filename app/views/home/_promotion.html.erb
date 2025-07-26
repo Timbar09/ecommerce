@@ -1,0 +1,42 @@
+<section class="shop__home--promotion__section shop__home--section px-2">
+  <div class="container radius-xl flex jc-between gap-2">
+    <div class="shop__home--promotion__content flex flex-col gap-1 jc-between">
+      <div class="shop__home--promotion__text">
+        <h2 class="shop__home--promotion__title"><%= @promotion[:name] %></h2>
+        <p class="shop__home--promotion__description"><%= @promotion[:description] %></p>
+      </div>
+
+      <div class="shop__home--promotion__cta flex">
+        <%= render "shared/button",
+          element: "a",
+          variant: "primary",
+          href: @promotion[:product],
+          title: "Shop Now"
+        %>
+      </div>
+    </div>
+
+    <div class="shop__home--promotion__image">
+      <%= image_tag @promotion[:product].display_large_image, alt: @promotion[:product].name %>
+    </div>
+
+    <div class="shop__home--promotion__product--info flex flex-col jc-between">
+      <% split_product_name = @promotion[:product].name.split(" ") %>
+
+      <% if split_product_name.length > 1 %>
+        <h3 class="shop__home--promotion__product--title">
+          <% split_product_name.each_with_index do |word, index| %>
+            <span class="shop__home--promotion__product--title-<%= index + 1 %>"><%= word %></span>
+          <% end %>
+        </h3>
+      <% else %>
+        <h3 class="shop__home--promotion__product--title"><%= @promotion[:product].name %></h3>
+      <% end %>
+
+      <span class="shop__home--promotion__product--sale-rate px-1"><%= @promotion[:discount_rate] %>% Off</span>
+      <span class="shop__home--promotion__product--duration px-1 pt-1">
+        <%= @promotion[:start_date].strftime("%B %d") %> - <%= @promotion[:end_date].strftime("%B %d") %>
+      </span>
+    </div>
+  </div>
+</section>

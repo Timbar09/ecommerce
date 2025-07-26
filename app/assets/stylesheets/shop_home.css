@@ -3,7 +3,8 @@
 }
 
 .shop__home--section {
-  padding: 2rem 0;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .shop__home--header__container {
@@ -240,4 +241,70 @@
 .shop__home--testimonial__author--title {
   font-size: 0.875rem;
   color: var(--primary);
+}
+
+.shop__home--promotion__section {
+  margin-top: 7rem;
+  color: var(--grey-3);
+}
+
+.shop__home--promotion__section .container {
+  position: relative;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  background-color: var(--product-clr, rgb(225, 80, 80));
+  flex-direction: column;
+
+  @media (min-width: 50em) {
+    flex-direction: row;
+  }
+}
+
+.shop__home--promotion__content {
+  order: 1;
+  max-width: max(20rem, 35%);
+}
+
+.shop__home--promotion__title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--light-2);
+}
+
+.shop__home--promotion__image {
+  position: absolute;
+  top: -5rem;
+  left: 35%;
+  width: 25rem;
+  rotate: 30deg;
+
+  @media (min-width: 50em) {
+    left: 25%;
+  }
+}
+
+.shop__home--promotion__image img {
+  width: 100%;
+  height: auto;
+}
+
+.shop__home--promotion__product--title {
+  font-size: 8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.875;
+  color: var(--light-2);
+}
+
+.shop__home--promotion__product--title > span:first-child {
+  display: block;
+}
+
+.shop__home--promotion__product--sale-rate {
+  order: -1;
+  font-size: 1.125rem;
+}
+
+.shop__home--promotion__product--duration {
+  font-size: 1.125rem;
 }
