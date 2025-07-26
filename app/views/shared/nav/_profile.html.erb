@@ -1,0 +1,65 @@
+<div class="nav__profile" data-controller="modal">
+  <%= tag.button class: "nav__profile--button radius-circle", 
+    data: { action: "click->modal#toggle" }, 
+    title: "Profile" do %>
+    <%= image_tag current_user.display_medium_image, 
+      alt: "User Avatar", 
+      class: "nav__profile--button__image radius-circle" %>
+    <span class="sr-only">Profile</span>
+  <% end %>
+
+  <%= render "shared/modal" do %>
+    <div class="nav__profile--menu modal__list flex flex-col gap-2 p-1 radius-xl">
+      <header class="nav__profile--menu__header flex gap-2 pb-2">
+        <div class="nav__profile--menu__image grid">
+          <%= image_tag current_user.display_medium_image, 
+            alt: "User Avatar", 
+            class: "nav__profile--menu__image radius-lg" %>
+        </div>
+
+        <div class="nav__profile--menu__info flex flex-col">
+          <span class="nav__profile--menu__name">
+            <%= current_user.first_name %>
+          </span>
+          <span class="nav__profile--menu__role">
+            <%= is_admins? ? current_user.role.humanize : current_user.email %>
+          </span>
+        </div>
+      </header>
+
+      <% profile_list = [
+        { name: is_admins? ? "Dashboard" : "Profile", 
+          path: is_admins? ? admin_dashboard_path : root_path, 
+          icon: is_admins? ? "layout" : "user" 
+        },
+        { name: "Edit Profile", path: edit_user_registration_path, icon: "edit" },
+        { name: "Settings", path: '#', icon: "gear-6" }
+      ] %>
+      <%# TODO: Implement the Settings functionality %>
+
+      <ul class="nav__profile--menu__list">
+        <% profile_list.each do |item| %>
+          <li class="nav__profile--menu__item radius-lg">
+            <%= tag.a href: item[:path], 
+              class: "flex ai-center gap-1 py-1 px-1", 
+              data: { action: "click->modal#toggle" } do %>
+              <%= render "shared/icon", name: item[:icon] %>
+
+              <span><%= item[:name] %></span>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+
+      <footer class="nav__profile--menu__footer flex ai-center gap-2">
+        <%= button_to destroy_user_session_path, 
+                    method: :delete, 
+                    class: "btn btn__primary radius-lg flex ai-center gap-1",
+                    data: { confirm: "Are you sure you want to log out?" } do %>
+          <%= render "shared/icon", name: "sign-out" %>
+          <span>Sign Out</span>
+        <% end %>
+      </footer>
+    </div>
+  <% end %>
+</div>
