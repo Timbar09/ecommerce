@@ -5,7 +5,9 @@
     <div id="cart-errors"></div>
 
     <div data-controller="cart" cartAuthenticated="<%= user_signed_in? %>">
-      <div class="cart__total" id="cart-total"></div>
+      <ul class="cart__total" id="cart-total"></ul>
+
+      <ul class="cart__list" id="cart-list"></ul>
 
       <button data-action="click->cart#checkout" class="btn">Checkout</button>
       <button data-action="click->cart#clearCart" class="btn">Clear Cart</button>

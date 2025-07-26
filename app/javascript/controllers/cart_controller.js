@@ -3,37 +3,49 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="cart"
 export default class extends Controller {
   initialize() {
-    const cart = JSON.parse(localStorage.getItem('cart'))
+    this.getCartCount();
 
-    if (!cart) {
-      return
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    if (!cart || !Array.isArray(cart) || cart.length === 0) {
+      return;
     }
 
-    let total = 0
+    let total = 0;
+    const cartList = document.getElementById("cart-list");
+    if (!cartList) return;
+    cartList.innerHTML = "";
 
     cart.forEach(item => {
-      const cartItemContainer = document.createElement('div')
-      cartItemContainer.classList.add('cart__list--item')
-      cartItemContainer.innerHTML = `Item: ${item.name} - ${item.price/100.0} - Size: ${item.size} - Quantity: ${item.quantity}`
+      const cartItemContainer = document.createElement('div');
+      cartItemContainer.classList.add('cart__list--item');
+      cartItemContainer.innerHTML = `Item: ${item.name} - ${item.price/100.0} - Size: ${item.size} - Quantity: ${item.quantity}`;
 
-      const deleteButton = document.createElement('button')
-      deleteButton.innerHTML = 'Remove'
-      deleteButton.classList.add('cart__list--item__delete', 'btn')
+      const deleteButton = document.createElement('button');
+      deleteButton.innerHTML = 'Remove';
+      deleteButton.classList.add('cart__list--item__delete', 'btn');
 
-      deleteButton.value = JSON.stringify({ id: item.id, size: item.size })
-      deleteButton.addEventListener('click', this.removeFromCart)
+      deleteButton.value = JSON.stringify({ id: item.id, size: item.size });
+      deleteButton.addEventListener('click', this.removeFromCart);
 
-      
-      total += item.price * item.quantity
-      
-      cartItemContainer.appendChild(deleteButton)
-      this.element.prepend(cartItemContainer)
-    })
+      total += item.price * item.quantity;
 
-    let totalElementContainer = document.getElementById("cart-total")
-    const totalElement = document.createElement('div')
-    totalElement.innerText = `Total: ${total/100.0}`
-    totalElementContainer.appendChild(totalElement)
+      cartItemContainer.appendChild(deleteButton);
+      cartList.prepend(cartItemContainer);
+    });
+
+    let totalElementContainer = document.getElementById("cart-total");
+    if (!totalElementContainer) return;
+    totalElementContainer.innerHTML = "";
+    const totalElement = document.createElement('div');
+    totalElement.innerText = `Total: ${total/100.0}`;
+    totalElementContainer.appendChild(totalElement);
+  }
+
+  getCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const cartCount = document.getElementById('cart-count');
+    if (cartCount) cartCount.textContent = count > 0 ? count : '';
   }
 
   clearCart() {

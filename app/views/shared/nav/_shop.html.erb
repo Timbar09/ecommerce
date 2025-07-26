@@ -47,8 +47,10 @@
 
         <li><a href="/wishlist"><%= render "shared/icon", name: "heart" %></a></li>
         <li>
-          <%= link_to cart_path do %>
+          <%= link_to cart_path, class: "shop__nav--cart", data: { controller: "cart" } do %>
             <%= render "shared/icon", name: "cart" %>
+
+            <span id="cart-count" class="shop__nav--cart__count radius-circle grid place-center"></span>
           <% end %>
         </li>
 

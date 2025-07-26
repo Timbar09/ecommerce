@@ -57,6 +57,24 @@
   box-shadow: none;
 }
 
+.shop__nav--cart {
+  position: relative;
+}
+
+.shop__nav--cart__count {
+  --dimension: 1.25rem;
+
+  position: absolute;
+  top: calc(var(--dimension) / -4);
+  right: calc(var(--dimension) / 4);
+  transform: translate(50%, -50%);
+  background-color: var(--red);
+  color: var(--bg-clr-2);
+  font-size: 0.725rem;
+  width: var(--dimension);
+  height: var(--dimension);
+}
+
 .nav__profile {
   position: relative;
 }
