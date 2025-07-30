@@ -64,6 +64,7 @@
 .shop__nav--cart__count {
   --dimension: 1.25rem;
 
+  display: none;
   position: absolute;
   top: calc(var(--dimension) / -4);
   right: calc(var(--dimension) / 4);

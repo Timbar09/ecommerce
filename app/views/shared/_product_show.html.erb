@@ -22,7 +22,7 @@
     </div>
 
     <div
-      data-controller="products"
+      data-controller="products cart"
       data-products-product-value="<%= @product.to_json %>"
       class="product__show--info p-2 flex gap-2 flex-col"
     >
@@ -39,7 +39,7 @@
           <% if is_admin %>
             <%= link_to "Manage Stock", admin_product_stocks_path(product), class: "btn btn__primary" %>
           <% else %>
-            <button class="btn btn__primary" data-action="click->products#addToCart">
+            <button class="btn btn__primary" data-action="click->products#addToCart click->cart#getCartCount">
               Add to Cart
             </button>
           <% end %>

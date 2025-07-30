@@ -45,7 +45,10 @@ export default class extends Controller {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const count = cart.reduce((sum, item) => sum + item.quantity, 0);
     const cartCount = document.getElementById('cart-count');
-    if (cartCount) cartCount.textContent = count > 0 ? count : '';
+    if (cartCount && count > 0) {
+      cartCount.innerText = count;
+      cartCount.style.display = 'grid';
+    }
   }
 
   clearCart() {
