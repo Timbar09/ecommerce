@@ -7,7 +7,7 @@
     <%= yield :title %>
   </h2>
 
-  <div class="flex ai-center gap-2">
+  <nav class="flex ai-center gap-2">
     <% if local_assigns[:ransack] %>
       <%= render "shared/ransack", ransack: ransack %>
     <% end %>
@@ -16,5 +16,7 @@
       <%= render "shared/button", element: "a", path: new[:path], title: new[:title], icon: "plus",
         variant: "primary" %>
     <% end %>
-  </div>
+
+    <%= render "shared/nav/profile" %>
+  </nav>
 </header>

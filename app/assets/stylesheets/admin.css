@@ -245,6 +245,7 @@
 }
 
 .admin__content--header {
+  background-color: var(--bg-clr-3);
   position: absolute;
   top: 0;
   left: 0;
