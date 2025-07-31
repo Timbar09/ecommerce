@@ -1,11 +1,20 @@
+<% btn_padding = is_dashboard? ? ' pl-0 py-0 pr-2' : ' p-0' %>
+
 <div class="nav__profile" data-controller="modal">
-  <%= tag.button class: "nav__profile--button radius-circle", 
+  <%= tag.button class: "nav__profile--button radius-pill flex ai-center gap-1#{ btn_padding }", 
     data: { action: "click->modal#toggle" }, 
     title: "Profile" do %>
     <%= image_tag current_user.display_medium_image, 
       alt: "User Avatar", 
       class: "nav__profile--button__image radius-circle" %>
     <span class="sr-only">Profile</span>
+
+    <% if is_dashboard? %>
+      <div class="">
+        <span class="nav__profile--button__name grid"> <%= current_user.first_name %> </span>
+        <span class="nav__profile--button__role"> <%= current_user.role.humanize %> </span>
+      </div>
+    <% end %>
   <% end %>
 
   <%= render "shared/modal" do %>
@@ -27,10 +36,14 @@
         </div>
       </header>
 
+      <% dashboard_link_text = is_dashboard? ? "Go to Shop" : "Dashboard" %>
+      <% dashboard_link_path = is_dashboard? ? root_path : admin_dashboard_path %>
+      <% dashboard_link_icon = is_dashboard? ? "home" : "layout" %>
+
       <% profile_list = [
-        { name: is_admins? ? "Dashboard" : "Profile", 
-          path: is_admins? ? admin_dashboard_path : root_path, 
-          icon: is_admins? ? "layout" : "user" 
+        { name: is_admins? ? dashboard_link_text : "Profile", 
+          path: is_admins? ? dashboard_link_path : root_path, 
+          icon: is_admins? ? dashboard_link_icon : "user" 
         },
         { name: "Edit Profile", path: edit_user_registration_path, icon: "edit" },
         { name: "Settings", path: '#', icon: "gear-6" }

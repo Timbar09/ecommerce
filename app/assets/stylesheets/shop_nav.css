@@ -83,19 +83,29 @@
 .nav__profile--button {
   --dimension: 2.5rem;
 
-  padding: 0;
-  border: none;
-  width: var(--dimension);
-  height: var(--dimension);
+  font-family: inherit;
+  text-align: left;
+  border: 2px solid var(--bg-clr-4);
   cursor: pointer;
   background-color: transparent;
+  transition: border 100ms ease-in-out, background-color 100ms ease-in-out;
+}
+
+.nav__profile--button:hover,
+.nav__profile--button:focus {
+  border-color: var(--bg-clr-4);
+  background-color: var(--bg-clr-1);
+}
+
+.nav__profile--button__role {
+  font-size: 0.875rem;
+  color: var(--text-clr-1);
 }
 
 .nav__profile--button__image {
-  width: 100%;
-  height: 100%;
+  width: var(--dimension);
+  height: var(--dimension);
   object-fit: cover;
-  outline: 2px solid var(--bg-clr-4);
 }
 
 .nav__profile--menu {
